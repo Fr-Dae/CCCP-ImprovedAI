@@ -2,11 +2,15 @@
 -- ImproveAI.rte
 -- Anchor.lua
 --
+<<<<<<< HEAD
 -- Places an explicit mining origin and direction for
 -- MinerOptimized. The anchor is stored on the actor so the
 -- optimized miner does not have to infer the wall/floor junction.
 --
 -- Explicit mining anchor for MinerOptimized.
+=======
+-- Explicit mining anchor: origin + left/right direction.
+>>>>>>> origin/11-new-constructor-issue
 -- ============================================================
 
 ImproveAI_Anchor = ImproveAI_Anchor or {};
@@ -19,15 +23,24 @@ local function GetAnchorID(Owner)
 end
 
 function Anchor.Set(Owner, Position, Direction)
-	ImproveAI_MiningAnchors[GetAnchorID(Owner)] = {
+	if not Owner or not Position then
+		return false;
+	end
+
+	local ID = GetAnchorID(Owner);
+	ImproveAI_MiningAnchors[ID] = {
 		X = Position.X,
 		Y = Position.Y,
 		Direction = Direction < 0 and -1 or 1
 	};
+
+	return true;
 end
 
 function Anchor.Clear(Owner)
-	ImproveAI_MiningAnchors[GetAnchorID(Owner)] = nil;
+	if Owner then
+		ImproveAI_MiningAnchors[GetAnchorID(Owner)] = nil;
+	end
 end
 
 function Anchor.Draw(AI, Owner, Screen)
@@ -46,11 +59,47 @@ function Anchor.Draw(AI, Owner, Screen)
 end
 
 function Anchor.Get(Owner)
+	if not Owner then
+		return nil;
+	end
+
 	local Data = ImproveAI_MiningAnchors[GetAnchorID(Owner)];
 	if not Data then
 		return nil;
 	end
+
 	return Vector(Data.X, Data.Y), Data.Direction;
+end
+
+function Anchor.Draw(Owner, Screen)
+	local Position, Direction = Anchor.Get(Owner);
+	if not Position or Screen == -1 then
+		return;
+	end
+
+	local Size = 6;
+	local End = Position + Vector(Direction * 18, 0);
+	local Color = 13;
+
+	PrimitiveMan:DrawBoxPrimitive(
+		Screen,
+		Position - Vector(Size, Size),
+		Position + Vector(Size, Size),
+		Color
+	);
+	PrimitiveMan:DrawLinePrimitive(Screen, Position, End, Color);
+	PrimitiveMan:DrawLinePrimitive(
+		Screen,
+		End,
+		End - Vector(Direction * 5, 4),
+		Color
+	);
+	PrimitiveMan:DrawLinePrimitive(
+		Screen,
+		End,
+		End - Vector(Direction * 5, -4),
+		Color
+	);
 end
 
 function ImproveAI_SetMiningAnchor(pieMenuOwner, pieMenu, pieSlice)
@@ -61,8 +110,20 @@ function ImproveAI_SetMiningAnchor(pieMenuOwner, pieMenu, pieSlice)
 	local Owner = ToActor(pieMenuOwner);
 	local Trace = Vector(200, 0):RadRotate(Owner:GetAimAngle(true));
 	local Hit = Vector();
-	local Ray = SceneMan:CastObstacleRay(Owner.EyePos, Trace, Vector(), Hit, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
-	local Position = Ray < 0 and Owner.EyePos + Trace or Hit;
+	local Ray = SceneMan:CastObstacleRay(
+		Owner.EyePos,
+		Trace,
+		Vector(),
+		Hit,
+		Owner.ID,
+		Owner.IgnoresWhichTeam,
+		rte.grassID,
+		3
+	);
+
+	local Position = Ray < 0
+		and Owner.EyePos + Trace
+		or Hit;
 	local Direction = Trace.X < 0 and -1 or 1;
 
 	Anchor.Set(Owner, Position, Direction);
