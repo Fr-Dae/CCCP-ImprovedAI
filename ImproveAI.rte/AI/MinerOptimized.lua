@@ -2,8 +2,32 @@
 -- ImproveAI.rte
 -- MinerOptimized.lua
 --
+-- Optimized tunnel-mining behaviour.
+--
+-- Design:
+--
+--   Surface = level 0
+--   First gallery = level -1
+--   Each gallery is 6 Constructor blocks high.
+--   Gallery floor / next gallery ceiling are shared.
+--
 -- Structured tunnel mining. Heavy work is deliberately delegated
 -- to native CCCP behaviours whenever possible.
+--
+-- The Constructor is responsible for the actual construction
+-- and material collection.
+--
+-- This behaviour only controls:
+--
+--   - equipment
+--   - anchor detection
+--   - safe depth
+--   - horizontal excavation
+--   - gallery progression
+--   - Constructor activation
+--
+-- Native AI pathfinding and native mining are deliberately
+-- reused whenever possible.
 --
 -- Geometry:
 --   surface = level 0

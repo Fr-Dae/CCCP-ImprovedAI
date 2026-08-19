@@ -2,6 +2,10 @@
 -- ImproveAI.rte
 -- Anchor.lua
 --
+-- Places an explicit mining origin and direction for
+-- MinerOptimized. The anchor is stored on the actor so the
+-- optimized miner does not have to infer the wall/floor junction.
+--
 -- Explicit mining anchor for MinerOptimized.
 -- ============================================================
 
@@ -24,6 +28,21 @@ end
 
 function Anchor.Clear(Owner)
 	ImproveAI_MiningAnchors[GetAnchorID(Owner)] = nil;
+end
+
+function Anchor.Draw(AI, Owner, Screen)
+	local Position = AI.MinerAnchor;
+	if not Position then
+		return;
+	end
+
+	local Direction = AI.MinerDirection or Anchor.DirectionRight;
+	local Tip = Position + Vector(Direction * 18, 0);
+
+	PrimitiveMan:DrawBoxPrimitive(Screen, Position - Vector(6, 6), Position + Vector(6, 6), 12);
+	PrimitiveMan:DrawLinePrimitive(Screen, Position, Tip, 12);
+	PrimitiveMan:DrawLinePrimitive(Screen, Tip, Tip + Vector(-Direction * 5, -4), 12);
+	PrimitiveMan:DrawLinePrimitive(Screen, Tip, Tip + Vector(-Direction * 5, 4), 12);
 end
 
 function Anchor.Get(Owner)
