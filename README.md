@@ -65,12 +65,26 @@ ImproveAI separates Sentry dispatch, passive/active behaviour and target acquisi
 
 ```text
 Sentry
-├── SentryPassive
-├── SentryActive
-└── SentryTargeting
+├── Sentry.lua
+├── SentryPassive.lua
+├── SentryActive.lua
+└── SentryTargeting.lua
 ```
 
 `SentryTargeting.lua` handles target validation, team filtering, LOS and weapon-dependent search/target selection independently from the two Sentry profiles.
+
+The Pie Menu exposes the Sentry profiles as a dedicated submenu:
+
+```text
+Sentry
+├── Sentry Passive
+└── Sentry Active
+```
+
+Selecting either profile sets the actor's Sentry mode and enters the native `AIMODE_SENTRY` path. `Sentry.lua` dispatches the resulting native Sentry coroutine to the selected ImproveAI profile.
+
+- **Passive:** remains at the sentry position and engages visible targets without pursuing them.
+- **Active:** may move toward a valid target within its engagement limit and returns to the sentry position when the engagement ends.
 
 ## Constructor integration
 
@@ -92,14 +106,19 @@ For optimized mining, the 12 px medium block is the reference unit. The optimize
 
 ImproveAI uses CCCP's Pie Menu system. Immediate commands such as Anchor placement are PieSlice callbacks; long-running coroutine behaviours such as Miner and Sentry must not be registered directly as PieSlice callbacks.
 
-The intended mining command set is:
+The command groups are:
 
 ```text
 Mining
 ├── Mining
 ├── Mining Optimized
-├── Anchor Left
-└── Anchor Right
+└── Anchor
+    ├── Anchor Left
+    └── Anchor Right
+
+Sentry
+├── Sentry Passive
+└── Sentry Active
 ```
 
 The left/right Anchor commands are mutually exclusive and replace the previous anchor for the actor.
