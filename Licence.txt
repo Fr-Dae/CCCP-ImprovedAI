@@ -1,0 +1,14 @@
+/*
+
+* ---
+* "THE BEER-WARE LICENSE" (Revision 42):
+* [phk@FreeBSD.ORG](mailto:phk@FreeBSD.ORG) wrote this file. As long as you retain this notice you
+* can do whatever you want with this stuff. If we meet some day, and you think
+* this stuff is worth it, you can buy me a beer in return Poul-Henning Kamp
+* ---
+
+*/
+
+-- ImproveAI
+-- Copyright © 2026 Fr_Dae
+-- Licensed under the Beerware License (Revision 42).
