@@ -2,10 +2,10 @@
 -- ImproveAI.rte
 -- SentryTargeting.lua
 --
--- Target acquisition for the ImproveAI Sentry behaviour.
+-- Target acquisition for Sentry behaviours.
 --
--- This file deliberately uses only APIs already observed in
--- CCCP/Base.rte and in the ImproveAI documentation.
+-- The search range is derived from the weapon currently usable
+-- by the actor whenever possible.
 -- ============================================================
 
 ImproveAI_SentryTargeting = ImproveAI_SentryTargeting or {};
@@ -17,17 +17,22 @@ local Targeting = ImproveAI_SentryTargeting;
 -- CONFIGURATION
 -- ============================================================
 
-Targeting.DefaultSearchRadius = 900;
+Targeting.DefaultSearchRadius = 500;
+Targeting.MaximumSearchRadius = 2500;
+Targeting.MinimumSearchRadius = 120;
 
--- Material used by the native AI raycasts.
 Targeting.RayMaterial = rte.grassID;
 
--- Skip radius results belonging to the same root object.
+Targeting.ActorScoreMultiplier = 0.70;
+
+Targeting.SearchIntervalMS = 250;
+Targeting.TargetValidationIntervalMS = 100;
+
 Targeting.RequireEnemyTeam = true;
 
 
 -- ============================================================
--- BASIC MO VALIDATION
+-- BASIC VALIDATION
 -- ============================================================
 
 function Targeting.IsValidMO(MO)
@@ -57,88 +62,71 @@ function Targeting.GetRootMO(MO)
 
 	if Targeting.IsValidMO(Root) then
 		return Root;
+	else
+		return MO;
 	end
-
-	return MO;
 
 end
 
 
 -- ============================================================
--- ACTOR TEST
+-- ACTOR
 -- ============================================================
 
 function Targeting.IsActor(MO)
 
 	if not Targeting.IsValidMO(MO) then
 		return false;
+	elseif MO.ClassName == "AHuman" then
+		return true;
+	elseif MO.ClassName == "ACrab" then
+		return true;
+	else
+		return false;
 	end
-
-	return MO.ClassName == "AHuman"
-		or MO.ClassName == "ACrab";
 
 end
 
 
 -- ============================================================
--- TEAM FILTER
+-- TEAM
 -- ============================================================
 
 function Targeting.IsEnemy(Owner, MO)
 
 	if not Targeting.IsValidMO(MO) then
 		return false;
-	end
-
-	if MO.ID == Owner.ID then
+	elseif MO.ID == Owner.ID then
 		return false;
-	end
-
-	if MO.RootID == Owner.RootID then
+	elseif MO.RootID == Owner.RootID then
 		return false;
-	end
-
-	-- Neutral objects are not enemies.
-	if MO.Team == Activity.NOTEAM then
+	elseif MO.Team == Activity.NOTEAM then
 		return false;
+	elseif Targeting.RequireEnemyTeam
+		and MO.Team == Owner.Team then
+		return false;
+	else
+		return true;
 	end
-
-	if Targeting.RequireEnemyTeam then
-		if MO.Team == Owner.Team then
-			return false;
-		end
-	end
-
-	return true;
 
 end
 
 
 -- ============================================================
--- TARGET HEALTH / STATE
+-- LIFE
 -- ============================================================
 
 function Targeting.IsAlive(MO)
 
 	if not Targeting.IsValidMO(MO) then
 		return false;
+	elseif MO.IsDead ~= nil and MO:IsDead() then
+		return false;
+	elseif MO.Health ~= nil and MO.Health <= 0 then
+		return false;
+	else
+		return true;
 	end
-
-	-- Actors expose IsDead().
-	if MO.IsDead ~= nil then
-		if MO:IsDead() then
-			return false;
-		end
-	end
-
-	-- Some MOs expose Health.
-	if MO.Health ~= nil then
-		if MO.Health <= 0 then
-			return false;
-		end
-	end
-
-	return true;
 
 end
 
@@ -147,51 +135,45 @@ end
 -- DISTANCE
 -- ============================================================
 
+function Targeting.GetTrace(Owner, Target)
+
+	return SceneMan:ShortestDistance(
+		Owner.EyePos,
+		Target.Pos,
+		false
+	);
+
+end
+
+
 function Targeting.GetDistance(Owner, Target)
 
 	if not Targeting.IsValidMO(Target) then
 		return math.huge;
 	end
 
-	local Trace = SceneMan:ShortestDistance(
-		Owner.EyePos,
-		Target.Pos,
-		false
-	);
-
-	return Trace.Magnitude;
+	return Targeting.GetTrace(Owner, Target).Magnitude;
 
 end
 
 
 -- ============================================================
--- TERRAIN LINE OF SIGHT
+-- TERRAIN LOS
 -- ============================================================
 
 function Targeting.HasTerrainLOS(Owner, Target)
 
-	if not Targeting.IsValidMO(Owner) then
+	if not Targeting.IsValidMO(Owner)
+		or not Targeting.IsValidMO(Target) then
 		return false;
 	end
 
-	if not Targeting.IsValidMO(Target) then
-		return false;
-	end
-
-	local Trace = SceneMan:ShortestDistance(
-		Owner.EyePos,
-		Target.Pos,
-		false
-	);
+	local Trace = Targeting.GetTrace(Owner, Target);
 
 	if Trace.Magnitude <= 1 then
 		return true;
 	end
 
-	-- Native CCCP AI uses CastObstacleRay with a negative result
-	-- meaning that no obstacle was encountered.
-	--
-	-- We deliberately exclude the target MO itself using target.ID.
 	local RayLength = SceneMan:CastObstacleRay(
 		Owner.EyePos,
 		Trace,
@@ -199,7 +181,7 @@ function Targeting.HasTerrainLOS(Owner, Target)
 		Vector(),
 		Target.ID,
 		Owner.IgnoresWhichTeam,
-		rte.grassID,
+		Targeting.RayMaterial,
 		9
 	);
 
@@ -209,36 +191,7 @@ end
 
 
 -- ============================================================
--- COMPLETE LINE OF SIGHT
---
--- First checks terrain.
--- Then checks whether the target can actually be reached by an
--- MO ray.
--- ============================================================
-
-function Targeting.HasLOS(Owner, Target)
-
-	if not Targeting.IsEnemy(Owner, Target) then
-		return false;
-	end
-
-	if not Targeting.IsAlive(Target) then
-		return false;
-	end
-
-	if not Targeting.HasTerrainLOS(Owner, Target) then
-		return false;
-	end
-
-	return true;
-
-end
-
-
--- ============================================================
--- RAYCAST
---
--- Returns the root MO hit by a CastMORay.
+-- MO RAY
 -- ============================================================
 
 function Targeting.CastTargetRay(Owner, Trace)
@@ -248,7 +201,7 @@ function Targeting.CastTargetRay(Owner, Trace)
 		Trace,
 		Owner.ID,
 		Owner.IgnoresWhichTeam,
-		rte.grassID,
+		Targeting.RayMaterial,
 		false,
 		5
 	);
@@ -269,25 +222,118 @@ end
 
 
 -- ============================================================
+-- COMPLETE LOS
+-- ============================================================
+
+function Targeting.HasLOS(Owner, Target)
+
+	if not Targeting.IsEnemy(Owner, Target)
+		or not Targeting.IsAlive(Target) then
+		return false;
+	end
+
+	return Targeting.HasTerrainLOS(Owner, Target);
+
+end
+
+
+-- ============================================================
+-- WEAPON IDENTIFICATION
+-- ============================================================
+
+function Targeting.GetEquippedWeapon(Owner)
+
+	if not Owner.EquippedItem then
+		return nil;
+	end
+
+	if IsHDFirearm(Owner.EquippedItem) then
+		return Owner.EquippedItem;
+	end
+
+	return nil;
+
+end
+
+
+-- ============================================================
+-- WEAPON RANGE
+--
+-- There is intentionally no hard-coded "900 pixel" search
+-- radius here.
+--
+-- The weapon is used as the primary source of range information.
+-- If the engine/mod does not expose enough information for the
+-- weapon, the conservative fallback is used.
+-- ============================================================
+
+function Targeting.GetWeaponRange(Weapon)
+
+	if not Weapon then
+		return Targeting.DefaultSearchRadius;
+	end
+
+	local Range = nil;
+
+	-- Prefer explicitly exposed projectile/range information
+	-- when available.
+
+	if Weapon.Range ~= nil then
+		Range = Weapon.Range;
+	end
+
+	if Range == nil and Weapon.ProjectileRange ~= nil then
+		Range = Weapon.ProjectileRange;
+	end
+
+	if Range == nil and Weapon.MaxRange ~= nil then
+		Range = Weapon.MaxRange;
+	end
+
+	if Range == nil then
+		Range = Targeting.DefaultSearchRadius;
+	end
+
+	if Range < Targeting.MinimumSearchRadius then
+		Range = Targeting.MinimumSearchRadius;
+	elseif Range > Targeting.MaximumSearchRadius then
+		Range = Targeting.MaximumSearchRadius;
+	end
+
+	return Range;
+
+end
+
+
+-- ============================================================
+-- SEARCH RANGE
+-- ============================================================
+
+function Targeting.GetSearchRadius(Owner)
+
+	local Weapon = Targeting.GetEquippedWeapon(Owner);
+
+	if Weapon then
+		return Targeting.GetWeaponRange(Weapon);
+	end
+
+	return Targeting.DefaultSearchRadius;
+
+end
+
+
+-- ============================================================
 -- TARGET SCORE
 -- ============================================================
 
 function Targeting.ScoreTarget(Owner, Target)
 
-	local Trace = SceneMan:ShortestDistance(
-		Owner.EyePos,
-		Target.Pos,
-		false
-	);
+	local Distance = Targeting.GetDistance(Owner, Target);
 
-	local Distance = Trace.Magnitude;
-
-	-- Distance is the base score.
 	local Score = Distance;
 
-	-- Prefer actual actors over miscellaneous MOs.
 	if Targeting.IsActor(Target) then
-		Score = Score * 0.70;
+		Score = Score * Targeting.ActorScoreMultiplier;
 	end
 
 	return Score;
@@ -296,21 +342,16 @@ end
 
 
 -- ============================================================
--- FIND BEST TARGET
---
--- Uses GetMOsInRadius(), which is already used extensively by
--- the native HumanBehaviors code.
+-- FIND TARGET
 -- ============================================================
 
 function Targeting.FindBestTarget(Owner, SearchRadius)
 
-	SearchRadius = SearchRadius or Targeting.DefaultSearchRadius;
+	SearchRadius = SearchRadius or Targeting.GetSearchRadius(Owner);
 
 	local BestTarget = nil;
 	local BestScore = math.huge;
 
-	-- Avoid evaluating the same root actor several times when
-	-- the radius iterator encounters limbs/attachments.
 	local SeenRoots = {};
 
 	for MO in MovableMan:GetMOsInRadius(
@@ -324,29 +365,23 @@ function Targeting.FindBestTarget(Owner, SearchRadius)
 
 			local Root = Targeting.GetRootMO(MO);
 
-			if Targeting.IsValidMO(Root) then
+			if Targeting.IsValidMO(Root)
+				and not SeenRoots[Root.ID] then
 
-				if not SeenRoots[Root.ID] then
+				SeenRoots[Root.ID] = true;
 
-					SeenRoots[Root.ID] = true;
+				if Targeting.IsEnemy(Owner, Root)
+					and Targeting.IsAlive(Root)
+					and Targeting.HasLOS(Owner, Root) then
 
-					if Targeting.IsEnemy(Owner, Root)
-						and Targeting.IsAlive(Root)
-						and Targeting.HasLOS(Owner, Root) then
+					local Score = Targeting.ScoreTarget(
+						Owner,
+						Root
+					);
 
-						local Score =
-							Targeting.ScoreTarget(
-								Owner,
-								Root
-							);
-
-						if Score < BestScore then
-
-							BestScore = Score;
-							BestTarget = Root;
-
-						end
-
+					if Score < BestScore then
+						BestScore = Score;
+						BestTarget = Root;
 					end
 
 				end
@@ -363,7 +398,7 @@ end
 
 
 -- ============================================================
--- KEEP / VALIDATE EXISTING TARGET
+-- EXISTING TARGET
 -- ============================================================
 
 function Targeting.IsTargetStillValid(Owner, Target)
@@ -376,16 +411,12 @@ function Targeting.IsTargetStillValid(Owner, Target)
 
 	if not Targeting.IsValidMO(Root) then
 		return false;
-	end
-
-	if not Targeting.IsEnemy(Owner, Root) then
+	elseif not Targeting.IsEnemy(Owner, Root) then
 		return false;
-	end
-
-	if not Targeting.IsAlive(Root) then
+	elseif not Targeting.IsAlive(Root) then
 		return false;
+	else
+		return Targeting.HasLOS(Owner, Root);
 	end
-
-	return Targeting.HasLOS(Owner, Root);
 
 end
