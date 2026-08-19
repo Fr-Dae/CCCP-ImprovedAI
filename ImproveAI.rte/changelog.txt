@@ -1,3 +1,43 @@
 2026/08/18 - 15h32
 - Fr_Dae
 - initial commit. définition des but.
+
+2026/08/19 - 22h30
+- Fr_Dae
+- version 0.6 development work.
+- Miner.lua remains a native GoldDig wrapper.
+- MinerOptimized.lua uses explicit mining anchors, 12 px reference blocks and finite bottom-of-map protection.
+- Constructor acquisition checks equipped and inventory tools before mining.
+- Anchor.lua stores the mining origin and direction and provides optional debug drawing.
+- Investigation of CCCP input handling shows that configurable keyboard actions are implemented through InputElements/InputScheme and the Settings Input Mapping GUI; adding a dedicated Rotate Anchor action therefore requires a CCCP source change rather than a Lua-only key binding.
+- The default Rotate Anchor key is planned as R, with user remapping through the normal input settings.
+- Anchor rotation must not be implemented as a hard-coded Lua-only KEY_R shortcut.
+- README and CONTRIBUTOR.md document the architecture and CCCP Lua/C++ optimisation constraints.
+
+2026/08/19 - 23hxx
+- Fr_Dae
+- continued preparation of version 0.6.
+- Constructor override work aligned with MinerOptimized: medium 12x12 px blocks are the construction reference and the 24x24 block is not used by the optimized construction path.
+- The native 3x3 px construction cell remains an internal implementation unit; it is not intended to be a selectable construction size.
+- Added the ImproveAI Constructor override definition under the mirrored Base.rte path so the module can redirect the Constructor script when loaded after the base game.
+- Preserved the existing Constructor behaviour rather than replacing it with a reduced prototype.
+- Corrected the documentation requirement: functional comments describing MinerOptimized and the Constructor architecture are retained as part of the source documentation.
+
+2026/08/19 - 23hxx
+- Fr_Dae
+- mining menu integration work for version 0.6.
+- Added PieMenus.ini and PieMenus.lua for native mining and optimized mining selection.
+- Optimized mining is selected through the existing AIMODE_GOLDDIG path and a per-actor ImproveAI flag; normal GoldDig remains native when the flag is disabled.
+- MinerOptimized.lua now uses the native Tools - Constructors equipment group instead of duplicating inventory search logic.
+- Corrected the optimized mining reference cost to 200 Constructor resource units for one medium 12x12 block, with a 200-unit reserve margin.
+- Corrected the previous typo in the MinerOptimized module initialization and retained the lightweight timer-driven architecture.
+- Added PieMenus.lua to the AI include list.
+
+2026/08/20 - 00h33
+- Fr_Dae
+- completed ImproveAI Sentry Pie Menu integration for version 0.6.
+- Added a dedicated Sentry menu containing Sentry Passive and Sentry Active commands.
+- Added PieMenus.lua callbacks that select the Sentry profile through the actor's ImproveAI_SentryMode value and then enter the native AIMODE_SENTRY path.
+- Updated Sentry.lua so the native HumanBehaviors.Sentry coroutine dispatches to SentryPassive.lua or SentryActive.lua according to the selected profile.
+- Updated README.md so the Pie Menu documentation now covers both Mining and Sentry command groups.
+- The native CCCP Sentry AI remains the engine integration point; ImproveAI replaces the coroutine implementation rather than introducing a new AIMode.

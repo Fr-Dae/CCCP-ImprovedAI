@@ -1,315 +1,181 @@
 # ImproveAI
 
-**Advanced AI behaviour and command system for Cortex Command Community Project**
+**Advanced AI behaviour and command system for Cortex Command Community Project (CCCP).**
 
-ImproveAI est un mod pour **Cortex Command Community Project (CCCP)** visant à enrichir les comportements des unités contrôlées par l'IA et à proposer des commandes plus précises via le menu radial.
+ImproveAI adds specialised AI behaviours while reusing native CCCP AI modes, navigation, equipment and engine facilities wherever possible.
 
-Le projet cherche à rester aussi largement que possible **compatible avec l'IA et les AIModes natifs du CCCP**, en ajoutant une couche de comportement plutôt qu'en remplaçant inutilement les mécanismes existants.
-
----
-
-## Fonctionnalités prévues
-
-### Sentry
-
-ImproveAI propose plusieurs profils de comportement pour les unités en mode Sentry.
-
-```text
-Sentry
-├── ⚪ Hold
-├── 🔵 Passive Defence
-└── 🔴 Active Defence
-```
-
-Les couleurs sont uniquement des **repères visuels dans le menu radial**. Elles ne correspondent pas à des états internes du moteur.
-
-#### ⚪ Hold
-
-L'unité reste immobile et conserve le comportement de sentinelle standard.
-
-#### 🔵 Passive Defence
-
-L'unité reste en position et n'engage pas activement les ennemis.
-
-Elle ne se défend que lorsqu'elle est elle-même attaquée.
-
-#### 🔴 Active Defence
-
-L'unité recherche activement des cibles ennemies situées dans sa zone d'engagement.
-
-Le comportement prévu comprend notamment :
-
-* prise en compte de la portée effective de l'arme ;
-* utilisation d'une marge de sécurité avant la portée maximale ;
-* vérification de la ligne de tir ;
-* sélection prioritaire de la tête lorsqu'elle est exploitable ;
-* recours aux jambes ou à une autre partie du corps lorsque la tête n'est pas exploitable ;
-* adaptation de la posture pour améliorer la ligne de tir ;
-* utilisation de la position accroupie lorsque cela présente un avantage défensif ou tactique.
-
-Le système de ciblage sera développé progressivement afin de tenir compte des obstacles, équipements, constructions et éléments du terrain.
-
----
-
-## Miner
-
-Deux profils de minage sont prévus :
-
-```text
-Miner
-├── Classic
-└── Optimized
-```
-
-### ⛏ Classic Mining
-
-Utilise le comportement de minage natif du CCCP.
-
-### 🏗 Optimized Mining
-
-L'objectif est de proposer une méthode de minage structurée lorsque l'unité dispose d'un outil de construction compatible, tel qu'un Constructor.
-
-Le principe prévu est de créer un réseau de galeries plutôt que de simplement creuser progressivement dans une direction.
-
-Caractéristiques envisagées :
-
-* galeries d'environ 20 blocs de largeur ;
-* hauteur d'environ 6 blocs ;
-* utilisation des structures verticales existantes comme références lorsque cela est possible ;
-* conservation d'un passage sécurisé vers les zones précédemment exploitées ;
-* connexions entre les différents niveaux ;
-* ouvertures verticales contrôlées ;
-* escaliers ou passages facilitant les déplacements ;
-* conservation permanente d'un chemin permettant à l'unité de revenir vers les zones précédentes.
-
-L'objectif est de permettre un minage pouvant se poursuivre sur une longue durée sans produire un réseau de galeries impossible à parcourir ou une unité incapable de remonter.
-
-Les dimensions et paramètres pourront être rendus configurables.
-
----
-
-## Menu radial
-
-ImproveAI utilise le système de **Pie Menu** existant du CCCP.
-
-L'objectif est d'organiser les commandes sous forme de catégories et de sous-menus afin de permettre une lecture rapide en situation de jeu.
-
-Exemple :
-
-```text
-Change AI Mode
-│
-├── Sentry
-│   ├── ⚪ Hold
-│   ├── 🔵 Passive Defence
-│   └── 🔴 Active Defence
-│
-├── Patrol
-│
-├── Brain Hunt
-│
-├── Miner
-│   ├── Classic
-│   └── Optimized
-│
-└── Go To
-```
-
-Les couleurs utilisées dans les icônes ont pour seul objectif d'améliorer l'identification visuelle des ordres.
-
----
-
-## Philosophie technique
-
-ImproveAI cherche à éviter autant que possible la création de nouveaux `AIMode` dans le moteur C++.
-
-Le projet utilise les modes natifs du CCCP comme base :
-
-```text
-AIMODE_SENTRY
-AIMODE_GOLDDIG
-AIMODE_PATROL
-AIMODE_GOTO
-...
-```
-
-Les profils propres à ImproveAI sont stockés séparément du mode d'IA natif.
-
-Conceptuellement :
-
-```text
-AIMode
-    │
-    └── ordre moteur courant
-
-ImproveAI Profile
-    │
-    └── manière dont ImproveAI exécute cet ordre
-```
-
-Par exemple :
-
-```text
-AIMODE_SENTRY
-    +
-ImproveAI.Profile = SENTRY_ACTIVE
-```
-
-Cette séparation doit permettre de limiter les interactions indésirables avec les mécanismes natifs du jeu.
-
-Elle est particulièrement importante pour les systèmes tels que les **Squads**, qui peuvent temporairement modifier le comportement ou le mode d'une unité.
-
----
-
-## Compatibilité avec les Squads
-
-ImproveAI doit tenir compte du fait que les unités peuvent être intégrées à un Squad puis en être retirées.
-
-Le profil ImproveAI ne doit donc pas être déduit uniquement de `Actor.AIMode`.
-
-Par exemple :
-
-```text
-SENTRY_ACTIVE
-      │
-      ▼
-    Squad
-      │
-      ▼
-ordre temporaire du Squad
-      │
-      ▼
-Squad annulé
-      │
-      ▼
-reprise du comportement précédent
-```
-
-L'objectif est que les commandes de groupe et les commandes ImproveAI puissent coexister sans qu'une annulation de Squad transforme ou efface involontairement le profil choisi par le joueur.
-
----
-
-## Architecture du projet
-
-La structure prévue est volontairement séparée entre le code, les interfaces et les ressources :
+## Current architecture
 
 ```text
 ImproveAI.rte/
-│
-├── Index.ini
-│
-├── README.md
-├── CHANGELOG.md
-├── CREDITS.md
-├── LICENSE
-├── Preview.png
-│
-├── Icons/
-│   ├── Module.png
-│   └── Pie/
-│       ├── SentryHold.png
-│       ├── SentryPassive.png
-│       ├── SentryActive.png
-│       ├── MinerClassic.png
-│       └── MinerOptimized.png
-│
 ├── AI/
-│   ├── Main.lua
+│   ├── AI.ini
 │   ├── Sentry.lua
 │   ├── SentryTargeting.lua
+│   ├── SentryPassive.lua
+│   ├── SentryActive.lua
 │   ├── Miner.lua
-│   └── MinerOptimized.lua
-│
-├── GUI/
-│   ├── PieMenus.ini
-│   └── PieIcons.ini
-│
-└── Config/
-    └── ImproveAI.ini
+│   ├── MinerOptimized.lua
+│   └── Anchor.lua
+├── Base/Devices/Tools/Constructor/
+├── GUIs/PieMenus.ini
+├── Icons/
+├── Documentation/
+├── Index.ini
+└── changelog.txt
 ```
 
-Cette organisation est une convention propre au projet. Elle ne prétend pas constituer une norme officielle du CCCP.
+`CONTRIBUTOR.md` is the generic development and review guide, including CCCP source references, Constructor details and Lua/C++ optimisation rules.
 
----
+## Miner
 
-## Configuration
+### Classic
 
-Les paramètres susceptibles d'être ajustés par l'utilisateur seront progressivement déplacés vers des fichiers `.ini`.
+`Miner.lua` is intentionally a thin wrapper around the native CCCP `HumanBehaviors.GoldDig` behaviour. It does not implement a second mining algorithm.
 
-Les paramètres envisagés comprennent notamment :
+### Optimized
+
+`MinerOptimized.lua` is the structured mining behaviour intended for a Constructor-equipped unit.
+
+The current design uses:
+
+- a 12 px medium Constructor block as the reference unit;
+- six reference blocks of tunnel height (72 px);
+- a finite bottom-of-map safety margin;
+- an explicit Anchor for origin and left/right direction;
+- periodic Constructor equipment/resource checks;
+- native equipment lookup and native navigation whenever possible;
+- one section target at a time to avoid rebuilding path orders every frame.
+
+The planned network uses a shared gallery floor/ceiling between adjacent levels and controlled vertical access. Automatic repair, logistics patrol and multi-miner resource/section sharing remain future extensions.
+
+Constructor resources are finite. The optimized miner does not assume resources refill automatically; material collection must come from terrain through the Constructor's native digging behaviour.
+
+## Anchor
+
+`Anchor.lua` stores one mining origin and one horizontal direction per actor. Choosing **Anchor Left** or **Anchor Right** replaces the actor's previous anchor, so one actor cannot have two active mining anchors.
+
+The two-button direction system is a temporary replacement for a verified rotate-anchor keyboard action. If CCCP later provides a reliable user-configurable binding for rotation, the intended design is to replace the two direction commands with one Anchor command plus rotation.
+
+The Anchor is deliberately separate from `MinerOptimized.lua`: the player can define the origin explicitly instead of making the miner infer a nearby wall/floor junction.
+
+## Sentry
+
+ImproveAI separates Sentry dispatch, passive/active behaviour and target acquisition:
 
 ```text
-Sentry effective range
-Targeting preferences
-Crouch behaviour
-Mining tunnel width
-Mining tunnel height
-Vertical opening size
-Wall clearance
-Stair dimensions
+Sentry
+├── Sentry.lua
+├── SentryPassive.lua
+├── SentryActive.lua
+└── SentryTargeting.lua
 ```
 
-L'objectif est de pouvoir modifier le comportement sans devoir modifier directement le code Lua.
+`SentryTargeting.lua` handles target validation, team filtering, LOS and weapon-dependent search/target selection independently from the two Sentry profiles.
 
----
+The Pie Menu exposes the Sentry profiles as a dedicated submenu:
 
-## Développement
+```text
+Sentry
+├── Sentry Passive
+└── Sentry Active
+```
 
-ImproveAI est développé pour **Cortex Command Community Project**.
+Selecting either profile sets the actor's Sentry mode and enters the native `AIMODE_SENTRY` path. `Sentry.lua` dispatches the resulting native Sentry coroutine to the selected ImproveAI profile.
 
-Le projet privilégie :
+- **Passive:** remains at the sentry position and engages visible targets without pursuing them.
+- **Active:** may move toward a valid target within its engagement limit and returns to the sentry position when the engagement ends.
 
-* Lua lorsque cela est possible ;
-* les fichiers INI pour la configuration et la déclaration des ressources ;
-* les mécanismes natifs du CCCP ;
-* les modifications C++ uniquement lorsqu'elles sont réellement nécessaires.
+## Constructor integration
 
-Le projet ne cherche pas à remplacer l'IA native dans son ensemble, mais à lui ajouter des comportements spécialisés.
+ImproveAI carries a Constructor implementation under:
 
----
+`ImproveAI.rte/Base/Devices/Tools/Constructor/`
 
-## État du projet
+The path mirrors the native CCCP Constructor path so the mod can provide a compatible modified implementation.
 
-**Work in Progress**
+The native reference is:
 
-Les fonctionnalités décrites dans ce document représentent l'objectif et la conception actuelle du projet. Elles peuvent changer pendant le développement.
+`Data/Base.rte/Devices/Tools/Constructor/`
 
-Certaines fonctionnalités décrites peuvent ne pas encore être implémentées.
+Important files are `Constructor.lua`, `Constructor.ini`, `ConstructorPie.lua` and `ConstructorCollect.lua`.
 
----
+For optimized mining, the 12 px medium block is the reference unit. The optimized system must not intentionally select the 24 px large block.
 
-## Crédits
+## Pie Menu
 
-### ImproveAI
+ImproveAI uses CCCP's Pie Menu system. Immediate commands such as Anchor placement are PieSlice callbacks; long-running coroutine behaviours such as Miner and Sentry must not be registered directly as PieSlice callbacks.
 
-**Fr_Dae** — conception et développement.
+The command groups are:
 
-### Cortex Command Community Project
+```text
+Mining
+├── Mining
+├── Mining Optimized
+└── Anchor
+    ├── Anchor Left
+    └── Anchor Right
 
-ImproveAI est développé pour être utilisé avec le **Cortex Command Community Project**.
+Sentry
+├── Sentry Passive
+└── Sentry Active
+```
 
-Les éléments appartenant au CCCP et à ses contributeurs restent la propriété de leurs auteurs respectifs et sont soumis à leurs propres conditions de licence.
+The left/right Anchor commands are mutually exclusive and replace the previous anchor for the actor.
 
-### Contributions
+## Technical philosophy
 
-Les contributions, corrections, suggestions et améliorations sont les bienvenues.
+ImproveAI deliberately avoids adding new C++ AIModes unless an engine limitation makes it necessary.
 
----
+Lua code is written with CCCP's Lua/C++ execution cost in mind:
+
+- cache stable references and constants;
+- avoid allocations in hot loops;
+- avoid repeated expensive `SceneMan` and `MovableMan` queries;
+- use timers for periodic scans;
+- yield from long-running behaviours;
+- validate MOs again after yields;
+- delegate navigation and native equipment behaviour when possible;
+- keep debug drawing disabled by default.
+
+The project follows the CCCP optimisation guidance:
+
+- https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki/Lua-Optimisation-Notes
+- https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki/Lua-Optimization-and-Organization-Tips-and-Tricks
+
+## Squads and future logistics
+
+Specialised behaviours must coexist with native Squad orders. A future logistics layer may allow several optimized miners to share section ownership, resource status and repair responsibilities. This is not yet treated as a completed feature.
+
+## Development
+
+Target version: **CCCP 7.0.0**.
+
+Never commit directly to `Main`.
+
+```text
+Issue
+  -> issue-specific branch
+  -> commits on branch
+  -> Pull Request
+  -> PR closes issue
+  -> manual release
+```
+
+See [`CONTRIBUTOR.md`](CONTRIBUTOR.md) before modifying engine-facing Lua code.
+
+## Status
+
+**Work in Progress.**
+
+The Sentry profiles, target acquisition, classic Miner wrapper, optimized mining planner and explicit Anchor system are implemented incrementally. Automatic repair patrol, multi-miner coordination, complete Constructor build sequencing and a verified keyboard rotate-anchor binding remain active development areas.
 
 ## Licence
 
-Les éléments originaux d'ImproveAI sont distribués sous :
+Original ImproveAI material is distributed under **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**. See `Licence.txt` for details.
 
-**Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**
+## Links
 
-Voir [`LICENSE`](LICENSE) pour les détails.
-
-Les éléments provenant de tiers ne sont pas nécessairement couverts par cette licence.
-
----
-
-## Liens
-
-* Cortex Command Community Project : https://github.com/cortex-command-community/Cortex-Command-Community-Project
-* Documentation / Wiki CCCP : https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki
-* Licence CC BY-SA 4.0 : https://creativecommons.org/licenses/by-sa/4.0/
+- Cortex Command Community Project: https://github.com/cortex-command-community/Cortex-Command-Community-Project
+- CCCP Wiki: https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki
+- CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
