@@ -22,3 +22,13 @@
 - Added the ImproveAI Constructor override definition under the mirrored Base.rte path so the module can redirect the Constructor script when loaded after the base game.
 - Preserved the existing Constructor behaviour rather than replacing it with a reduced prototype.
 - Corrected the documentation requirement: functional comments describing MinerOptimized and the Constructor architecture are retained as part of the source documentation.
+
+2026/08/19 - 23hxx
+- Fr_Dae
+- mining menu integration work for version 0.6.
+- Added PieMenus.ini and PieMenus.lua for native mining and optimized mining selection.
+- Optimized mining is selected through the existing AIMODE_GOLDDIG path and a per-actor ImproveAI flag; normal GoldDig remains native when the flag is disabled.
+- MinerOptimized.lua now uses the native Tools - Constructors equipment group instead of duplicating inventory search logic.
+- Corrected the optimized mining reference cost to 200 Constructor resource units for one medium 12x12 block, with a 200-unit reserve margin.
+- Corrected the previous typo in the MinerOptimized module initialization and retained the lightweight timer-driven architecture.
+- Added PieMenus.lua to the AI include list.
