@@ -2,12 +2,10 @@
 -- ImproveAI.rte
 -- PieMenus.lua
 --
--- Pie Menu callbacks for mining modes.
+-- Pie Menu callbacks for ImproveAI command modes.
 --
--- NativeHumanAI already selects HumanBehaviors.GoldDig when the
--- actor enters AIMODE_GOLDDIG. MinerOptimized.lua dispatches that
--- native entry point to the optimized behaviour only when the
--- ImproveAI_MinerOptimized flag is set.
+-- These callbacks only change actor state. Long-running AI
+-- behaviours remain owned by the native AI coroutine system.
 -- ============================================================
 
 local function GetActor(pieMenuOwner)
@@ -38,4 +36,25 @@ function ImproveAI_StartOptimizedMining(pieMenuOwner, pieMenu, pieSlice)
 
 	Owner:SetNumberValue("ImproveAI_MinerOptimized", 1);
 	Owner.AIMode = Actor.AIMODE_GOLDDIG;
+end
+
+
+local function SetSentryMode(pieMenuOwner, Mode)
+	local Owner = GetActor(pieMenuOwner);
+	if not Owner then
+		return;
+	end
+
+	Owner:SetNumberValue("ImproveAI_SentryMode", Mode);
+	Owner.AIMode = Actor.AIMODE_SENTRY;
+end
+
+
+function ImproveAI_StartSentryPassive(pieMenuOwner, pieMenu, pieSlice)
+	SetSentryMode(pieMenuOwner, 1);
+end
+
+
+function ImproveAI_StartSentryActive(pieMenuOwner, pieMenu, pieSlice)
+	SetSentryMode(pieMenuOwner, 2);
 end
