@@ -13,3 +13,12 @@
 - The default Rotate Anchor key is planned as R, with user remapping through the normal input settings.
 - Anchor rotation must not be implemented as a hard-coded Lua-only KEY_R shortcut.
 - README and CONTRIBUTOR.md document the architecture and CCCP Lua/C++ optimisation constraints.
+
+2026/08/19 - 23hxx
+- Fr_Dae
+- continued preparation of version 0.6.
+- Constructor override work aligned with MinerOptimized: medium 12x12 px blocks are the construction reference and the 24x24 block is not used by the optimized construction path.
+- The native 3x3 px construction cell remains an internal implementation unit; it is not intended to be a selectable construction size.
+- Added the ImproveAI Constructor override definition under the mirrored Base.rte path so the module can redirect the Constructor script when loaded after the base game.
+- Preserved the existing Constructor behaviour rather than replacing it with a reduced prototype.
+- Corrected the documentation requirement: functional comments describing MinerOptimized and the Constructor architecture are retained as part of the source documentation.
