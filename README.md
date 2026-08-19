@@ -2,7 +2,7 @@
 
 **Advanced AI behaviour and command system for Cortex Command Community Project (CCCP).**
 
-ImproveAI adds specialised AI behaviours while reusing native CCCP AI modes, navigation and engine facilities wherever possible.
+ImproveAI adds specialised AI behaviours while reusing native CCCP AI modes, navigation, equipment and engine facilities wherever possible.
 
 ## Current architecture
 
@@ -17,62 +17,47 @@ ImproveAI.rte/
 │   ├── Miner.lua
 │   ├── MinerOptimized.lua
 │   └── Anchor.lua
-├── Base/
-│   └── Devices/Tools/Constructor/
-├── GUIs/
+├── Base/Devices/Tools/Constructor/
+├── GUIs/PieMenus.ini
 ├── Icons/
 ├── Documentation/
 ├── Index.ini
-└── ...
+└── changelog.txt
 ```
 
-`CONTRIBUTOR.md` at the repository root contains the development and review guide, including CCCP source references and Lua/C++ optimisation rules.
+`CONTRIBUTOR.md` is the generic development and review guide, including CCCP source references, Constructor details and Lua/C++ optimisation rules.
 
 ## Miner
 
 ### Classic
 
-`Miner.lua` is intentionally a thin wrapper around the native CCCP mining behaviour. It does not implement a second mining algorithm.
+`Miner.lua` is intentionally a thin wrapper around the native CCCP `HumanBehaviors.GoldDig` behaviour. It does not implement a second mining algorithm.
 
 ### Optimized
 
-`MinerOptimized.lua` is a structured mining behaviour intended for a Constructor-equipped unit.
+`MinerOptimized.lua` is the structured mining behaviour intended for a Constructor-equipped unit.
 
 The current design uses:
 
 - a 12 px medium Constructor block as the reference unit;
-- six reference blocks of tunnel height;
+- six reference blocks of tunnel height (72 px);
 - a finite bottom-of-map safety margin;
-- an explicit Anchor for origin and direction when one has been placed;
-- periodic equipment checks rather than per-frame inventory scans;
-- Constructor resource checks before construction;
-- native navigation for movement whenever possible.
+- an explicit Anchor for origin and left/right direction;
+- periodic Constructor equipment/resource checks;
+- native equipment lookup and native navigation whenever possible;
+- one section target at a time to avoid rebuilding path orders every frame.
 
-The long-term design is a connected gallery system where a floor can also serve as the ceiling of the gallery below it, with controlled vertical access.
+The planned network uses a shared gallery floor/ceiling between adjacent levels and controlled vertical access. Automatic repair, logistics patrol and multi-miner resource/section sharing remain future extensions.
 
-Constructor resources are finite. The optimized miner must collect terrain material when additional construction material is required; it must not assume that resources refill automatically.
+Constructor resources are finite. The optimized miner does not assume resources refill automatically; material collection must come from terrain through the Constructor's native digging behaviour.
 
 ## Anchor
 
-`Anchor.lua` stores a mining origin and a left/right direction for an actor. The Anchor is deliberately separate from `MinerOptimized.lua` so the mining geometry can be explicitly defined by the player rather than inferred from an ambiguous nearby wall.
+`Anchor.lua` stores one mining origin and one horizontal direction per actor. Choosing **Anchor Left** or **Anchor Right** replaces the actor's previous anchor, so one actor cannot have two active mining anchors.
 
-The intended radial command is an ordinary Pie Menu callback. The coroutine behaviour itself must not be registered as a PieSlice callback.
+The two-button direction system is a temporary replacement for a verified rotate-anchor keyboard action. If CCCP later provides a reliable user-configurable binding for rotation, the intended design is to replace the two direction commands with one Anchor command plus rotation.
 
-## Constructor integration
-
-ImproveAI carries a Constructor path under:
-
-`ImproveAI.rte/Base/Devices/Tools/Constructor/`
-
-This mirrors the native CCCP Constructor path so that the mod can provide a compatible modified implementation without creating a separate unrelated tool.
-
-The optimized AI construction path uses the 12 px medium block. The 24 px large block must not be introduced into optimized mining.
-
-The native Constructor reference is:
-
-`Data/Base.rte/Devices/Tools/Constructor/`
-
-Important files are `Constructor.lua`, `Constructor.ini`, `ConstructorPie.lua` and `ConstructorCollect.lua`.
+The Anchor is deliberately separate from `MinerOptimized.lua`: the player can define the origin explicitly instead of making the miner infer a nearby wall/floor junction.
 
 ## Sentry
 
@@ -80,29 +65,48 @@ ImproveAI separates Sentry dispatch, passive/active behaviour and target acquisi
 
 ```text
 Sentry
-├── Hold
-├── Passive Defence
-└── Active Defence
+├── SentryPassive
+├── SentryActive
+└── SentryTargeting
 ```
 
-Active targeting is kept separate so weapon range, LOS, team filtering and target scoring can evolve without duplicating the Sentry behaviour itself.
+`SentryTargeting.lua` handles target validation, team filtering, LOS and weapon-dependent search/target selection independently from the two Sentry profiles.
+
+## Constructor integration
+
+ImproveAI carries a Constructor implementation under:
+
+`ImproveAI.rte/Base/Devices/Tools/Constructor/`
+
+The path mirrors the native CCCP Constructor path so the mod can provide a compatible modified implementation.
+
+The native reference is:
+
+`Data/Base.rte/Devices/Tools/Constructor/`
+
+Important files are `Constructor.lua`, `Constructor.ini`, `ConstructorPie.lua` and `ConstructorCollect.lua`.
+
+For optimized mining, the 12 px medium block is the reference unit. The optimized system must not intentionally select the 24 px large block.
 
 ## Pie Menu
 
-ImproveAI uses the CCCP Pie Menu system. Specialised coroutine behaviours such as Miner and Sentry are dispatched by the AI system; PieSlice callbacks are used only for immediate commands such as setting an Anchor or changing a stored profile.
+ImproveAI uses CCCP's Pie Menu system. Immediate commands such as Anchor placement are PieSlice callbacks; long-running coroutine behaviours such as Miner and Sentry must not be registered directly as PieSlice callbacks.
+
+The intended mining command set is:
+
+```text
+Mining
+├── Mining
+├── Mining Optimized
+├── Anchor Left
+└── Anchor Right
+```
+
+The left/right Anchor commands are mutually exclusive and replace the previous anchor for the actor.
 
 ## Technical philosophy
 
 ImproveAI deliberately avoids adding new C++ AIModes unless an engine limitation makes it necessary.
-
-Native modes remain the basis for specialised behaviours, for example:
-
-```text
-AIMODE_SENTRY
-AIMODE_GOLDDIG
-AIMODE_PATROL
-AIMODE_GOTO
-```
 
 Lua code is written with CCCP's Lua/C++ execution cost in mind:
 
@@ -120,11 +124,9 @@ The project follows the CCCP optimisation guidance:
 - https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki/Lua-Optimisation-Notes
 - https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki/Lua-Optimization-and-Organization-Tips-and-Tricks
 
-## Squads
+## Squads and future logistics
 
-ImproveAI behaviours must coexist with native Squad orders. A specialised ImproveAI profile should not be inferred solely from the current `Actor.AIMode`, because a Squad may temporarily change an actor's native mode.
-
-Future logistics work may allow several optimized miners to share section ownership, resource status and repair responsibilities.
+Specialised behaviours must coexist with native Squad orders. A future logistics layer may allow several optimized miners to share section ownership, resource status and repair responsibilities. This is not yet treated as a completed feature.
 
 ## Development
 
@@ -147,11 +149,11 @@ See [`CONTRIBUTOR.md`](CONTRIBUTOR.md) before modifying engine-facing Lua code.
 
 **Work in Progress.**
 
-Some systems are implemented incrementally and are not yet production-complete. In particular, the optimized mining network, logistics patrol, multi-miner coordination, automatic repair and complete Anchor Pie Menu integration remain areas of active development.
+The Sentry profiles, target acquisition, classic Miner wrapper, optimized mining planner and explicit Anchor system are implemented incrementally. Automatic repair patrol, multi-miner coordination, complete Constructor build sequencing and a verified keyboard rotate-anchor binding remain active development areas.
 
 ## Licence
 
-Original ImproveAI material is distributed under **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**. See `LICENSE` for details.
+Original ImproveAI material is distributed under **Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)**. See `Licence.txt` for details.
 
 ## Links
 
