@@ -33,7 +33,7 @@
 - Corrected the previous typo in the MinerOptimized module initialization and retained the lightweight timer-driven architecture.
 - Added PieMenus.lua to the AI include list.
 
-2026/08/20 - 18hxx
+2026/08/20 - 00h33
 - Fr_Dae
 - completed ImproveAI Sentry Pie Menu integration for version 0.6.
 - Added a dedicated Sentry menu containing Sentry Passive and Sentry Active commands.
