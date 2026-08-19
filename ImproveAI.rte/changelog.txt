@@ -1,3 +1,8 @@
-2026/08/18 - 15h32
+2026/08/19
 - Fr_Dae
-- initial commit. définition des but.
+- version 0.6 development work.
+- Miner.lua remains a native GoldDig wrapper.
+- MinerOptimized.lua uses explicit mining anchors, 12 px reference blocks and finite bottom-of-map protection.
+- Constructor acquisition checks equipped and inventory tools before mining.
+- Anchor.lua now stores origin/direction and provides optional debug drawing.
+- README and CONTRIBUTOR.md document the architecture and CCCP Lua/C++ optimisation constraints.
