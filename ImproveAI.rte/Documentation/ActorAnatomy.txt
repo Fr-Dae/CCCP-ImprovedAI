@@ -1,0 +1,256 @@
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:3:	self.climbTimer = Timer();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:4:	self.mouseClimbTimer = Timer();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:6:	self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:24:	self.climbDelay = 10;	-- MS time delay between "climbs" to keep the speed consistant
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:27:	self.mouseClimbLength = 250;	-- How long to climb per mouse wheel for mouse users
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:28:	self.climbInterval = 3.5;	-- How many pixels the rope retracts / extends at a time
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:29:	self.autoClimbIntervalA = 4.0;	-- How many pixels the rope retracts / extends at a time when auto-climbing (fast)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:30:	self.autoClimbIntervalB = 2.0;	-- How many pixels the rope retracts / extends at a time when auto-climbing (slow)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:228:			if self.pieSelection ~= 0 and self.climbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:229:				self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:233:					if self.setLineLength > self.autoClimbIntervalA and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:234:						self.setLineLength = self.setLineLength - (self.autoClimbIntervalA/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:239:					if self.setLineLength < (self.maxLineLength - self.autoClimbIntervalB) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:240:						self.setLineLength = self.setLineLength + self.autoClimbIntervalB;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:252:				if self.parentGun:IsActivated() and self.climbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:253:					self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:256:						if self.setLineLength > self.autoClimbIntervalA and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:257:							self.setLineLength = self.setLineLength - (self.autoClimbIntervalA/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:268:						if self.setLineLength < (self.maxLineLength - self.autoClimbIntervalB) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:269:							self.setLineLength = self.setLineLength + self.autoClimbIntervalB;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:279:					if self.climb == 1 or self.climb == 2 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:280:						if self.climbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:281:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:283:								if self.climb == 1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:284:									self.setLineLength = self.setLineLength - (self.climbInterval/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:285:								elseif self.climb == 2 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:286:									self.setLineLength = self.setLineLength + self.climbInterval;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:290:							self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:292:					elseif self.climb == 3 or self.climb == 4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:293:						if self.climbTimer:IsPastSimMS(self.mouseClimbLength) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:294:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:295:							self.mouseClimbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:296:							self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:298:							if self.mouseClimbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:299:								self.mouseClimbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:300:								if self.climb == 3 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:301:									if (self.setLineLength-self.climbInterval) >= 0 and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:302:										self.setLineLength = self.setLineLength - (self.climbInterval/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:309:								elseif self.climb == 4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:310:									if (self.setLineLength+self.climbInterval) <= self.maxLineLength then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:311:										self.setLineLength = self.setLineLength + self.climbInterval;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:322:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:323:							self.climb = 3;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:327:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:328:							self.climb = 4;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:332:							if self.setLineLength > self.climbInterval and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:333:								self.climb = 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:341:						if controller:IsState(Controller.HOLD_DOWN) and self.setLineLength < (self.maxLineLength-self.climbInterval) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:342:							self.climb = 2;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:440:				self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/GrappleGun.ini:163:	Description = Use this to climb walls and descend dangerous drops! Control the length of the rope by crouching and then holding up/down or scrolling up/down. Reload or double tap crouch to release the hook.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Effects/Wounds.ini:226:		CopyOf = Flesh Limb Impact // definitely intended to be replaced rather than used as-is
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:25:	for limb in actor.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:26:		limb.GibWoundLimit = limb.GibWoundLimit * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:27:		limb.JointStrength = limb.JointStrength * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:28:		for att in limb.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:18:		if human.Head then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:19:			human.Head.GibWoundLimit = 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:20:			human.Head.DamageMultiplier = human.MaxHealth;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:26:		walker:SetLimbPathTravelSpeed(Actor.WALK, walker:GetLimbPathTravelSpeed(Actor.WALK) * self.multiplier);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:27:		walker:SetLimbPathTravelSpeed(Actor.RUN, walker:GetLimbPathTravelSpeed(Actor.RUN) * self.multiplier);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:28:		walker:SetLimbPathPushForce(Actor.WALK, walker:GetLimbPathPushForce(Actor.WALK) * self.pushForceDenominator);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:29:		walker:SetLimbPathPushForce(Actor.RUN, walker:GetLimbPathPushForce(Actor.RUN) * self.pushForceDenominator);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:11:			for limb in actor.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:12:				limb.GibWoundLimit = limb.GibWoundLimit * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:13:				limb.JointStrength = limb.JointStrength * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:14:				for att in limb.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:188:					local parts = {foundBrain, foundBrain.Head, foundBrain.FGArm, foundBrain.BGArm, foundBrain.FGLeg, foundBrain.BGLeg};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:175:					local parts = {foundBrain, foundBrain.Head, foundBrain.FGArm, foundBrain.BGArm, foundBrain.FGLeg, foundBrain.BGLeg};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:604:	RaisedGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:612:	LoweredGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:620:	LoweringGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:637:	RaisingGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:641:	RaisedGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:649:	LoweredGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:657:	LoweringGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:674:	RaisingGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:153:	RaisedGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:155:	LoweredGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:157:	LoweringGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:159:	RaisingGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Materials.ini:22:// GibImpulseLimitPerVolumeL, The amount of force per liter an actor can take before limbs are torn.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:364:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:366:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:368:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:370:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:372:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:374:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:530:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:532:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:534:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:536:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:538:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:540:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:707:	StandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:715:	StandLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:721:	WalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:729:	RunLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:733:	CrouchLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:735:	CrouchLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:738:	CrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:740:	ArmCrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:742:	ClimbLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:743:		CopyOf = Human Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:744:	JumpLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:746:	DislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:176:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:184:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:213:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:224:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:230:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:237:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:178:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:186:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:216:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:227:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:233:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:235:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:248:	StandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:256:	StandLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:261:	WalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:293:	CrouchLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:301:	CrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:327:	ArmCrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:350:	ClimbLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:351:		PresetName = Jumper Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:376:	JumpLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:384:	DislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared/Scripts/SelfHeal.lua:30:				if self.Head and self.healing.part.ID == self.Head.ID then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared/Scripts/SelfHeal.lua:31:					self.Head.RotAngle = self.RotAngle - 0.5 * self.FlipFactor * math.sin(timerRatio * math.pi);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:64:// Limb Paths
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:67:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:77:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:126:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:175:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:233:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:291:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:326:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:336:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:344:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:376:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:404:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:405:	PresetName = Human Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:432:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:460:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:334:			CopyOf = Metal Impact Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:414:		CopyOf = Metal Gib Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:488:			CopyOf = Metal Impact Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:574:		CopyOf = Metal Gib Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:685:	StandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:693:	StandLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:698:	WalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:701:	RunLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:704:	CrouchLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:706:	CrouchLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:709:	CrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:729:	ArmCrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:752:	ClimbLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:753:		CopyOf = Human Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:754:	JumpLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:774:	DislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:270:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:278:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:282:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:293:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:299:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:301:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:431:	LeftStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:439:	LeftWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:468:	LeftDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:479:	RightStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:485:	RightWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:491:	RightDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:271:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:279:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:281:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:292:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:298:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:300:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AtomGroups.ini:15:// Actor Limb AtomGroups
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:896:	PresetName = Flesh Limb Impact
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:898:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:899:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:900:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:901:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:902:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:903:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:904:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:905:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:906:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:907:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact10.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:923:	PresetName = Flesh Limb Gib
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:925:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:926:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:927:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:928:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:929:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:930:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:931:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:932:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:933:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:934:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib10.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1210:	PresetName = Metal Impact Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1299:	PresetName = Metal Gib Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/mobdebug/mobdebug.lua:241:      return (custom and custom(tag,head,body,tail,level) or tag..head..body..tail)..comment(t, level)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:15:local headers = require("socket.headers")
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:256:    for i,v in base.pairs(reqt.headers or lower) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:285:    nreqt.headers = adjustheaders(nreqt)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:287:        and not nreqt.headers["content-length"]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:288:        and not nreqt.headers["transfer-encoding"]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:290:        nreqt.headers["transfer-encoding"] = "chunked"
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:338:        headers = reqt.headers,
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:357:    h:sendheaders(nreqt.headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:360:        h:sendbody(nreqt.headers, nreqt.source, nreqt.step)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:401:        reqt.headers = {
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:18:local headers = require("socket.headers")
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:164:    local headers = lower_headers(mesgt.headers or {})
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:191:    local headers = lower_headers(mesgt.headers or {})
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:207:    local headers = lower_headers(mesgt.headers or {})
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:224:    local lower = lower_headers(mesgt.headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:234:    mesgt.headers = adjust_headers(mesgt)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/headers.lua:7:socket.headers = {}
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/headers.lua:8:local _M = socket.headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:924:		ToAHuman(actor).LimbPushForcesAndCollisionsDisabled = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:943:			ToAHuman(actor).LimbPushForcesAndCollisionsDisabled = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:962:		ToAHuman(actor).LimbPushForcesAndCollisionsDisabled = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:31:					local limbs = actor.FGLeg or actor.BGLeg or actor.FGArm or actor.BGArm;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:32:					if limbs and actor.Status == Actor.STABLE and not controller:IsState(Controller.BODY_JUMP) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:35:						local climb = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:36:						--Climb by looking up/down or moving
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:38:							climb = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:41:						if climb or (controller:IsState(Controller.MOVE_LEFT) or controller:IsState(Controller.MOVE_RIGHT)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:42:							local speed = actor:GetLimbPathSpeed(1)/velFactor;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderNode.lua:24:						local speed = actor:GetLimbPathSpeed(1)/velFactor;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/Ladders.ini:112:	Description = Having trouble climbing regular ladders? This model will offer you the vertical assistance you need.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/Ladders.ini:134:	Description = Having trouble climbing regular ladders? This model will offer you the vertical assistance you need.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerModules/BunkerModules.ini:362:	Description = A bit harder to climb, but fits in a lot more compactly than the standard stairs. 
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerModules/BunkerModules.ini:373:	Description = A bit harder to climb, but fits in a lot more compactly than the standard stairs. 
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:821:	if (not Owner.Head or AI.proneState == AHuman.PRONE) or (Owner:NumberValueExists("AIDisableProne")) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:866:	PronePos = SceneMan:MovePointToGround(PronePos, Owner.Head.Radius+3, 2);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1384:							local Legs = AI.Target.FGLeg or AI.Target.BGLeg; -- the legs
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1405:									local Legs = AI.Target.FGLeg or AI.Target.BGLeg; -- the legs
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:488:				-- We only crawl it it's quite flat, otherwise climb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:490:				if angleDegrees <= crawlThresholdDegrees and Owner.Head and Owner.Head:IsAttached() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:491:					local topHeadPos = Owner.Head.Pos - Vector(0, Owner.Head.Radius*0.7);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:848:										if Owner.Head and AI.Target and AI.canHitTarget and AI.BehaviorName ~= "AttackTarget" then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:864:												local JumpPos = (Owner.Head and Owner.Head.Pos or Owner.Pos) + PixelVel + JetAccel * (t*t*0.5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:872:												Trace = SceneMan:ShortestDistance((Owner.Head and Owner.Head.Pos or Owner.Pos), JumpPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:873:												local jumpScore = SceneMan:CastObstacleRay((Owner.Head and Owner.Head.Pos or Owner.Pos), Trace, JumpPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:881:												local FallPos = (Owner.Head and Owner.Head.Pos or Owner.Pos) + PixelVel + Accel * (t*t*0.5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:884:												local Trace = SceneMan:ShortestDistance((Owner.Head and Owner.Head.Pos or Owner.Pos), FallPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:885:												SceneMan:CastObstacleRay((Owner.Head and Owner.Head.Pos or Owner.Pos), Trace, FallPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:245:		if Owner.FGFoot then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:246:			table.insert(Origin, Vector(Owner.FGFoot.Pos.X, Owner.FGFoot.Pos.Y) + Vector(0, 4));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:248:		if Owner.BGFoot then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:249:			table.insert(Origin, Vector(Owner.BGFoot.Pos.X, Owner.BGFoot.Pos.Y) + Vector(0, 4));

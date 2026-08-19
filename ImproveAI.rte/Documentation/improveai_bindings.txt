@@ -1,0 +1,1020 @@
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Weapons/RocketLauncher/RocketLauncher.ini:153:	AIBlastRadius = 60
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Scanner/Scanner.lua:16:				PrimitiveMan:DrawPrimitives(100 * timerRatio, {CirclePrimitive(self.activity:ScreenOfPlayer(ToActor(parent):GetController().Player), self.detectedItemPos, self.detectedItemRadius * timerRatio, 188)});
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Scanner/Scanner.lua:81:			self.detectedItemRadius = 5 + mo:GetRootParent().Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Scanner/Scanner.lua:82:			self.flashDelay = 100 + 100 * math.sqrt(self.detectedItemRadius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/GrappleGun.lua:36:				-- Double tapping crouch retrieves the hook
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/GrappleGun.lua:75:				local startPos = (parent.Pos + parent.EyePos + self.Pos)/3;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:3:	self.climbTimer = Timer();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:4:	self.mouseClimbTimer = Timer();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:6:	self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:24:	self.climbDelay = 10;	-- MS time delay between "climbs" to keep the speed consistant
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:27:	self.mouseClimbLength = 250;	-- How long to climb per mouse wheel for mouse users
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:28:	self.climbInterval = 3.5;	-- How many pixels the rope retracts / extends at a time
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:29:	self.autoClimbIntervalA = 4.0;	-- How many pixels the rope retracts / extends at a time when auto-climbing (fast)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:30:	self.autoClimbIntervalB = 2.0;	-- How many pixels the rope retracts / extends at a time when auto-climbing (slow)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:37:	for gun in MovableMan:GetMOsInRadius(self.Pos, 50) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:41:			if MovableMan:IsActor(self.parent) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:52:					local radcheck = SceneMan:ShortestDistance(self.parent.Pos, part.Pos, self.mapWrapsX).Magnitude + part.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:53:					if self.parentRadius == nil or radcheck > self.parentRadius then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:54:						self.parentRadius = radcheck;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:221:			if self.parentRadius ~= nil then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:222:				self.terrcheck = SceneMan:CastStrengthRay(self.parent.Pos, self.lineVec:SetMagnitude(self.parentRadius), 0, terrVector, 2, rte.airID, self.mapWrapsX);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:228:			if self.pieSelection ~= 0 and self.climbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:229:				self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:233:					if self.setLineLength > self.autoClimbIntervalA and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:234:						self.setLineLength = self.setLineLength - (self.autoClimbIntervalA/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:239:					if self.setLineLength < (self.maxLineLength - self.autoClimbIntervalB) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:240:						self.setLineLength = self.setLineLength + self.autoClimbIntervalB;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:250:				local nudge = math.sqrt(self.lineVec.Magnitude + self.parent.Radius)/(10 + self.parent.Vel.Magnitude);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:252:				if self.parentGun:IsActivated() and self.climbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:253:					self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:256:						if self.setLineLength > self.autoClimbIntervalA and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:257:							self.setLineLength = self.setLineLength - (self.autoClimbIntervalA/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:268:						if self.setLineLength < (self.maxLineLength - self.autoClimbIntervalB) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:269:							self.setLineLength = self.setLineLength + self.autoClimbIntervalB;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:277:				-- Hold crouch to control rope manually
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:279:					if self.climb == 1 or self.climb == 2 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:280:						if self.climbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:281:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:283:								if self.climb == 1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:284:									self.setLineLength = self.setLineLength - (self.climbInterval/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:285:								elseif self.climb == 2 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:286:									self.setLineLength = self.setLineLength + self.climbInterval;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:290:							self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:292:					elseif self.climb == 3 or self.climb == 4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:293:						if self.climbTimer:IsPastSimMS(self.mouseClimbLength) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:294:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:295:							self.mouseClimbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:296:							self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:298:							if self.mouseClimbTimer:IsPastSimMS(self.climbDelay) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:299:								self.mouseClimbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:300:								if self.climb == 3 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:301:									if (self.setLineLength-self.climbInterval) >= 0 and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:302:										self.setLineLength = self.setLineLength - (self.climbInterval/parentForces);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:309:								elseif self.climb == 4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:310:									if (self.setLineLength+self.climbInterval) <= self.maxLineLength then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:311:										self.setLineLength = self.setLineLength + self.climbInterval;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:322:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:323:							self.climb = 3;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:327:							self.climbTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:328:							self.climb = 4;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:332:							if self.setLineLength > self.climbInterval and self.terrcheck == false then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:333:								self.climb = 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:341:						if controller:IsState(Controller.HOLD_DOWN) and self.setLineLength < (self.maxLineLength-self.climbInterval) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:342:							self.climb = 2;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:435:		-- Double tapping crouch retrieves the hook
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:440:				self.climb = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/GrappleGun.ini:163:	Description = Use this to climb walls and descend dangerous drops! Control the length of the rope by crouching and then holding up/down or scrolling up/down. Reload or double tap crouch to release the hook.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Digger/Digger.ini:45:		RemoveOrphanTerrainRadius = 8
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Digger/Digger.ini:82:		RemoveOrphanTerrainRadius = 7
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Digger/Digger.ini:119:		RemoveOrphanTerrainRadius = 6
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Digger/Digger.ini:156:		RemoveOrphanTerrainRadius = 5
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Constructor/Constructor.lua:174:	if IsActor(rootParent) and MovableMan:IsActor(rootParent) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Constructor/Constructor.lua:210:			self.Magazine.Pos = actor.Pos + Vector(-(self.Magazine.Radius * 0.3 + parentWidth * 0.2 - 0.5) * self.FlipFactor, -(self.Magazine.Radius * 0.15 + parentHeight * 0.2)):RadRotate(actor.RotAngle);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:23:	self.guideRadius = self:NumberValueExists("TrajectoryGuideBlastRadius") and self:GetNumberValue("TrajectoryGuideBlastRadius") or 12;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:37:	if IsActor(actor) and MovableMan:ValidMO(actor) and ToActor(actor):IsPlayerControlled() and not self:IsReloading() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:88:							SceneMan:CastObstacleRay(self.guideTable[#self.guideTable], SceneMan:ShortestDistance(self.guideTable[#self.guideTable], guideParPos, false), Vector(), hitPos, self.ID, -2, rte.airID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:111:			PrimitiveMan:DrawCirclePrimitive(screen, self.guideTable[#self.guideTable], self.guideRadius, self.guideColor);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:112:			local lineVector = Vector(-self.guideRadius, 0):RadRotate(angleDirection);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/FlakShell.lua:11:			local radius = self.spiralScale * math.sqrt(i);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/FlakShell.lua:12:			local checkPos = self.Pos + Vector(radius, 0):RadRotate(i * 2.39996);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/FlakShell.lua:24:				if MovableMan:IsActor(actor) and actor.Team ~= self.Team and actor.Radius > radius then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/ShotgunReload.lua:26:			if MovableMan:IsActor(actor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/RecoilTilt.lua:3:	self.recoilAngleSize = self:NumberValueExists("RecoilAngleSize") and math.rad(self:GetNumberValue("RecoilAngleSize")) or 0.5/math.sqrt(self.Radius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Special/Medikit/Medikit.lua:14:		local extend = parent:GetController():IsState(Controller.AIM_SHARP) and self.Radius or 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Special/Medikit/Medikit.lua:16:		local moCheck = SceneMan:CastMORay(self.MuzzlePos, Vector(self.IndividualRadius + 5, 0):RadRotate(parent:GetAimAngle(true)), parent.ID, Activity.NOTEAM, rte.airID, false, 1);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Special/Medikit/Medikit.lua:29:			local particleCount = math.ceil(1 + target.Radius * 0.5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Special/Medikit/Medikit.lua:46:				MovableMan:AddActor(newActor);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosive.ini:21:			RemoveOrphanTerrainRadius = 5
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosive.ini:258:		TrajectoryGuideBlastRadius = 40
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosiveSet.lua:60:		local checkVec = Vector(self.Vel.X, self.Vel.Y + 1):SetMagnitude(math.max(self.Vel.Magnitude * rte.PxTravelledPerFrame, self.Radius));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosiveDetonator.lua:14:	if MovableMan:IsActor(parent) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/ClusterMineBomb/ClusterMineBomb.lua:16:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/ClusterMineBomb/ClusterMineBomb.lua:17:				local dist = SceneMan:ShortestDistance(self.Pos, actor.Pos, SceneMan.SceneWrapsX).Magnitude - actor.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/ClusterMineBomb/ClusterMineBomb.lua:26:		local terrainRaycast = SceneMan:CastStrengthRay(self.Pos, Vector(self.Vel.X, self.Vel.Y):SetMagnitude(self.Radius + self.deployRange + self.Vel.Magnitude), 0, rayHitPos, 1, rte.airID, SceneMan.SceneWrapsX);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/FragGrenade/FragGrenade.ini:15:		TrajectoryGuideBlastRadius = 75
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/AntiPersonnelMine/MineSet.lua:49:		local trace = Vector(self.Vel.X, self.Vel.Y + 1):SetMagnitude(math.max(self.Vel.Magnitude * rte.PxTravelledPerFrame, self.Radius));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/AntiPersonnelMine/MineSet.lua:107:					if not (target.Team == self.alliedTeam and IsActor(target)) and (target.Vel.Magnitude * (1 + math.abs(target.AngularVel) + math.sqrt(target.Radius))) > self.detonateThreshold then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/AntiPersonnelMine/AntiPersonnelMine.ini:176:		TrajectoryGuideBlastRadius = 8
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Effects/Wounds.ini:226:		CopyOf = Flesh Limb Impact // definitely intended to be replaced rather than used as-is
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Effects/Wounds.ini:348:	PresetName = Wound Flesh Head Entry Strong
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Effects/Wounds.ini:353:		CopyOf = Flesh Head Impact
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/gamecontrollerdb.txt:313:03000000fd0500003902000000000000,InterAct Hammerhead,a:b3,b:b4,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b6,leftstick:b2,lefttrigger:b8,rightshoulder:b7,rightstick:b5,righttrigger:b9,start:b10,x:b0,y:b1,platform:Windows,
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/gamecontrollerdb.txt:314:03000000fd0500002a26000000000000,InterAct Hammerhead FX,a:b3,b:b4,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b6,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,righttrigger:b9,rightx:a2,righty:a5,start:b11,x:b0,y:b1,platform:Windows,
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/gamecontrollerdb.txt:315:03000000fd0500002f26000000000000,InterAct Hammerhead FX,a:b4,b:b5,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b6,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,righttrigger:b9,rightx:a2,righty:a5,start:b11,x:b1,y:b2,platform:Windows,
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/gamecontrollerdb.txt:1165:03000000fd0500002a26000000010000,InterAct HammerHead FX,a:b3,b:b4,back:b10,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b6,leftstick:b2,lefttrigger:b8,leftx:a0,lefty:a1,rightshoulder:b7,rightstick:b5,righttrigger:b9,rightx:a2,righty:a3,start:b11,x:b0,y:b1,platform:Linux,
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/gamecontrollerdb.txt:1616:532e542e442e20496e74657261637420,InterAct HammerHead FX,a:b23,b:b24,back:b30,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b26,leftstick:b22,lefttrigger:b28,leftx:a0,lefty:a1,rightshoulder:b27,rightstick:b25,righttrigger:b29,rightx:a2,righty:a3,start:b31,x:b20,y:b21,platform:Android,
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Examples/MetaFightBehaviorExample.lua:37:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:5:-- Min/max radius of the entry wound hole, including discoloured outer ring
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:6:local entryWoundRadius = {1, 2};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:8:-- Min/max radius of the exit wound hole, including discoloured outer ring
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:9:local exitWoundRadius = {2, 3};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:69:local function addDeformWound(var, MO, radiusTable, rangeVector, absWoundPos, angleOffset, woundPresetName)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:71:	local holeRadius = math.random(radiusTable[1], radiusTable[2]);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:72:	local woundEmitterOffset = Vector(holeRadius, 0):GetRadRotatedCopy(rangeVector.AbsRadAngle + angleOffset); -- Vector to push the created wound in from the new hole
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:92:	for i = 0, holeRadius do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:93:		local circumference = holeRadius * 2 * math.pi;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:100:			if (i == holeRadius and IsMOSprite(newWound)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:109:				if (MOSprite:SetSpritePixelIndex(pos.X, pos.Y, frame, color, 0, false) and i == holeRadius) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:116:	-- Attempts to displace all wound MOs within the radius to the edge of it
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:119:		if (woundDist.Magnitude < holeRadius) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:120:			-- Calculate a vector from hole centre to wound position and set it to equal the radius of the hole, pushing the wound out to the edge
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:122:			local newOffset = holePos + newDist:SetMagnitude(holeRadius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:182:			addDeformWound(var, MO, entryWoundRadius, rangeVector, endPos, 0, MO:GetEntryWoundPresetName());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:222:				local exitWound = addDeformWound(var, MO, exitWoundRadius, rangeVector, exitWoundPos + MO.Pos, math.pi, MO:GetExitWoundPresetName());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/AirBlast.lua:8:	for mo in MovableMan:GetMOsInRadius(self.Pos, self.range, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughDoors.lua:6:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/NoScuttle.lua:2:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/AllUnitsAreBrains.lua:2:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:6:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:25:	for limb in actor.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:26:		limb.GibWoundLimit = limb.GibWoundLimit * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:27:		limb.JointStrength = limb.JointStrength * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughUnits.lua:28:		for att in limb.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InfiniteAmmo.lua:3:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FragileUnits.lua:2:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FriendlyCollisions.lua:2:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/GibDeathOnly.lua:2:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:21:				if MovableMan:IsActor(brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:23:					MovableMan:RemoveActor(brain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:29:	for act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:56:			for actor in MovableMan.Actors do actor.HUDVisible = false end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:58:			for actor in MovableMan.Actors do actor.HUDVisible = true end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:77:			for actor in MovableMan.Actors do 
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:96:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:126:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:128:					MovableMan:ChangeActorTeam(actor, teamNum)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/DebugFunctions.lua:135:								MovableMan:ChangeActorTeam(ToActor(item), teamNum)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:1:function InstakillHeadshotsScript:UpdateScript()
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:2:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:3:		if not actor:NumberValueExists("InstakillHeadshotsScript") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:4:			self:WeakenHead(actor);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:7:					self:WeakenHead(ToActor(item));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:14:function InstakillHeadshotsScript:WeakenHead(actor)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:15:	actor:SetNumberValue("InstakillHeadshotsScript", 1);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:18:		if human.Head then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:19:			human.Head.GibWoundLimit = 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InstakillHeadshots.lua:20:			human.Head.DamageMultiplier = human.MaxHealth;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughCraft.lua:6:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:7:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:26:		walker:SetLimbPathTravelSpeed(Actor.WALK, walker:GetLimbPathTravelSpeed(Actor.WALK) * self.multiplier);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:27:		walker:SetLimbPathTravelSpeed(Actor.RUN, walker:GetLimbPathTravelSpeed(Actor.RUN) * self.multiplier);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:28:		walker:SetLimbPathPushForce(Actor.WALK, walker:GetLimbPathPushForce(Actor.WALK) * self.pushForceDenominator);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/FasterWalking.lua:29:		walker:SetLimbPathPushForce(Actor.RUN, walker:GetLimbPathPushForce(Actor.RUN) * self.pushForceDenominator);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:6:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:11:			for limb in actor.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:12:				limb.GibWoundLimit = limb.GibWoundLimit * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:13:				limb.JointStrength = limb.JointStrength * self.multiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/ToughBrains.lua:14:				for att in limb.Attachables do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/StrongerJetpacks.lua:6:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/BiggerJetpacks.lua:6:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/BulkyDropships.lua:6:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Global/InvincibleCraft.lua:2:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/GlobalScripts.ini:53:	PresetName = Insta-Kill Headshots
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/GlobalScripts.ini:55:	ScriptPath = Base.rte/Scripts/Global/InstakillHeadshots.lua
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/GlobalScripts.ini:56:	LuaClassName = InstakillHeadshotsScript
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/GlobalScripts.ini:96:	Description = Deliver death upon your foe's head instantly!
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Shared/SmokeTrail.lua:4:	self.smokeTrailRadius = self:NumberValueExists("SmokeTrailRadius") and self:GetNumberValue("SmokeTrailRadius") or ToMOSprite(self):GetSpriteHeight() * 0.5 - 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/Shared/SmokeTrail.lua:18:		effect.Pos = self.Pos - (offset * i/trailLength) + Vector(RangeRand(-1, 1), RangeRand(-1, 1)) * self.smokeTrailRadius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MetagameGUI.ini:31:[NewGameHeader]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MetagameGUI.ini:40:Name = NewGameHeader
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/ScenarioGUI.ini:258:[PlayerSetupHeader]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/ScenarioGUI.ini:267:Name = PlayerSetupHeader
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/BuyMenuGUI.ini:61:[CatalogHeader]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/BuyMenuGUI.ini:70:Name = CatalogHeader
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MultiplayerServerLobbyGUI.ini:111:[PlayerSetupHeader]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MultiplayerServerLobbyGUI.ini:120:Name = PlayerSetupHeader
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MultiplayerServerLobbyGUI.ini:131:[ActivityHeaderLabel]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MultiplayerServerLobbyGUI.ini:140:Name = ActivityHeaderLabel
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MultiplayerServerLobbyGUI.ini:197:[ActivityHeaderLabel]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/GUIs/MultiplayerServerLobbyGUI.ini:206:Name = SceneHeaderLabel
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:39:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:78:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:165:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:175:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:181:					if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:198:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:225:			for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:228:						SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:293:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:336:					MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Survival.lua:340:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:98:		for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:101:					SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:108:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:188:					local parts = {foundBrain, foundBrain.Head, foundBrain.FGArm, foundBrain.BGArm, foundBrain.FGLeg, foundBrain.BGLeg};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:215:					foundBrain.Pos = SceneMan:MovePointToGround(Vector(math.random(0, SceneMan.SceneWidth), 0), 0, 0) + Vector(0, -foundBrain.Radius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:217:					MovableMan:AddActor(foundBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:294:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:300:					if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:315:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:390:					--but since we're so sure we don't need it, might as well go ahead and do it right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmy.lua:433:					MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:96:	for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:246:				for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:256:				for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:295:			elseif MovableMan:IsActor(Act) and not Act:IsDead() and Act.Vel.Largest < 12 and not(self.teamAI and Act.Team == self.teamAI) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:325:					local viewRange = FrameMan.PlayerScreenWidth * 0.5 + Act.AimDistance + 100; -- DropShip radius is ~100
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:339:					local Origin = Vector(Act.EyePos.X, Act.EyePos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:347:							pixels = SceneMan:CastObstacleRay(Origin, Vector(viewRange*math.cos(ang), -viewRange*math.sin(ang)), Vector(), Free, 255, actorTeam, rte.grassID, 18);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:377:					pixels = SceneMan:CastObstacleRay(Origin, Vector(0, -self.spacingLZ), Vector(), Free, rte.NoMOID, actorTeam, rte.grassID, 14);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:569:			if brain and MovableMan:IsActor(brain) and brain.Team ~= team then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:612:	for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:618:	for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:696:			if Brain and MovableMan:IsActor(Brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:766:	for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:772:	for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/TacticsHandler.lua:8:-- Verbose logging will also have info above every tasked actor's head. Alt-L to toggle.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/TacticsHandler.lua:111:		-- for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/TacticsHandler.lua:174:				local actor = MovableMan:FindObjectByUniqueID(self.saveTable.teamList[team].squadList[squad].Actors[actorIndex]);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/TacticsHandler.lua:311:			local actor = MovableMan:FindObjectByUniqueID(squad[actorIndex]);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/TacticsHandler.lua:646:					local actor = MovableMan:FindObjectByUniqueID(self.saveTable.teamList[team].squadList[i].Actors[actorIndex]);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/TacticsHandler.lua:782:								local actor = MovableMan:FindObjectByUniqueID(self.saveTable.teamList[team].squadList[i].Actors[actorIndex]);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:289:		MovableMan:AddActor(craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:320:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:635:		MovableMan:AddActor(craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:653:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/SaveLoadHandler.lua:118:	for act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/SaveLoadHandler.lua:136:	for act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/SaveLoadHandler.lua:360:	for act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/SaveLoadHandler.lua:392:	for act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/BuyDoorHandler.lua:58:		for mo in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:64:			attackingBrain.Pos = SceneMan:MovePointToGround(brainPosition, attackingBrain.Radius * 0.5, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:65:			MovableMan:AddActor(attackingBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:80:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:88:		MovableMan:AddActor(defenderBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:92:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:106:			for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:125:					MovableMan:AddActor(brainToAssignToPlayer);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:153:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:158:				MovableMan:ChangeActorTeam(actor, self.defenderTeam);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:186:							MovableMan:AddActor(guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:217:		for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:220:					SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:349:	if not MovableMan:GetFirstBrainActor(self.defenderTeam) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:353:			local firstAITeamActor = MovableMan:GetNextTeamActor(self.attackerTeam, nil);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:354:			local nextAITeamActor = firstAITeamActor ~= nil and MovableMan:GetNextTeamActor(self.attackerTeam, firstAITeamActor) or nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:359:	elseif not MovableMan:GetFirstBrainActor(self.attackerTeam) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:371:					if MovableMan:IsActor(friendlyUnit) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:406:				MovableMan:AddActor(actorToSpawn);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:426:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:503:		if MovableMan:IsActor(enemyUnitInsideBunker) and sentGuardCount < maxGuardsToSend then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:581:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BunkerBreach.lua:783:	MovableMan:AddActor(craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Prospecting.lua:165:						local foundBrain = MovableMan:GetFirstBrainActor(team);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Prospecting.lua:174:						if not brain or not MovableMan:IsActor(brain) or not brain:HasObjectInGroup("Brains") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Prospecting.lua:181:								if MovableMan:IsActor(newBrain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Prospecting.lua:188:								if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:104:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:108:		MovableMan:ChangeActorTeam(actor, self.playerTeam);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:157:	for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:166:	for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:206:		for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:228:				for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:238:						if MovableMan:IsActor(brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:240:							MovableMan:RemoveActor(brain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:254:			for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:284:				for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:287:							SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:321:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:331:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:344:							if otherPlayer ~= player and self:PlayerActive(otherPlayer) and self:PlayerHuman(otherPlayer) and MovableMan:IsActor(self:GetPlayerBrain(otherPlayer)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:398:				for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:461:								if not MovableMan:IsActor(self.AI.AttackTarget) or math.random() < 0.4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:474:						for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:531:	for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:539:	for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:552:	for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:655:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:721:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:777:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:833:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:865:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/WaveDefense.lua:885:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:40:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:175:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:185:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:191:					if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:206:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:232:			for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:235:						SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:309:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:352:					MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Harvester.lua:356:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:38:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:171:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:181:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:187:					if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:202:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:228:			for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:231:						SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:312:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:355:					MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Massacre.lua:359:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/Boomfest.lua:26:					MovableMan:AddActor(foundBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/Boomfest.lua:71:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/Boomfest.lua:75:					if not MovableMan:GetClosestBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/Boomfest.lua:127:			MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/DummiesStrikeBack.lua:58:					if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/DummiesStrikeBack.lua:62:						if not MovableMan:GetClosestBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/DummiesStrikeBack.lua:111:			MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/OneManArmyHard.lua:24:					MovableMan:AddActor(foundBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/OneManArmyHard.lua:69:					if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/OneManArmyHard.lua:73:						if not MovableMan:GetClosestBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/OneManArmyHard.lua:133:			MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/CoalitionCrackdown.lua:61:					if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/CoalitionCrackdown.lua:65:						if not MovableMan:GetClosestBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/CoalitionCrackdown.lua:113:			MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/RoninRumble.lua:60:					if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/RoninRumble.lua:64:						if not MovableMan:GetClosestBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/RoninRumble.lua:112:			MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/ZombiePit.lua:66:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/ZombiePit.lua:120:			if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/ZombiePit.lua:125:				if not MovableMan:GetClosestBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/ZombiePit.lua:169:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/ZombiePit.lua:211:		MovableMan:AddActor(zombie);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/ZombiePit.lua:218:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/ZombiePit.lua:228:	if not MovableMan:IsActor(self.CPUBrain) and ActivityMan:ActivityRunning() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/TestScript.lua:155:					local foundBrain = MovableMan:GetClosestBrainActor(team);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/TestScript.lua:164:					if not brain or not MovableMan:IsActor(brain) or not brain:HasObjectInGroup("Brains") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/TestScript.lua:171:							if MovableMan:IsActor(newBrain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/TestScript.lua:178:							if not MovableMan:GetClosestBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Unused/KingOfTheHill.lua:65:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:31:					MovableMan:AddActor(foundBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:49:	--MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:58:	--MovableMan:AddActor(b);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:66:		MovableMan:AddActor(a);--]]--
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:78:			--MovableMan:AddActor(a);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:116:		--for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:123:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:129:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:139:			MovableMan:AddActor(spawn);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/NetworkTest.lua:154:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MultiplayerLobby.lua:30:					MovableMan:AddActor(foundBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:28:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) or not self:GetPlayerBrain(player):HasObjectInGroup("Brains") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:45:						if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:57:							for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:62:							MovableMan:KillAllTeamActors(team);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:85:							if otherPlayer ~= player and self:PlayerActive(otherPlayer) and MovableMan:IsActor(self:GetPlayerBrain(otherPlayer)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:110:				if not MovableMan:GetFirstTeamActor(Activity.NOTEAM, Activity.PLAYER_NONE) and MovableMan:IsActor(self:GetPlayerBrain(player)) and self:GetPlayerBrain(player):IsInGroup("Brains") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:151:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:375:								for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:468:							for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:532:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:536:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:647:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:881:				if MovableMan:IsActor(self.AI.AttackTarget[team]) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:888:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:909:								if not actor.MOMoveTarget or not MovableMan:IsActor(actor.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:932:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:944:								if not MovableMan:IsActor(actor.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:1082:	if self.InvadingPlayer[player] and (not self.AI.Defender[team] or not MovableMan:IsActor(self.AI.Defender[team]) or self.AI.Defender[team]:IsDead()) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:1121:						MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:1217:					if self.AI.AttackTarget[team] and MovableMan:IsActor(self.AI.AttackTarget[team]) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:1223:					if not MovableMan:IsActor(self.AI.AttackTarget[team]) or math.random() < 0.4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:1240:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:1269:	if Brain and MovableMan:IsActor(Brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/MetaFight.lua:1640:		MovableMan:AddActor(Craft); -- Spawn the Craft onto the scene
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:102:		for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:105:					SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:112:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:179:					foundBrain.Pos = SceneMan:MovePointToGround(Vector(math.random(0, SceneMan.SceneWidth), 0), 0, 0) + Vector(0, -foundBrain.Radius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:181:					MovableMan:AddActor(foundBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:258:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:264:					if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:279:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:330:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:373:					MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyDiggers.lua:377:					-- but since we're so sure we don't need it, might as well go ahead and do it here right away
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:97:		for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:100:					SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:122:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:178:					if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:184:						if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:201:						for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:274:				MovableMan:AddActor(ship);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/KeepieUppie.lua:292:				for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:96:	MovableMan:AddActor(automoverController);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:175:					local parts = {foundBrain, foundBrain.Head, foundBrain.FGArm, foundBrain.BGArm, foundBrain.FGLeg, foundBrain.BGLeg};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:208:					MovableMan:AddActor(foundBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:261:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:298:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:304:					if not MovableMan:GetFirstBrainActor(team) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:319:					for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/OneManArmyZeroG.lua:365:				MovableMan:AddActor(actor);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:163:							MovableMan:AddActor(Brain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:181:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:241:			MovableMan:AddActor(self.CPUBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:259:						MovableMan:AddActor(startingActor);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:323:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:351:				for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:354:							SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:367:			for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:382:					if MovableMan:IsActor(self.CPUBrain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:394:						if not MovableMan:IsActor(Brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:405:						if Brain and MovableMan:IsActor(Brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:422:					MovableMan:KillAllEnemyActors(self.WinnerTeam);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:427:					MovableMan:KillAllEnemyActors(self.WinnerTeam);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:442:					for Hunter in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:445:							if not MovableMan:IsActor(Pray) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:454:					if self.spawnTimer:IsPastSimMS(self.spawnDelay) and MovableMan:IsActor(self.CPUBrain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:455:						if self.AttackActor and MovableMan:IsActor(self.AttackActor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:490:									if MovableMan:IsActor(self.CPUBrain) and SceneMan:ShortestDistance(self.AttackActor.Pos, self.CPUBrain.Pos, false):MagnitudeIsLessThan(1000) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:528:							for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:589:				if self.AttackActor and MovableMan:IsActor(self.AttackActor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:607:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:649:				if self.AttackActor and MovableMan:IsActor(self.AttackActor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:667:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:707:				if self.AttackActor and MovableMan:IsActor(self.AttackActor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:725:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:765:				if self.AttackActor and MovableMan:IsActor(self.AttackActor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:783:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/BrainVsBrain.lua:815:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:99:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:115:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:117:				MovableMan:ChangeActorTeam(actor, soleHumanTeam);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:253:			for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:286:				for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:289:							SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:313:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:324:				if not MovableMan:IsActor(self:GetPlayerBrain(player)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:336:							if otherPlayer ~= player and self:PlayerActive(otherPlayer) and self:PlayerHuman(otherPlayer) and MovableMan:IsActor(self:GetPlayerBrain(otherPlayer)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:402:						for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:491:											if not MovableMan:IsActor(self.AI[team].AttackTarget) or math.random() < 0.4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:506:										for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:525:										for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:562:							if not self.AI[team].Engineer or not MovableMan:IsActor(self.AI[team].Engineer) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:578:											MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:594:							for _, actorCollection in ipairs{MovableMan.AddedActors, MovableMan.Actors} do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:716:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:782:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:838:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:894:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:925:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/SkirmishDefense.lua:960:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Test.lua:10:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Test.lua:58:	MovableMan:AddActor(automoverController);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:63:	--for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:71:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:88:				MovableMan:AddActor(Brain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:105:		for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:126:				MovableMan:AddActor(Guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:140:				MovableMan:AddActor(Guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:154:				MovableMan:AddActor(Guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:168:				MovableMan:AddActor(Guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:182:				MovableMan:AddActor(Guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:196:				MovableMan:AddActor(Guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:210:				MovableMan:AddActor(Guard);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:233:		for Act in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:236:					SceneMan:CastSeeRay(Act.Team, Act.EyePos, Vector(150+FrameMan.PlayerScreenWidth * 0.5, 0):RadRotate(angle), Vector(), 25, fogResolution);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:247:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:251:	for actor in MovableMan.AddedActors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:309:		if Brain and MovableMan:IsActor(Brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:350:			MovableMan:KillAllEnemyActors(self.WinnerTeam);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:358:		for Hunter in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:361:				if not MovableMan:IsActor(Pray) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:399:				for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:447:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:458:			MovableMan:KillAllEnemyActors(self.WinnerTeam);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:470:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:522:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:559:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:596:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:650:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:702:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:750:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:803:		MovableMan:AddActor(Craft);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:592:		Radius = 12
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:600:		Radius = 12
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:604:	RaisedGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:612:	LoweredGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:620:	LoweringGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/Tubby/TubbyRocket.ini:637:	RaisingGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:629:		Radius = 12
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:637:		Radius = 12
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:641:	RaisedGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:649:	LoweredGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:657:	LoweringGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Rockets/MK2/RocketMK2.ini:674:	RaisingGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:104:		Radius = 10
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:112:		Radius = 10
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:153:	RaisedGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:155:	LoweredGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:157:	LoweringGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/StorageCrate/Crate.ini:159:	RaisingGearLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Shared/AttachableTurret.lua:58:			local aimTarget = MovableMan:GetClosestEnemyActor(self.Team, aimPos, (self.searchRange * 0.5), Vector());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Dropships/DropshipMK1.ini:1564:		Radius = 22
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Materials.ini:22:// GibImpulseLimitPerVolumeL, The amount of force per liter an actor can take before limbs are torn.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:364:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:366:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:368:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:370:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:372:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:374:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:530:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:532:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:534:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:536:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:538:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Turrets/SmallTurret/SmallTurret.ini:540:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:106:	PresetName = Green Dummy Head Gib A
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:111:		FilePath = Base.rte/Actors/Infantry/GreenDummy/Gibs/HeadGibA.png
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:275:	PresetName = Green Dummy Head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:280:		FilePath = Base.rte/Actors/Infantry/GreenDummy/HeadA.png
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:288:		PresetName = Green Dummy Wound Entry Head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:290:			CopyOf = Plastic Head Impact
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:318:			CopyOf = Green Dummy Head Gib A
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:665:	Head = Attachable
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:666:		CopyOf = Green Dummy Head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:701:	FGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:703:	BGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:707:	StandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:715:	StandLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:721:	WalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:729:	RunLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:733:	CrouchLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:734:		CopyOf = Human Crouch Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:735:	CrouchLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:736:		CopyOf = Human Crouch Path BG
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:737:	CrouchRotAngleTarget = -0.6
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:738:	CrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:740:	ArmCrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:742:	ClimbLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:743:		CopyOf = Human Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:744:	JumpLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Infantry/GreenDummy/GreenDummy.ini:746:	DislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:176:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:184:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:213:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:224:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:230:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/MegaCrab/MegaCrab.ini:237:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:178:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:186:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:216:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:227:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:233:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Crabs/Crabs.ini:235:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:222:	Head = Attachable
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:244:	FGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:246:	BGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:248:	StandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:256:	StandLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:261:	WalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:293:	CrouchLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:294:		PresetName = Jumper Crouch Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:301:	CrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:327:	ArmCrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:350:	ClimbLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:351:		PresetName = Jumper Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:376:	JumpLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Wildlife/Jumper/Jumper.ini:384:	DislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared/Scripts/SelfHeal.lua:21:						self.healing.delay = self.baseHealDelay * math.sqrt(self.healing.wound.Radius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared/Scripts/SelfHeal.lua:30:				if self.Head and self.healing.part.ID == self.Head.ID then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared/Scripts/SelfHeal.lua:31:					self.Head.RotAngle = self.RotAngle - 0.5 * self.FlipFactor * math.sin(timerRatio * math.pi);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared/Scripts/SelfHeal.lua:36:							local offset = SceneMan:ShortestDistance(arm.JointPos, self.healing.wound.Pos, SceneMan.SceneWrapsX) + Vector(-math.max(self.healing.wound.Radius - 2, 1), 0):RadRotate(math.pi * 2 * timerRatio);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared/Scripts/SelfHeal.lua:93:			self.healing.delay = self.baseHealDelay * math.sqrt(self.healing.wound.Radius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:64:// Limb Paths
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:67:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:77:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:126:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:175:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:233:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:291:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:326:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:327:	PresetName = Human Crouch Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:336:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:337:	CopyOf = Human Crouch Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:338:	PresetName = Human Crouch Path BG
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:344:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:376:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:404:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:405:	PresetName = Human Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:432:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Shared.ini:460:AddLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:334:			CopyOf = Metal Impact Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:414:		CopyOf = Metal Gib Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:488:			CopyOf = Metal Impact Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:574:		CopyOf = Metal Gib Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:643:	Head = Attachable
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:679:	FGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:681:	BGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:685:	StandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:693:	StandLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:698:	WalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:701:	RunLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:704:	CrouchLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:705:		CopyOf = Human Crouch Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:706:	CrouchLimbPathBG = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:707:		CopyOf = Human Crouch Path BG
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:708:	CrouchRotAngleTarget = -0.6
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:709:	CrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:729:	ArmCrawlLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:752:	ClimbLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:753:		CopyOf = Human Climb Path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:754:	JumpLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Brains/Brainbot/Brainbot.ini:774:	DislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:270:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:278:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:282:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:293:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:299:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/MedicDrone.ini:301:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/Medic.lua:17:	self.maxHealRange = 100 + self.IndividualRadius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/Medic.lua:48:					if trace:MagnitudeIsLessThan(healRange + healTarget.Radius) and SceneMan:CastObstacleRay(self.Pos, trace, Vector(), Vector(), parent.ID, parent.IgnoresWhichTeam, rte.grassID, 5) < 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/Medic.lua:65:			for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/Medic.lua:68:					if trace:MagnitudeIsLessThan(healRange * 0.9 + actor.Radius) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/Medic.lua:69:						if SceneMan:CastObstacleRay(self.Pos, trace, Vector(), Vector(), parent.ID, parent.IgnoresWhichTeam, rte.airID, 3) < 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:40:						self.SAM_Offset = Vector(-self.SAM_Target.Radius, 0) -- Left
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:42:						self.SAM_Offset = Vector(self.SAM_Target.Radius, 0) -- Right
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:45:					self.SAM_Offset = Vector(0, self.SAM_Target.Radius * 0.5) -- Below
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:165:						for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:171:									range = Dist.Magnitude - Act.Radius
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:208:					if Brain and MovableMan:IsActor(Brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:224:							- NewTarget.Radius
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:229:							SceneMan:CastObstacleRay(
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:431:	LeftStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:439:	LeftWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:468:	LeftDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:479:	RightStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:485:	RightWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/Drone.ini:491:	RightDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:271:	LStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:279:	LWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:281:	LDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:292:	RStandLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:298:	RWalkLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AIBox/AIBox.ini:300:	RDislodgeLimbPath = LimbPath
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AtomGroups.ini:15:// Actor Limb AtomGroups
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:828:	PresetName = Flesh Head Exit Sweetener
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:830:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:831:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:832:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:833:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:834:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:835:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:836:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:837:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:838:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadExitSweetener9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:841:	PresetName = Flesh Head Impact
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:843:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:844:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:845:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:846:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:847:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:848:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:849:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:850:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:851:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpact9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:854:	PresetName = Flesh Head Impact Armored
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:856:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:857:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:858:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:859:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:860:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:861:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:862:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:863:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:864:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:865:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadImpactArmored10.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:896:	PresetName = Flesh Limb Impact
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:898:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:899:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:900:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:901:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:902:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:903:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:904:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:905:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:906:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:907:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbImpact10.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:910:	PresetName = Flesh Head Gib
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:912:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:913:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:914:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:915:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:916:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:917:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:918:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:919:	AddSound = Base.rte/Sounds/Penetration/Flesh/HeadGib8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:923:	PresetName = Flesh Limb Gib
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:925:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:926:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:927:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:928:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:929:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:930:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:931:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:932:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:933:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:934:	AddSound = Base.rte/Sounds/Penetration/Flesh/LimbGib10.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1210:	PresetName = Metal Impact Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1275:	PresetName = Metal Gib Head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1299:	PresetName = Metal Gib Limb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1336:	PresetName = Plastic Head Sweetener
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1338:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1339:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1340:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1341:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1342:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1343:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1344:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1345:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1346:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1347:	AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener10.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1350:	PresetName = Plastic Head Impact
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1361:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener1.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1362:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener2.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1363:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener3.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1364:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener4.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1365:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener5.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1366:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener6.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1367:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener7.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1368:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener8.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1369:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener9.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Sounds.ini:1370:		AddSound = Base.rte/Sounds/Penetration/Plastic/HeadSweetener10.flac
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Deployments.ini:85:	WalkRadius = 750
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI.ini:21:	Head = Attachable
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI.ini:29:	FGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI.ini:31:	BGFootGroup = AtomGroup
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/mobdebug/mobdebug.lua:238:      local head = indent and '{\n'..prefix..indent or '{'
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/mobdebug/mobdebug.lua:241:      return (custom and custom(tag,head,body,tail,level) or tag..head..body..tail)..comment(t, level)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:15:local headers = require("socket.headers")
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:45:-- Reads MIME headers from a connection, unfolding where needed
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:47:local function receiveheaders(sock, headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:49:    headers = headers or {}
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:53:    -- headers go until a blank line is found
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:57:        if not (name and value) then return nil, "malformed reponse headers" end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:69:        if headers[name] then headers[name] = headers[name] .. ", " .. value
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:70:        else headers[name] = value end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:72:    return headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:78:socket.sourcet["http-chunked"] = function(sock, headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:96:                -- if it was, read trailers into headers table
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:97:                headers, err = receiveheaders(sock, headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:98:                if not headers then return nil, err end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:140:function metat.__index:sendheaders(tosend)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:141:    local canonic = headers.canonic
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:150:function metat.__index:sendbody(headers, source, step)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:155:    if headers["content-length"] then mode = "keep-open" end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:175:function metat.__index:receiveheaders()
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:176:    return self.try(receiveheaders(self.c))
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:179:function metat.__index:receivebody(headers, sink, step)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:182:    local length = base.tonumber(headers["content-length"])
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:183:    local t = headers["transfer-encoding"] -- shortcut
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:186:    elseif base.tonumber(headers["content-length"]) then mode = "by-length" end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:228:local function adjustheaders(reqt)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:229:    -- default headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:255:    -- override with user headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:256:    for i,v in base.pairs(reqt.headers or lower) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:284:    -- adjust headers in request
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:285:    nreqt.headers = adjustheaders(nreqt)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:287:        and not nreqt.headers["content-length"]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:288:        and not nreqt.headers["transfer-encoding"]
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:290:        nreqt.headers["transfer-encoding"] = "chunked"
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:298:local function shouldredirect(reqt, code, headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:299:    local location = headers.location
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:309:           (not reqt.method or reqt.method == "GET" or reqt.method == "HEAD")
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:316:    if reqt.method == "HEAD" then return nil end
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:334:    local result, code, headers, status = trequest {
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:338:        headers = reqt.headers,
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:344:    -- pass location header back as a hint we redirected
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:345:    headers = headers or {}
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:346:    headers.location = headers.location or location
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:347:    return result, code, headers, status
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:355:    -- send request line and headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:357:    h:sendheaders(nreqt.headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:360:        h:sendbody(nreqt.headers, nreqt.source, nreqt.step)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:370:    local headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:373:        h:receiveheaders()
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:376:    headers = h:receiveheaders()
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:379:    if shouldredirect(nreqt, code, headers) and not nreqt.source then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:381:        return tredirect(reqt, headers.location)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:385:        h:receivebody(headers, nreqt.sink, nreqt.step)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:388:    return 1, code, headers, status
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:401:        reqt.headers = {
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:414:    local _, code, headers, status = trequest(reqt)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/http.lua:415:    return table.concat(reqt.target), code, headers, status
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:18:local headers = require("socket.headers")
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:127:-- convert headers to lowercase
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:128:local function lower_headers(headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:130:    for i,v in base.pairs(headers or lower) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:150:-- yield the headers all at once, it's faster
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:151:local function send_headers(tosend)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:152:    local canonic = headers.canonic
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:162:    -- make sure we have our boundary and send headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:164:    local headers = lower_headers(mesgt.headers or {})
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:165:    headers['content-type'] = headers['content-type'] or 'multipart/mixed'
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:166:    headers['content-type'] = headers['content-type'] ..
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:168:    send_headers(headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:191:    local headers = lower_headers(mesgt.headers or {})
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:192:    headers['content-type'] = headers['content-type'] or
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:194:    send_headers(headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:207:    local headers = lower_headers(mesgt.headers or {})
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:208:    headers['content-type'] = headers['content-type'] or
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:210:    send_headers(headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:222:-- set defaul headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:223:local function adjust_headers(mesgt)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:224:    local lower = lower_headers(mesgt.headers)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/smtp.lua:234:    mesgt.headers = adjust_headers(mesgt)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/headers.lua:2:-- Canonic header field capitalization
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/headers.lua:7:socket.headers = {}
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/LuaIntegration/socket/headers.lua:8:local _M = socket.headers
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Tithur Cave Cliffs.ini:7:	Description = These cliffs are named after the now-defunct Tithur Extraction Initiative - an upstart company that made unfavourable mining agreements with several of the larger corporations. Before they could prove whether their business model was viable, a freak accident with a small nuclear device caused the destruction of their headquarters, and the company never recovered.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/PieMenus.ini:23:	FullInnerRadius = 96
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:52:	self.initialPieMenuFullInnerRadius = self.PieMenu.FullInnerRadius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:87:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:204:		self.PieMenu.FullInnerRadius = self:updateInfoUI();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:206:		self.PieMenu.FullInnerRadius = self.initialPieMenuFullInnerRadius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:212:	for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:228:		if not MovableMan:ValidMO(actor) or actor.Health <= 0 or not self.combinedAutomoverArea:IsInside(actor.Pos) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:924:		ToAHuman(actor).LimbPushForcesAndCollisionsDisabled = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:933:	if MovableMan:ValidMO(actor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:943:			ToAHuman(actor).LimbPushForcesAndCollisionsDisabled = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:962:		ToAHuman(actor).LimbPushForcesAndCollisionsDisabled = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1585:		local actorSizeCenteringAdjustment = Vector(0, math.min(24, math.max(0, actor.Radius - 32)));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1603:				-- Collect all points ahead of us in the box to adjust to centre
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1684:		[Directions.Up] = { acceleration = Vector(0, -self.movementAcceleration), aHumanRotAngle = 0, aHumanProneState = AHuman.NOTPRONE, aHumanCrouchState = false },
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1685:		[Directions.Down] = { acceleration = Vector(0, self.movementAcceleration), aHumanRotAngle = math.pi, aHumanProneState = AHuman.GOPRONE, aHumanCrouchState = true },
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1686:		[Directions.Left] = { acceleration = Vector(-self.movementAcceleration, 0), aHumanRotAngle = math.pi * 0.5, aHumanProneState = AHuman.GOPRONE, aHumanCrouchState = true },
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1687:		[Directions.Right] = { acceleration = Vector(self.movementAcceleration, 0), aHumanRotAngle = math.pi * -0.5, aHumanProneState = AHuman.GOPRONE, aHumanCrouchState = true },
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1709:				actorController:SetState(Controller.BODY_PRONE, movementTable.aHumanCrouchState);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1725:	local desiredPieMenuFullInnerRadius = 128;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1752:		desiredPieMenuFullInnerRadius = 160;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1758:		desiredPieMenuFullInnerRadius = 160;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:1766:	return desiredPieMenuFullInnerRadius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:10:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:22:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:34:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:46:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:64:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:88:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:106:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Conveyors/Conveyor.lua:124:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/GenericCapturable/GenericCapturable.lua:114:			local actorList = MovableMan:GetMOsInRadius(self.Pos, self.Diameter * 2, -1, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Teleporters/TeleporterB.lua:58:				for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Teleporters/TeleporterA.lua:57:				for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/ItemDispenser/ItemDispenser.lua:64:		for actor in MovableMan:GetMOsInRadius(self.Pos, self.detectRange) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/ItemDispenser/ItemDispenser.lua:96:			if actor and MovableMan:ValidMO(actor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/ActorSpawner/ActorSpawner.lua:196:					local actorList = MovableMan:GetMOsInRadius(self.Pos, self.triggerRange, -1, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/ActorSpawner/ActorSpawner.lua:227:			MovableMan:AddActor(self.nextActor);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/GenericInfoConsole/GenericInfoConsole.lua:85:			local actorList = MovableMan:GetMOsInRadius(self.Pos, self.Range or self.Diameter, -1, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/DropshipDock.lua:36:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/RocketDock.lua:17:		local dist = SceneMan:ShortestDistance(self.craft.Pos, self.Pos + Vector(0, -self.craft.Radius * 0.5), SceneMan.SceneWrapsX);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/RocketDock.lua:36:		for actor in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedRocketDock.lua:90:			local dist = SceneMan:ShortestDistance(self.craft.Pos, self.Pos + Vector(0, -self.craft.Radius * 0.5), SceneMan.SceneWrapsX);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedRocketDock.lua:142:		for mo in MovableMan:GetMOsInRadius(self.Pos, self.detectionRange, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedDropshipDock.lua:93:			local dist = SceneMan:ShortestDistance(self.craft.Pos, self.Pos + Vector(0, -self.craft.Radius * 0.5), SceneMan.SceneWrapsX);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedDropshipDock.lua:144:		for mo in MovableMan:GetMOsInRadius(self.Pos, self.detectionRange, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:31:					local limbs = actor.FGLeg or actor.BGLeg or actor.FGArm or actor.BGArm;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:32:					if limbs and actor.Status == Actor.STABLE and not controller:IsState(Controller.BODY_JUMP) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:35:						local climb = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:36:						--Climb by looking up/down or moving
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:38:							climb = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:41:						if climb or (controller:IsState(Controller.MOVE_LEFT) or controller:IsState(Controller.MOVE_RIGHT)) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:42:							local speed = actor:GetLimbPathSpeed(1)/velFactor;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderNode.lua:24:						local speed = actor:GetLimbPathSpeed(1)/velFactor;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/Ladders.ini:112:	Description = Having trouble climbing regular ladders? This model will offer you the vertical assistance you need.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/Ladders.ini:134:	Description = Having trouble climbing regular ladders? This model will offer you the vertical assistance you need.
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/BuyDoor/BuyDoor.lua:108:	local us = MovableMan:RemoveActor(self);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/BuyDoor/BuyDoor.lua:242:		for actor in MovableMan:GetMOsInRadius(self.Pos, self.detectRange, -1, false) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/BuyDoor/BuyDoor.lua:296:			if actor and MovableMan:ValidMO(actor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerModules/BunkerModules.ini:362:	Description = A bit harder to climb, but fits in a lot more compactly than the standard stairs. 
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerModules/BunkerModules.ini:373:	Description = A bit harder to climb, but fits in a lot more compactly than the standard stairs. 
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:84:		local Dist = SceneMan:ShortestDistance(Owner.EyePos, AI.OldTargetPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:187:		if not SceneMan:CastStrengthRay(Owner.EyePos, Vector(60, 0):RadRotate(Owner:GetAimAngle(true)), 5, Hit, 2, 0, true) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:289:			local Dist = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:354:				local Dist = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:355:				local viewLen = SceneMan:ShortestDistance(Owner.EyePos, Owner.ViewPoint, false).Magnitude + FrameMan.PlayerScreenWidth * 0.55; -- TODO: get AimDistance and SharpLength from the ini
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:358:					local ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 9);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:381:			local ClosestEnemy = MovableMan:GetClosestEnemyActor(Owner.Team, AimPoint, 200, Vector());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:394:					if (math.abs(ViewDist.X) - ClosestEnemy.Radius < FrameMan.PlayerScreenWidth * 0.5) and (math.abs(ViewDist.Y) - ClosestEnemy.Radius < FrameMan.PlayerScreenHeight * 0.5) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:396:							if SceneMan:CastStrengthSumRay(Owner.EyePos, ClosestEnemy.Pos, 6, rte.grassID) < 120 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:430:	Owner:SetAimAngle(SceneMan:ShortestDistance(Owner.EyePos, StartPos, false).AbsRadAngle);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:449:		local Trace = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:450:		local rayLength = SceneMan:CastObstacleRay(Owner.EyePos, Trace, Vector(), Vector(), rte.NoMOID, Owner.IgnoresWhichTeam, rte.grassID, 11);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:463:	local aim = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false).AbsRadAngle;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:513:						aim = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false).AbsRadAngle;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:46:					Origin = Owner.EyePos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:66:					if (math.abs(Dist.X) - Enemy.Radius < FrameMan.PlayerScreenWidth * 0.52) and (math.abs(Dist.Y) - Enemy.Radius < FrameMan.PlayerScreenHeight * 0.52) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:80:				-- no LOS to the body, cast at head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:81:				if Enemy.EyePos and (not AI.isPlayerOwned or not SceneMan:IsUnseen(Enemy.EyePos.X, Enemy.EyePos.Y, Owner.Team)) then	-- AI-teams ignore the fog
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:82:					local Dist = SceneMan:ShortestDistance(Owner.ViewPoint, Enemy.EyePos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:84:						local Trace = SceneMan:ShortestDistance(Origin, Enemy.EyePos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:171:		local Dist = SceneMan:ShortestDistance(Owner.EyePos, AI.OldTargetPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:284:			StartPos = Owner.EyePos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:371:					if not SceneMan:CastStrengthRay(Owner.EyePos, backAreaRay, 10, Vector(), 10, rte.grassID, SceneMan.SceneWrapsX) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:429:				local str = SceneMan:CastStrengthSumRay(Owner.EyePos, GoldPos, 3, rte.goldID) / 30; -- prioritize gold in soft ground
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:431:				local DigArea = SceneMan:ShortestDistance(GoldPos, Owner.EyePos+LookVec, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:585:	for movableObject in MovableMan:GetMOsInRadius(Owner.Pos, maxSearchDistance, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:596:				if distanceToDevice:MagnitudeIsGreaterThan(Owner.Radius * 0.75) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:719:	for movableObject in MovableMan:GetMOsInRadius(Owner.Pos, maxSearchDistance, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:821:	if (not Owner.Head or AI.proneState == AHuman.PRONE) or (Owner:NumberValueExists("AIDisableProne")) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:834:		PronePos = Owner.EyePos + Vector(Owner.Height*0.3, 0);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:849:		PronePos = Owner.EyePos + Vector(-Owner.Height*0.3, 0);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:866:	PronePos = SceneMan:MovePointToGround(PronePos, Owner.Head.Radius+3, 2);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:871:	if SceneMan:CastObstacleRay(PronePos, Dist, Vector(), Vector(), targetID, Owner.IgnoresWhichTeam, rte.grassID, 9) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:876:		if SceneMan:CastObstacleRay(PronePos, Dist, Vector(), Vector(), 0, Owner.IgnoresWhichTeam, rte.grassID, 1) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:946:			local ClosestEnemy = MovableMan:GetClosestEnemyActor(Owner.Team, AimPoint, 200, Vector());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:959:					if (math.abs(ViewDist.X) - ClosestEnemy.Radius < FrameMan.PlayerScreenWidth * 0.5) and (math.abs(ViewDist.Y) - ClosestEnemy.Radius < FrameMan.PlayerScreenHeight * 0.5) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:961:							if SceneMan:CastStrengthSumRay(Owner.EyePos, ClosestEnemy.Pos, 6, rte.grassID) < 120 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1030:								PrjDat.blast = 0; -- no other loaded weapon, ignore the blast radius
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1033:							PrjDat.blast = 0; -- no other weapon, ignore the blast radius
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1186:						-- check for obstacles if the ammo have a blast radius
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1188:							if SceneMan:CastObstacleRay(Weapon.MuzzlePos, Weapon:RotateOffset(Vector(50, 0)), Vector(), Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 2) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1246:							if Dist.Largest < (FrameMan.PlayerScreenWidth * 0.5 + AI.Target.Radius + Owner.AimDistance) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1354:					if AI.Target.EyePos then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1355:						AimPoint = (AimPoint + AI.Target.EyePos) / 2;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1362:					Dist = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1363:					ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1364:					if ID < 1 or ID == rte.NoMOID then	-- not found, look for any head or legs
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1365:						AimPoint = AI.Target.EyePos; -- the head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1373:							Dist = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1374:							ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1387:								Dist = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1388:								ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1559:		local meleeDist = Owner.IndividualRadius + (IsThrownDevice(Owner.EquippedItem) and 50 or 25);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1565:			AI.Ctrl.AnalogAim = SceneMan:ShortestDistance(Owner.EyePos, attackPos, SceneMan.SceneWrapsX).Normalized;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1641:	Owner:SetAimAngle(SceneMan:ShortestDistance(Owner.EyePos, StartPos, false).AbsRadAngle);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1664:		local Trace = SceneMan:ShortestDistance(Owner.EyePos, AimPoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1665:		local rayLength = SceneMan:CastObstacleRay(Owner.EyePos, Trace, Vector(), Vector(), rte.NoMOID, Owner.IgnoresWhichTeam, rte.grassID, 11);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1732:					local AimEnemy = SceneMan:ShortestDistance(AI.UnseenTarget.EyePos, AI.UnseenTarget.ViewPoint, false).Normalized;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1733:					local DistNormal = SceneMan:ShortestDistance(AI.UnseenTarget.EyePos, Owner.Pos, false).Normalized;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:138:						self.Ctrl.AnalogAim = SceneMan:ShortestDistance(Owner.EyePos, Leader.ViewPoint, false).Normalized;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:33:			AlarmVec = SceneMan:ShortestDistance(Owner.EyePos, Event.ScenePos, false); -- see how far away the alarm situation is
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:42:						if SceneMan:CastStrengthSumRay(Owner.EyePos, Event.ScenePos, 4, rte.grassID) < 100 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:45:					elseif not SceneMan:CastStrengthRay(Owner.EyePos, AlarmVec, 6, Vector(), 8, rte.grassID, true) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:61:				local AimOwner = SceneMan:ShortestDistance(Owner.EyePos, Owner.ViewPoint, false).Normalized;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:66:					local ID = SceneMan:CastMORay(Owner.EyePos, AlarmVec, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 11);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:78:								local AimEnemy = SceneMan:ShortestDistance(FoundMO.EyePos, FoundMO.ViewPoint, false).Normalized;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:107:		local AlarmDist = SceneMan:ShortestDistance(Owner.EyePos, AI.AlarmPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:129:	for Act in MovableMan.Actors do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:140:				if Act and MovableMan:IsActor(Act) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:149:			if MovableMan:IsActor(Brains[1]) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:159:				if MovableMan:IsActor(Act) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:219:			if MovableMan:IsActor(ClosestBrain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:251:	SceneMan:CastObstacleRay(Owner.Pos, Vector(512, 0), Vector(), Free, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:277:	SceneMan:CastObstacleRay(Owner.Pos, Vector(-512, 0), Vector(), Free, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:348:		local AlarmDist = SceneMan:ShortestDistance(Owner.EyePos, AI.OldTargetPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:479:				-- if our path isn't blocked enough to dig, but the headroom is too little, start crawling to get through
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:480:				local heading = SceneMan:ShortestDistance(Owner.Pos, Waypoint.Pos, false):SetMagnitude(Owner.Height*0.5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:482:				-- This gets the angle of the heading vector relative to flat (i.e, straight along the X axis)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:485:				local angleRadians = math.abs(math.atan2(-(heading.X * heading.Y), heading.X * heading.X));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:488:				-- We only crawl it it's quite flat, otherwise climb
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:490:				if angleDegrees <= crawlThresholdDegrees and Owner.Head and Owner.Head:IsAttached() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:491:					local topHeadPos = Owner.Head.Pos - Vector(0, Owner.Head.Radius*0.7);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:493:					-- first check up to the top of the head, and then from there forward
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:494:					if SceneMan:CastStrengthRay(Owner.Pos, topHeadPos - Owner.Pos, 5, Free, 4, rte.doorID, true) or SceneMan:CastStrengthRay(topHeadPos, heading, 5, Free, 4, rte.doorID, true) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:750:							local Trace = Vector(Owner.Radius*0.75, 0):RadRotate(scanAng);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:753:							if SceneMan:CastObstacleRay(Owner.Pos, Trace, Vector(), Free, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:782:								if SceneMan:CastObstacleRay(Owner.Pos, CurrDist, Vector(), Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 9) < 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:848:										if Owner.Head and AI.Target and AI.canHitTarget and AI.BehaviorName ~= "AttackTarget" then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:864:												local JumpPos = (Owner.Head and Owner.Head.Pos or Owner.Pos) + PixelVel + JetAccel * (t*t*0.5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:871:												-- check for obstacles from the head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:872:												Trace = SceneMan:ShortestDistance((Owner.Head and Owner.Head.Pos or Owner.Pos), JumpPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:873:												local jumpScore = SceneMan:CastObstacleRay((Owner.Head and Owner.Head.Pos or Owner.Pos), Trace, JumpPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:881:												local FallPos = (Owner.Head and Owner.Head.Pos or Owner.Pos) + PixelVel + Accel * (t*t*0.5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:884:												local Trace = SceneMan:ShortestDistance((Owner.Head and Owner.Head.Pos or Owner.Pos), FallPos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:885:												SceneMan:CastObstacleRay((Owner.Head and Owner.Head.Pos or Owner.Pos), Trace, FallPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:932:												-- check for obstacles from the head
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:945:											SceneMan:CastObstacleRay(Owner.Pos, Trace, FallPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:1025:				nextAimAngle = Owner:GetAimAngle(false) * 0.95; -- look straight ahead
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:1091:		PrjDat.blast = Weapon:GetAIBlastRadius();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:245:		if Owner.FGFoot then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:246:			table.insert(Origin, Vector(Owner.FGFoot.Pos.X, Owner.FGFoot.Pos.Y) + Vector(0, 4));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:248:		if Owner.BGFoot then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:249:			table.insert(Origin, Vector(Owner.BGFoot.Pos.X, Owner.BGFoot.Pos.Y) + Vector(0, 4));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:371:						local radius = (Leader.Height + Owner.Height) * 0.5;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:372:						if dist < radius then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:382:									local aimCorrectionRatio = Leader.SharpAimProgress * (dist/radius);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:400:												elseif LeaderWeapon:GetAIBlastRadius() >= OwnerWeapon:GetAIBlastRadius() * 0.5 and OwnerWeapon:CompareTrajectories(LeaderWeapon) < math.max(100, OwnerWeapon:GetAIBlastRadius()) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:17:	self.groundDist = self.Radius/1.35;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:30:				FuturePos.X = SceneMan.SceneWidth - self.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:36:				FuturePos.X = self.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:94:		if (self.LZpos.Y - self.Pos.Y) > self.Radius then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:96:			if SceneMan:CastObstacleRay(self.Pos, Speed, Vector(), Vector(), self.ID, self.IgnoresWhichTeam, 0, 10) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:110:					self.LZpos:SetXY(MO.Pos.X + MO.Radius * 3, math.max(self.Pos.Y - 200, 0));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:113:				elseif MovableMan:IsActor(MO) and MO.Team == self.Team then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:34:		Members.hoverAlt = Owner.Radius * 1.7 + Owner.HoverHeightModifier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:36:		Members.hoverAlt = Owner.Radius * 6 + Owner.HoverHeightModifier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:62:			self.hoverAlt = Owner.Radius * 1.7 + Owner.HoverHeightModifier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:64:			self.hoverAlt = Owner.Radius * 6 + Owner.HoverHeightModifier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:100:					FuturePos.X = SceneMan.SceneWidth - Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:106:					FuturePos.X = Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:112:				startingHeight = hoverHeightModifierChanged and Owner.Radius * 1.25 or math.max(Owner.Radius * 1.25, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:116:			local WptL = SceneMan:MovePointToGround(Vector(Owner.Pos.X - Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:118:			local WptR = SceneMan:MovePointToGround(Vector(Owner.Pos.X + Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:135:				FuturePos.X = SceneMan.SceneWidth - Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:141:				FuturePos.X = Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:152:					local startingHeight = math.max(Owner.Radius * 1.25, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:153:					local WptL = SceneMan:MovePointToGround(Vector(Owner.Pos.X - Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:155:					local WptR = SceneMan:MovePointToGround(Vector(Owner.Pos.X + Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:231:				if dist:MagnitudeIsLessThan(Owner.Radius) and math.abs(change) < 3 and math.abs(Owner.Vel.X) < 4 then	-- If we passed the hover check, check if we can start unloading
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:232:					local WptL = SceneMan:MovePointToGround(Owner.Pos+Vector(-Owner.Radius, -Owner.Radius), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:233:					local WptC = SceneMan:MovePointToGround(Owner.Pos+Vector(0, -Owner.Radius), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:234:					local WptR = SceneMan:MovePointToGround(Owner.Pos+Vector(Owner.Radius, -Owner.Radius), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:266:											self.Waypoint.X = SceneMan.SceneWidth - Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:275:							local Start = Owner.Pos + Vector(Owner.Radius, 0);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:276:							local Trace = Owner.Vel * (Owner.Radius/2) + Vector(0,50);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:326:								self.Waypoint.X = Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:187:									if not OwnerWeapon:IsTool() and LeaderWeapon:GetAIBlastRadius() >= OwnerWeapon:GetAIBlastRadius() * 0.5 and OwnerWeapon:CompareTrajectories(LeaderWeapon) < math.max(100, OwnerWeapon:GetAIBlastRadius()) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:230:						self.Ctrl.AnalogAim = SceneMan:ShortestDistance(Owner.EyePos, Leader.ViewPoint, false).Normalized;

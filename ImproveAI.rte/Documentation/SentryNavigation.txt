@@ -1,0 +1,408 @@
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:34:			elseif FoundMO.ClassName == "ADoor" and FoundMO.Team ~= Activity.NOTEAM and Owner.AIMode ~= Actor.AIMODE_SENTRY and ToADoor(FoundMO).Door and ToADoor(FoundMO).Door:IsAttached() and SharedBehaviors.GetProjectileData(Owner).pen * 0.9 > ToADoor(FoundMO).Door.Material.StructuralIntegrity then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:74:-- in sentry behavior the agent only looks for new enemies, it sometimes sharp aims to increase spotting range
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:75:function CrabBehaviors.Sentry(AI, Owner, Abort)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:101:		Owner:AddAISceneWaypoint(Vector(Owner.Pos.X, 0));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:102:		Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:104:		-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:105:		while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:110:		-- face the direction of the first waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:111:		for WptPos in Owner.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:114:				AI.SentryFacing = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:117:				AI.SentryFacing = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:157:	if Owner.HFlipped ~= AI.SentryFacing then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:158:		Owner.HFlipped = AI.SentryFacing; -- turn to the direction we have been order to guard
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:247:			if Owner.HFlipped ~= AI.SentryFacing then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:248:				Owner.HFlipped = AI.SentryFacing; -- turn to the direction we have been order to guard
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:156:-- in sentry behavior the agent only looks for new enemies, it sometimes sharp aims to increase spotting range
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:157:function HumanBehaviors.Sentry(AI, Owner, Abort)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:188:		Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:189:		Owner:AddAISceneWaypoint(Vector(Owner.Pos.X, 0));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:190:		Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:192:		-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:193:		while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:198:		-- face the direction of the first waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:199:		for WptPos in Owner.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:202:				AI.SentryFacing = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:205:				AI.SentryFacing = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:212:		Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:215:	if not AI.SentryPos then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:216:		AI.SentryPos = Vector(Owner.Pos.X, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:251:	if AI.SentryFacing ~= nil and Owner.HFlipped ~= AI.SentryFacing then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:252:		Owner.HFlipped = AI.SentryFacing; -- turn to the direction we have been order to guard
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:359:				if SceneMan:ShortestDistance(Owner.Pos, AI.SentryPos, false):MagnitudeIsGreaterThan(Owner.Height*0.7) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:360:					AI.SentryPos = SceneMan:MovePointToGround(AI.SentryPos, Owner.Height*0.25, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:361:					Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:362:					Owner:AddAISceneWaypoint(AI.SentryPos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:363:					AI:CreateGoToBehavior(Owner); -- try to return to the sentry pos
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:365:				elseif AI.SentryFacing and Owner.HFlipped ~= AI.SentryFacing then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:366:					Owner.HFlipped = AI.SentryFacing; -- turn to the direction we have been order to guard
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:429:				local str = SceneMan:CastStrengthSumRay(Owner.EyePos, GoldPos, 3, rte.goldID) / 30; -- prioritize gold in soft ground
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:483:					-- make sure there is no metal in our path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:561:	Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:562:	Owner:AddAISceneWaypoint(BestGoldPos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:579:	if Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:608:		local maxPathLength = 36; --TODO when this gets turned into a part of pathing calc, use it that way instead
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:610:			maxPathLength = 10;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:618:				local pathMultiplier = 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:620:					pathMultiplier = 0.4; -- prioritize primary or heavy weapons
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:622:					pathMultiplier = 1.4; -- avoid grenades if there are other weapons
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:625:						pathMultiplier = 1.8; -- avoid diggers if there are other weapons
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:627:						pathMultiplier = -1; -- disregard non-digger tools
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:631:				if pathMultiplier ~= -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:633:					SceneMan.Scene:CalculatePathAsync(
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:634:						function(pathRequest)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:635:							local pathLength = pathRequest.PathLength;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:636:							if pathRequest.Status ~= PathRequest.NoSolution and pathLength < maxPathLength then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:637:								local score = pathLength * pathMultiplier;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:665:			local prevMoveTarget, prevSceneWaypoint;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:670:				prevSceneWaypoint = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height/5, 4); -- last wpt or current pos
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:673:			Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:674:			Owner:AddAIMOWaypoint(AI.PickupHD);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:677:				Owner:AddAIMOWaypoint(prevMoveTarget);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:678:			elseif prevSceneWaypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:679:				Owner:AddAISceneWaypoint(prevSceneWaypoint);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:682:			if Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:683:				AI.SentryFacing = Owner.HFlipped;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:686:			Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:688:			-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:689:			while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:713:	if Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:738:		local maxPathLength = 16;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:740:			maxPathLength = 30;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:742:			maxPathLength = 5;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:751:				SceneMan.Scene:CalculatePathAsync(
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:752:					function(pathRequest)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:753:						local pathLength = pathRequest.PathLength;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:754:						if pathRequest.Status ~= PathRequest.NoSolution and pathLength < maxPathLength then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:755:							table.insert(devicesToPickUp, {deviceId = deviceId, score = pathLength});
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:781:			local prevMoveTarget, prevSceneWaypoint;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:786:				prevSceneWaypoint = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height/5, 4); -- last wpt or current pos
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:789:			Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:790:			Owner:AddAIMOWaypoint(AI.PickupHD);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:794:					Owner:AddAIMOWaypoint(prevMoveTarget);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:795:				elseif prevSceneWaypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:796:					Owner:AddAISceneWaypoint(prevSceneWaypoint);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:799:				if Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:800:					AI.SentryFacing = Owner.HFlipped;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:804:			Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:806:			-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:807:			while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:825:	-- only go prone if we can see the ground near the target
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:826:	local AimPoint = SceneMan:MovePointToGround(TargetPos, 10, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:827:	local ground = Owner.Pos.Y + Owner.Height * 0.25;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:843:			if 0 == SceneMan:GetTerrMatter(x_pos, ground) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:858:			if 0 == SceneMan:GetTerrMatter(x_pos, ground) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:866:	PronePos = SceneMan:MovePointToGround(PronePos, Owner.Head.Radius+3, 2);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1056:							if not AI.isPlayerOwned or Owner.AIMode ~= Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1058:									local OldWaypoint = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height/5, 4); -- move back here later
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1059:									Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1060:									Owner:AddAIMOWaypoint(AI.Target);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1061:									Owner:AddAISceneWaypoint(OldWaypoint);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1088:					elseif not AI.isPlayerOwned or not (Owner.AIMode == Actor.AIMODE_SENTRY or Owner.AIMode == Actor.AIMODE_SQUAD) then -- target out of reach; move towards it
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1091:							local OldWaypoint = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height/5, 4); -- move back here later
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1092:							Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1093:							Owner:AddAIMOWaypoint(AI.Target);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1094:							Owner:AddAISceneWaypoint(OldWaypoint);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1343:				if not (Owner.AIMode == Actor.AIMODE_SENTRY or Owner.AIMode == Actor.AIMODE_SQUAD) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1508:	local PrevMOMoveTarget, PrevSceneWaypoint;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1513:		PrevSceneWaypoint = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height/5, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1517:	Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1518:	Owner:AddAIMOWaypoint(AI.Target);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1521:		Owner:AddAIMOWaypoint(PrevMOMoveTarget);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1524:	if PrevSceneWaypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1525:		Owner:AddAISceneWaypoint(PrevSceneWaypoint);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:14:	Members.SentryFacing = Owner.HFlipped;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:112:			if Owner.AIMode ~= self.lastAIMode and Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:113:				self.SentryFacing = Owner.HFlipped; -- store the direction in which we should be looking
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:116:			self:CreateSentryBehavior(Owner);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:127:			-- make the last waypoint marker stick to the MO we are following
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:129:				Owner:RemoveMovePathEnd();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:130:				Owner:AddToMovePathEnd(Owner.MOMoveTarget.Pos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:143:				Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:144:				Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:147:			Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:148:			Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:200:function NativeTurretAI:CreateSentryBehavior(Owner)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:205:	self.NextBehavior = coroutine.create(CrabBehaviors.Sentry);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:207:	self.NextBehaviorName = "Sentry";
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:150:				Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:151:				Owner:AddAIMOWaypoint(Brains[1]);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:158:				-- measure how easy the path to the destination is to traverse
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:160:					Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:161:					Owner:AddAISceneWaypoint(Act.Pos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:162:					Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:164:					-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:165:					while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:173:					local pathLength = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:174:					local pathObstMaxHeight = 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:176:					local PathDump = {}
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:177:					-- copy the MovePath to a temporary table so we can yield safely while working on the path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:178:					for WptPos in Owner.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:179:						table.insert(PathDump, WptPos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:182:					for _, Wpt in pairs(PathDump) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:183:						pathLength = pathLength + 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:189:									pathObstMaxHeight = math.max(pathObstMaxHeight, height);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:209:					local score = pathLength * 0.55 + math.floor(pathObstMaxHeight/27) * 8;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:217:			--Owner:ClearAIWaypoints(); -- this part freezes the script when facing the opposing brain
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:220:				Owner:ClearAIWaypoints(); -- moving the function here fixes it (4zK)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:221:				Owner:AddAIMOWaypoint(ClosestBrain);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:228:		AI:CreateSentryBehavior(Owner);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:250:	-- look for a path to the right
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:255:		Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:256:		Owner:AddAISceneWaypoint(Free);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:257:		Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:259:		-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:260:		while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:266:		for WptPos in Owner.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:276:	-- look for a path to the left
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:281:		Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:282:		Owner:AddAISceneWaypoint(Free);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:283:		Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:285:		-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:286:		while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:292:		for WptPos in Owner.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:302:	Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:309:			Owner:AddAISceneWaypoint(WptA);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:318:			Owner:AddAISceneWaypoint(WptB);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:326:	else	-- no path was found
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:378:-- move to the next waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:381:	if not (Owner.AIMode == Actor.AIMODE_SQUAD or Owner:GetWaypointListSize() > 0) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:383:			if SceneMan:ShortestDistance(Owner:GetLastAIWaypoint(), Owner.Pos, false).Largest < Owner.Height * 0.15 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:384:				Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:385:				Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:386:				Owner:DrawWaypoints(false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:387:				AI:CreateSentryBehavior(Owner);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:390:					AI.SentryFacing = Owner.HFlipped; -- guard this direction
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:391:					AI.SentryPos = Vector(Owner.Pos.X, Owner.Pos.Y); -- guard this point
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:405:	local UpdatePathTimer = Timer();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:408:		UpdatePathTimer:SetSimTimeLimitMS(RangeRand(7000, 8000));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:410:		UpdatePathTimer:SetSimTimeLimitMS(RangeRand(12000, 14000));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:432:	local NeedsNewPath, Waypoint, HasMovePath, Dist, CurrDist;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:433:	NeedsNewPath = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:438:		Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:439:		HasMovePath = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:442:		for pos in Owner.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:443:			HasMovePath = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:444:			Waypoint = {};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:445:			Waypoint.Pos = pos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:446:			Waypoint.Type = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:447:			if Owner.MovePathSize == 1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:448:				Waypoint.Type = "last";
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:453:		if Waypoint ~= nil and Waypoint.Type ~= "air" then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:457:			if Waypoint.Type ~= "drop" and Owner:HasObjectInGroup("Tools - Diggers") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:458:				local PathSegRay = SceneMan:ShortestDistance(PrevWptPos, Waypoint.Pos, false); -- detect material blocking the path and start digging through it
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:459:				if AI.teamBlockState ~= Actor.BLOCKED and SceneMan:CastStrengthRay(PrevWptPos, PathSegRay, 4, Free, 2, rte.doorID, true) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:479:				-- if our path isn't blocked enough to dig, but the headroom is too little, start crawling to get through
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:480:				local heading = SceneMan:ShortestDistance(Owner.Pos, Waypoint.Pos, false):SetMagnitude(Owner.Height*0.5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:505:		if Waypoint == nil or not Waypoint.Type then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:507:		elseif Waypoint.Type == "last" then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:536:		elseif UpdatePathTimer:IsPastSimTimeLimit() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:537:			UpdatePathTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:544:			Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:545:			NeedsNewPath = true; -- update the path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:581:		elseif not NeedsNewPath then	-- we have a list of waypoints, follow it
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:582:			if Owner.MovePathSize == 0 then	-- arrived
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:588:						then -- add a waypoint if the MOMoveTarget is close and in LOS
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:589:							Waypoint = {Pos=SceneMan:MovePointToGround(Owner.MOMoveTarget.Pos, Owner.Height*0.2, 4)};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:591:							NeedsNewPath = true; -- update the path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:595:					--local GroundPos = Owner:GetLastAIWaypoint()
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:596:					local GroundPos = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height*0.2, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:597:					if SceneMan:ShortestDistance(GroundPos, Owner.Pos, false).Largest < Owner.Height * 0.4 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:599:							AI.SentryFacing = Owner.HFlipped; -- guard this direction
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:600:							AI.SentryPos = Vector(Owner.Pos.X, Owner.Pos.Y); -- guard this point
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:601:							AI:CreateSentryBehavior(Owner);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:604:						Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:605:						Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:606:						Owner:DrawWaypoints(false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:611:				if Waypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:618:								Waypoint.Pos = Owner.MOMoveTarget.Pos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:623:										UpdatePathTimer:Reset();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:635:												Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:636:												NeedsNewPath = true; -- update the path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:646:							Waypoint.Pos = Owner.MOMoveTarget.Pos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:650:					if Waypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:651:						CurrDist = SceneMan:ShortestDistance(Owner.Pos, Waypoint.Pos, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:676:											 SceneMan:ShortestDistance(Owner.Pos, Waypoint.Pos, false):MagnitudeIsGreaterThan(Owner.Height*0.5)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:722:												AI.Ctrl.AnalogAim = DigTarget.Normalized; -- aim in the direction of the next waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:730:											-- check if we are done when we get close enough to the waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:732:												Waypoint.Pos = SceneMan:MovePointToGround(Waypoint.Pos, Owner.Height*0.2, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:778:							if CurrDist:MagnitudeIsGreaterThan(tolerance) then	-- not close enough to the waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:781:								-- check if we have LOS to the waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:784:								elseif NoLOSTimer:IsPastSimTimeLimit() then	-- calculate new path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:785:									Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:786:									NeedsNewPath = true; -- update the path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:793:							elseif ArrivedTimer:IsPastSimTimeLimit() then	-- only remove a waypoint if we have been close to it for a while
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:794:								if Waypoint.Type == "last" then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:797:											local ProxyWpt = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height*0.2, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:799:												Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:800:												Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:801:												Owner:DrawWaypoints(false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:806:										PrevWptPos = Waypoint.Pos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:807:										Owner:RemoveMovePathBeginning();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:808:										Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:809:										NeedsNewPath = true; -- update the path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:812:									PrevWptPos = Waypoint.Pos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:813:									Owner:RemoveMovePathBeginning();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:814:									Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:818:							if Waypoint then	-- move towards the waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:830:								if Waypoint.Type == "right" then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:834:								elseif Waypoint.Type == "left" then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:875:													jumpScore = SceneMan:ShortestDistance(Waypoint.Pos, JumpPos, false).Magnitude;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:876:												else -- the ray hit terrain or start inside terrain: avoid
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:877:													jumpScore = SceneMan:ShortestDistance(Waypoint.Pos, JumpPos, false).Largest * 2;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:887:												if SceneMan:ShortestDistance(Waypoint.Pos, FallPos, false):MagnitudeIsLessThan(jumpScore) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:896:											if Waypoint.Type ~= "drop" and not Lower(Waypoint, Owner, 20) and Owner.Jetpack.JetpackType == AEJetpack.Standard then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:934:												Facings[k].range = SceneMan:ShortestDistance(Waypoint.Pos, JumpPos, false).Magnitude;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:953:											local delta = SceneMan:ShortestDistance(Waypoint.Pos, FallPos, false).Magnitude - Facings[1].range;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:977:		else	-- no waypoint list
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:978:			NeedsNewPath = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:980:			local Trace = SceneMan:ShortestDistance(Owner.Pos, Owner:GetLastAIWaypoint(), false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:981:			Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:983:			-- wait until movepath is updated
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:984:			while Owner.IsWaitingOnNewMovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:991:				local ProxyWpt = SceneMan:MovePointToGround(Owner:GetLastAIWaypoint(), Owner.Height*0.2, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:995:						AI.SentryPos = Vector(Owner.Pos.X, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:996:						AI:CreateSentryBehavior(Owner);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:999:					Owner:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:1000:					Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:1001:					Owner:DrawWaypoints(false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:1007:			Owner:DrawWaypoints(true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:1013:			if Owner.aggressive then	-- the aggressive behavior setting makes the AI pursue waypoint at all times
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:2:-- this actor finds the shortest path between two scene positions
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:3:-- global variables for input: gFindPathFrom, gFindPathTo
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:4:-- global variables for output: gWaypoints
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:5:-- gPathObstMaxHeight is the largets vertical obstacle height along the path
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:12:	if self.IsWaitingOnNewMovePath then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:16:	if #gWayPoints == 0 and #self.MovePath ~= 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:17:		for Wpt in self.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:18:			table.insert(gWaypoints, Vector(Wpt.X, Wpt.Y));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:22:	if gFindPathFrom and gFindPathTo then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:23:		self.Pos = gFindPathFrom;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:24:		gFindPathFrom = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:26:		self:ClearAIWaypoints();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:27:		self:AddAISceneWaypoint(gFindPathTo);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:28:		self:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:30:		gFindPathTo = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/PathFinder.lua:31:		gWaypoints = {};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:16:	Members.SentryFacing = Owner.HFlipped;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:18:	Members.groundContact = 5;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:131:			self.SentryFacing = Owner.HFlipped;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:228:			if Owner.AIMode ~= self.lastAIMode and Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:229:				self.SentryFacing = Owner.HFlipped; -- store the direction in which we should be looking
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:230:				self.SentryPos = Vector(Owner.Pos.X, Owner.Pos.Y); -- store the pos on which we should be standing
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:233:			self:CreateSentryBehavior(Owner);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:240:	-- check if the feet reach the ground
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:256:				self.groundContact = 3;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:259:				self.groundContact = self.groundContact - 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:263:		local newFlying = self.groundContact < 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:291:			elseif FoundMO.ClassName == "ADoor" and FoundMO.Team ~= Activity.NOTEAM and Owner.AIMode ~= Actor.AIMODE_SENTRY and ToADoor(FoundMO).Door and ToADoor(FoundMO).Door:IsAttached() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:350:		-- make the last waypoint marker stick to the MO we are following
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:352:			Owner:RemoveMovePathEnd();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:353:			Owner:AddToMovePathEnd(Owner.MOMoveTarget.Pos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:358:					local Leader = MovableMan:GetMOFromID(Owner:GetAIMOWaypointID());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:441:							Owner.leaderWaypoint = Leader:GetLastAIWaypoint();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:453:				Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:454:				if Owner.leaderWaypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:456:					Owner:AddAISceneWaypoint(Owner.leaderWaypoint);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:457:					Owner.leaderWaypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:459:					Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:464:		Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:542:					elseif Owner.AIMode ~= Actor.AIMODE_SENTRY and not Owner:EquipDiggingTool(false) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:579:					if not self.isPlayerOwned and Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:678:function NativeHumanAI:CreateSentryBehavior(Owner)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:691:		self.NextBehavior = coroutine.create(HumanBehaviors.Sentry); -- replace "HumanBehaviors.Sentry" with the function name of your own sentry behavior
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:693:		self.NextBehaviorName = "Sentry";
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:782:	elseif Owner.AIMode ~= Actor.AIMODE_SQUAD and Owner.AIMode ~= Actor.AIMODE_SENTRY and self.Target.HFlipped == Owner.HFlipped and Owner:EquipDeviceInGroup("Bombs - Grenades", true)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:809:			if not (self.isPlayerOwned and Owner.AIMode == Actor.AIMODE_SENTRY) and (self.Target.ClassName == "AHuman" or self.Target.ClassName == "ACrab") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:17:	self.groundDist = self.Radius/1.35;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:19:	self.LZpos = SceneMan:MovePointToGround(self.Pos, self.groundDist, 9);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:44:			self.LZpos = SceneMan:MovePointToGround(TestPos, self.groundDist, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:140:				self.LZpos = SceneMan:MovePointToGround(self.Pos, self.groundDist, 6);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:187:		self.LZpos = self:GetLastAIWaypoint();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:31:	-- The drop ship tries to hover this many pixels above the ground
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:72:		Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:79:				self.Waypoint = Vector(Owner.Pos.X, -5000);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:81:				self.Waypoint = Vector(Owner.Pos.X, SceneMan.SceneHeight + 5000);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:83:				self.Waypoint = Vector(-5000, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:85:				self.Waypoint = Vector(SceneMan.SceneWidth + 5000, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:88:			self.Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:89:		elseif Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:90:			self.Waypoint = Owner.Pos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:116:			local WptL = SceneMan:MovePointToGround(Vector(Owner.Pos.X - Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:117:			local WptC = SceneMan:MovePointToGround(Vector(Owner.Pos.X, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:118:			local WptR = SceneMan:MovePointToGround(Vector(Owner.Pos.X + Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:119:			self.Waypoint = Vector(Owner.Pos.X, math.min(WptL.Y, WptC.Y, WptR.Y));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:145:		if self.Waypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:146:			local Dist = SceneMan:ShortestDistance(FuturePos, self.Waypoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:149:					self.Waypoint.X = FuturePos.X;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:150:					self.Waypoint.Y = -500;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:153:					local WptL = SceneMan:MovePointToGround(Vector(Owner.Pos.X - Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:154:					local WptC = SceneMan:MovePointToGround(Vector(Owner.Pos.X, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:155:					local WptR = SceneMan:MovePointToGround(Vector(Owner.Pos.X + Owner.Radius, startingHeight), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:156:					self.Waypoint = Vector(Owner.Pos.X, math.min(WptL.Y, WptC.Y, WptR.Y));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:166:		if Owner.IsWaitingOnNewMovePath then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:167:			self.reachedWaypoint = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:168:			self.Waypoint = nil;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:172:		if self.Waypoint == nil or self.reachedWaypoint then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:173:			self.reachedWaypoint = false;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:174:			for Wpt in Owner.MovePath do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:175:				self.Waypoint = Wpt;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:178:			local Dist = SceneMan:ShortestDistance(Owner.Pos, self.Waypoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:180:				if Owner:GetWaypointListSize() == 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:181:					Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:182:					self.Waypoint = Owner.Pos;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:184:					Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:185:					Owner:UpdateMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:186:					self.reachedWaypoint = true;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:194:	local Dist = SceneMan:ShortestDistance(Owner.Pos+Owner.Vel*30, self.Waypoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:203:	Dist = SceneMan:ShortestDistance(Owner.Pos+Owner.Vel*5, self.Waypoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:220:						self.Waypoint = Vector(Owner.Pos.X, -5000);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:222:						self.Waypoint = Vector(Owner.Pos.X, SceneMan.SceneHeight + 5000);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:224:						self.Waypoint = Vector(-5000, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:226:						self.Waypoint = Vector(SceneMan.SceneWidth + 5000, Owner.Pos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:230:				local dist = SceneMan:ShortestDistance(Owner.Pos, self.Waypoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:232:					local WptL = SceneMan:MovePointToGround(Owner.Pos+Vector(-Owner.Radius, -Owner.Radius), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:233:					local WptC = SceneMan:MovePointToGround(Owner.Pos+Vector(0, -Owner.Radius), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:234:					local WptR = SceneMan:MovePointToGround(Owner.Pos+Vector(Owner.Radius, -Owner.Radius), self.hoverAlt, 12);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:235:					self.Waypoint = Vector(Owner.Pos.X, math.min(WptL.Y, WptC.Y, WptR.Y));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:237:					dist = SceneMan:ShortestDistance(Owner.Pos, self.Waypoint, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:239:						-- We are close enough to our waypoint
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:259:									self.Waypoint.X = self.Waypoint.X + Owner.Diameter * 2;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:262:									if self.Waypoint.X > SceneMan.SceneWidth then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:264:											self.Waypoint.X = self.Waypoint.X - SceneMan.SceneWidth;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:266:											self.Waypoint.X = SceneMan.SceneWidth - Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:273:						else	-- Avoid terrain
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:282:								self.Waypoint.X = Owner.Pos.X;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:283:								self.Waypoint.Y = Free.Y - self.hoverAlt;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:319:						self.Waypoint.X = self.Waypoint.X - Owner.Diameter * 2;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:322:						if self.Waypoint.X < 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:324:								self.Waypoint.X = self.Waypoint.X + SceneMan.SceneWidth;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:326:								self.Waypoint.X = Owner.Radius;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:358:	if Owner.Vel.Largest > 3 or Owner.AIMode == Actor.AIMODE_STAY or Owner.AIMode == Actor.AIMODE_SENTRY or Owner.AIMode == Actor.AIMODE_GOTO then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:15:	Members.SentryFacing = Owner.HFlipped;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:17:	Members.groundContact = 5;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:86:			self.SentryFacing = Owner.HFlipped;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:140:			if Owner.AIMode ~= self.lastAIMode and Owner.AIMode == Actor.AIMODE_SENTRY then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:141:				self.SentryFacing = Owner.HFlipped; -- store the direction in which we should be looking
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:144:			self:CreateSentryBehavior(Owner);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:155:		-- make the last waypoint marker stick to the MO we are following
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:157:			Owner:RemoveMovePathEnd();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:158:			Owner:AddToMovePathEnd(Owner.MOMoveTarget.Pos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:163:					local Leader = MovableMan:GetMOFromID(Owner:GetAIMOWaypointID());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:208:				Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:209:				Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:213:		Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:219:		-- make the last waypoint marker stick to the MO we are following
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:221:			Owner:RemoveMovePathEnd();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:222:			Owner:AddToMovePathEnd(Owner.MOMoveTarget.Pos);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:239:				Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:240:				Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:244:		Owner.AIMode = Actor.AIMODE_SENTRY;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:245:		Owner:ClearMovePath();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:295:	-- check if the feet reach the ground
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:317:				self.groundContact = 5;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:320:				self.groundContact = self.groundContact - 1;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:324:		local newFlying = self.groundContact < 0;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:377:function NativeCrabAI:CreateSentryBehavior(Owner)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:382:	self.NextBehavior = coroutine.create(CrabBehaviors.Sentry);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:384:	self.NextBehaviorName = "Sentry";

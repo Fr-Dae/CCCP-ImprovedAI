@@ -1,0 +1,69 @@
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:7:		AI.Ctrl:SetState(Controller.AIM_SHARP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:130:				AI.Ctrl:SetState(Controller.AIM_UP, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:133:				AI.Ctrl:SetState(Controller.AIM_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:139:				AI.Ctrl:SetState(Controller.AIM_DOWN, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:142:				AI.Ctrl:SetState(Controller.AIM_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:165:			AI.Ctrl:SetState(Controller.AIM_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:181:			AI.Ctrl:SetState(Controller.AIM_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:214:						AI.Ctrl:SetState(Controller.AIM_UP, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:216:						AI.Ctrl:SetState(Controller.AIM_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:225:						AI.Ctrl:SetState(Controller.AIM_DOWN, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:227:						AI.Ctrl:SetState(Controller.AIM_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:493:				if AI.UnseenTarget:GetController() and AI.UnseenTarget:GetController():IsState(Controller.WEAPON_FIRE) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:8:		AI.Ctrl:SetState(Controller.AIM_SHARP, true); -- reinforce sharp aim controller state to enable SharpLength in LookForMOs
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:224:				AI.Ctrl:SetState(Controller.AIM_UP, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:227:				AI.Ctrl:SetState(Controller.AIM_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:233:				AI.Ctrl:SetState(Controller.AIM_DOWN, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:236:				AI.Ctrl:SetState(Controller.AIM_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:259:			AI.Ctrl:SetState(Controller.AIM_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:276:			AI.Ctrl:SetState(Controller.AIM_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:319:						AI.Ctrl:SetState(Controller.AIM_UP, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:321:						AI.Ctrl:SetState(Controller.AIM_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:330:						AI.Ctrl:SetState(Controller.AIM_DOWN, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:332:						AI.Ctrl:SetState(Controller.AIM_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1228:					--AI.Ctrl:SetState(Controller.BODY_PRONE, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1730:				if AI.UnseenTarget:GetController() and AI.UnseenTarget:GetController():IsState(Controller.WEAPON_FIRE) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:45:	self.Ctrl = Owner:GetController();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:178:		self.Ctrl:SetState(Controller.WEAPON_FIRE, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:182:		self.Ctrl:SetState(Controller.AIM_SHARP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:76:							if FoundMO and FoundMO:GetController() and FoundMO:GetController():IsState(Controller.WEAPON_FIRE) and FoundMO.Vel.Largest < 20 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:658:									AI.Ctrl:SetState(Controller.WEAPON_RELOAD, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:84:	self.Ctrl = Owner:GetController();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:346:	self.Ctrl:SetState(Controller.MOVE_FAST, self.running);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:373:							local copyControls = {Controller.MOVE_LEFT, Controller.MOVE_RIGHT, Controller.BODY_JUMPSTART, Controller.BODY_JUMP, Controller.BODY_PRONE};
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:375:								local state = Leader:GetController():IsState(control);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:376:								self.Ctrl:SetState(control, state);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:393:											if IsHDFirearm(Owner.EquippedItem) and Leader:GetController():IsState(Controller.WEAPON_FIRE) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:428:									if Leader:GetController():IsState(Controller.WEAPON_FIRE) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:554:				self.Ctrl:SetState(Controller.WEAPON_PICKUP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:612:		self.Ctrl:SetState(Controller.WEAPON_FIRE, (self.fire or self.squadShoot));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:614:		self.Ctrl:SetState(Controller.WEAPON_FIRE, (self.fire or self.useMedikit));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:618:		self.Ctrl:SetState(Controller.AIM_SHARP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:636:			self.Ctrl:SetState(Controller.BODY_JUMPSTART, true); -- try to trigger a burst
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:638:			self.Ctrl:SetState(Controller.BODY_JUMP, true); -- trigger normal jetpack emission
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:645:		self.Ctrl:SetState(Controller.BODY_PRONE, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:649:		self.Ctrl:SetState(Controller.MOVE_LEFT, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:651:		self.Ctrl:SetState(Controller.MOVE_RIGHT, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:61:	self.Ctrl = self:GetController();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:202:					self.Ctrl:SetState(Controller.MOVE_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:207:					self.Ctrl:SetState(Controller.MOVE_UP, true);	-- Don't burst when returning to orbit
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:212:							self.Ctrl:SetState(Controller.MOVE_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:217:						self.Ctrl:SetState(Controller.MOVE_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:222:			self.Ctrl:SetState(Controller.MOVE_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:261:			self.Ctrl:SetState(Controller.MOVE_RIGHT, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:271:			self.Ctrl:SetState(Controller.MOVE_LEFT, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:281:			self.Ctrl:SetState(Controller.MOVE_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:292:			self.Ctrl:SetState(Controller.MOVE_UP, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:56:	local Ctrl = Owner:GetController();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:345:		Ctrl:SetState(Controller.MOVE_UP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:347:		Ctrl:SetState(Controller.MOVE_DOWN, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:349:		Ctrl:SetState(Controller.MOVE_UP, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:350:		Ctrl:SetState(Controller.MOVE_DOWN, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:60:	self.Ctrl = Owner:GetController();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:185:								if IsHDFirearm(Owner.EquippedItem) and Leader:GetController():IsState(Controller.WEAPON_FIRE) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:333:	self.Ctrl:SetState(Controller.WEAPON_FIRE, self.fire or self.squadShoot);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:336:		self.Ctrl:SetState(Controller.AIM_SHARP, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:340:		self.Ctrl:SetState(Controller.MOVE_LEFT, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:342:		self.Ctrl:SetState(Controller.MOVE_RIGHT, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:357:			self.Ctrl:SetState(Controller.BODY_JUMPSTART, true); -- try to trigger a burst
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:359:			self.Ctrl:SetState(Controller.BODY_JUMP, true); -- trigger normal jetpack emission

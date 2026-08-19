@@ -1,0 +1,151 @@
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Scanner/Scanner.lua:77:		local mo = MovableMan:GetMOFromID(SceneMan:CastMORay(self.MuzzlePos, Vector(traceBaseX, traceBaseY), self:GetRootParent().ID, Activity.NOTEAM, rte.airID, true, 1));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:37:	for gun in MovableMan:GetMOsInRadius(self.Pos, 50) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:40:			self.parent = MovableMan:GetMOFromID(gun.RootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:80:			self.parent = ToMOSRotating(MovableMan:GetMOFromID(self.parentGun.RootID));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:170:				local moRay = SceneMan:CastMORay(self.Pos, ray, self.parent.ID, -2, rte.airID, false, 0);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/GrappleGun/Grapple.lua:172:					self.target = MovableMan:GetMOFromID(moRay);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Constructor/ConstructorCollect.lua:4:		local mo = MovableMan:GetMOFromID(self.Sharpness);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Tools/Constructor/Constructor.lua:569:								if strengthRatio < 1 and SceneMan:GetMOIDPixel(pos.X, pos.Y) == rte.NoMOID then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:37:	if IsActor(actor) and MovableMan:ValidMO(actor) and ToActor(actor):IsPlayerControlled() and not self:IsReloading() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:77:						local moCheck = self.includeMOHits and SceneMan:GetMOIDPixel(guideParPos.X, guideParPos.Y) or rte.NoMOID;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:78:						if SceneMan:GetTerrMatter(guideParPos.X, guideParPos.Y) == rte.airID and (moCheck == rte.NoMOID or MovableMan:GetMOFromID(moCheck).RootID == self.RootID) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/TrajectoryGuide.lua:88:							SceneMan:CastObstacleRay(self.guideTable[#self.guideTable], SceneMan:ShortestDistance(self.guideTable[#self.guideTable], guideParPos, false), Vector(), hitPos, self.ID, -2, rte.airID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/FlakShell.lua:21:			local moCheck = SceneMan:GetMOIDPixel(checkPos.X, checkPos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/FlakShell.lua:23:				local actor = MovableMan:GetMOFromID(MovableMan:GetMOFromID(moCheck).RootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/GrenadeBandolierAttachable.lua:94:	if self.rootParent and self.rootParent.Health > 0 and MovableMan:ValidMO(self.rootParent) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/GrenadeBandolierAttachable.lua:157:	if self.rootParent and MovableMan:ValidMO(self.rootParent) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Shared/Scripts/GrenadeBandolierAttachable.lua:167:			if MovableMan:ValidMO(self.grenadePreviouslyHeldByRootParent) and not self.grenadePreviouslyHeldByRootParent:IsActivated() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Special/Medikit/Medikit.lua:16:		local moCheck = SceneMan:CastMORay(self.MuzzlePos, Vector(self.IndividualRadius + 5, 0):RadRotate(parent:GetAimAngle(true)), parent.ID, Activity.NOTEAM, rte.airID, false, 1);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Special/Medikit/Medikit.lua:17:		local mo = MovableMan:GetMOFromID(moCheck)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosiveSet.lua:64:			local moCheck = SceneMan:CastMORay(self.Pos, checkVec * (-2), self.ID, -1, rte.airID, true, 1);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosiveSet.lua:66:				local rootID = MovableMan:GetMOFromID(moCheck).RootID;
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosiveSet.lua:76:			local checkPix = SceneMan:GetMOIDPixel(checkPos.X, checkPos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosiveSet.lua:77:			if checkPix ~= rte.NoMOID and MovableMan:GetMOFromID(checkPix).RootID ~= self.userID then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/RemoteExplosive/RemoteExplosiveSet.lua:79:				self.target = ToMOSRotating(MovableMan:GetMOFromID(checkPix));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/ClusterMineBomb/ClusterMineBomb.lua:43:	if MovableMan:ValidMO(self) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/AntiPersonnelMine/MineSet.lua:104:				local raycast = SceneMan:CastMORay(startPos, Vector(self.tempLaserLength, 0):RadRotate(detectionAngle), self.ID, self.alliedTeam, rte.airID, true, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Devices/Explosives/AntiPersonnelMine/MineSet.lua:106:					local target = ToMOSRotating(MovableMan:GetMOFromID(raycast)):GetRootParent();
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:170:		local raycast = SceneMan:CastMORay(var.Pos, rangeVector, self.RootID, self.IgnoresWhichTeam, 0, true, 0);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/DeformingBullet.lua:174:			local MO = ToMOSRotating(MovableMan:GetMOFromID(raycast));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scripts/AirBlast.lua:8:	for mo in MovableMan:GetMOsInRadius(self.Pos, self.range, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:347:							pixels = SceneMan:CastObstacleRay(Origin, Vector(viewRange*math.cos(ang), -viewRange*math.sin(ang)), Vector(), Free, 255, actorTeam, rte.grassID, 18);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:377:					pixels = SceneMan:CastObstacleRay(Origin, Vector(0, -self.spacingLZ), Vector(), Free, rte.NoMOID, actorTeam, rte.grassID, 14);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/LandingZoneMap.lua:779:		if MovableMan:ValidMO(Craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:378:				if not craft or not MovableMan:ValidMO(craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:423:			if craft and MovableMan:ValidMO(craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:501:			if craft and MovableMan:ValidMO(craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:709:				if not craft or not MovableMan:ValidMO(craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:756:			if craft and MovableMan:ValidMO(craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Utility/DockingHandler.lua:796:			if craft and MovableMan:ValidMO(craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Activities/Siege.lua:324:				if not Brain or not MovableMan:ValidMO(Brain) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Shared/AttachableTurret.lua:81:			local moCheck1 = SceneMan:CastMORay(self.Pos, aimTrace:RadRotate(1/math.sqrt(self.searchRange)), parent.ID, self.Team, rte.airID, false, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Shared/AttachableTurret.lua:83:				target = MovableMan:GetMOFromID(MovableMan:GetMOFromID(moCheck1).RootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Shared/AttachableTurret.lua:85:				local moCheck2 = SceneMan:CastMORay(self.Pos, aimTrace:RadRotate(-1/math.sqrt(self.searchRange)), parent.ID, self.Team, rte.airID, false, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Craft/Shared/AttachableTurret.lua:87:					target = MovableMan:GetMOFromID(MovableMan:GetMOFromID(moCheck2).RootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/Medic.lua:48:					if trace:MagnitudeIsLessThan(healRange + healTarget.Radius) and SceneMan:CastObstacleRay(self.Pos, trace, Vector(), Vector(), parent.ID, parent.IgnoresWhichTeam, rte.grassID, 5) < 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/Medic/Medic.lua:69:						if SceneMan:CastObstacleRay(self.Pos, trace, Vector(), Vector(), parent.ID, parent.IgnoresWhichTeam, rte.airID, 3) < 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:114:		if MovableMan:ValidMO(self.SAM) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:115:			if self.SAM_Target and MovableMan:ValidMO(self.SAM_Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:151:					local ID = SceneMan:CastMORay(self.AboveHUDPos, Trace, self.ID, self.IgnoresWhichTeam, 0, true, 15)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:153:						local MO = MovableMan:GetMOFromID(ID)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:155:							MO = MovableMan:GetMOFromID(MO.RootID)
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:217:			if NewTarget and MovableMan:ValidMO(NewTarget) and not NewTarget:IsDead() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Actors/Mecha/AADrone/AADrone.lua:229:							SceneMan:CastObstacleRay(
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:228:		if not MovableMan:ValidMO(actor) or actor.Health <= 0 or not self.combinedAutomoverArea:IsInside(actor.Pos) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Automovers/Controller/Controller.lua:933:	if MovableMan:ValidMO(actor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/GenericCapturable/GenericCapturable.lua:114:			local actorList = MovableMan:GetMOsInRadius(self.Pos, self.Diameter * 2, -1, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/ItemDispenser/ItemDispenser.lua:64:		for actor in MovableMan:GetMOsInRadius(self.Pos, self.detectRange) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/ItemDispenser/ItemDispenser.lua:96:			if actor and MovableMan:ValidMO(actor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/ActorSpawner/ActorSpawner.lua:196:					local actorList = MovableMan:GetMOsInRadius(self.Pos, self.triggerRange, -1, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/GenericInfoConsole/GenericInfoConsole.lua:85:			local actorList = MovableMan:GetMOsInRadius(self.Pos, self.Range or self.Diameter, -1, true);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedRocketDock.lua:38:	if self.craft and MovableMan:ValidMO(self.craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedRocketDock.lua:142:		for mo in MovableMan:GetMOsInRadius(self.Pos, self.detectionRange, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedDropshipDock.lua:42:	if self.craft and MovableMan:ValidMO(self.craft) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Docks/TimedDropshipDock.lua:144:		for mo in MovableMan:GetMOsInRadius(self.Pos, self.detectionRange, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:24:			local moCheck = SceneMan:GetMOIDPixel(self.checkPos.X, self.checkPos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:27:				local mo = MovableMan:GetMOFromID(MovableMan:GetMOFromID(moCheck).RootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderBG.lua:29:					actor = ToAHuman(MovableMan:GetMOFromID(mo.RootID));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderNode.lua:14:		local moCheck = SceneMan:GetMOIDPixel(checkPos.X, checkPos.Y);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderNode.lua:16:			local mo = MovableMan:GetMOFromID(moCheck);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/Ladders/LadderNode.lua:18:				local actor = ToAHuman(MovableMan:GetMOFromID(mo.RootID));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/BuyDoor/BuyDoor.lua:242:		for actor in MovableMan:GetMOsInRadius(self.Pos, self.detectRange, -1, false) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/Scenes/Objects/Bunkers/BunkerSystems/BuyDoor/BuyDoor.lua:296:			if actor and MovableMan:ValidMO(actor) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:12:	local FoundMO = Owner:LookForMOs(viewAngDeg, rte.grassID, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:21:		if Owner.Behavior ~= nil and AI.Target and MovableMan:ValidMO(AI.Target) and FoundMO.ID == AI.Target.ID then	-- found the same target
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:262:	if not MovableMan:ValidMO(AI.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:358:					local ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 9);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:359:					if ID ~= rte.NoMOID and (ID == AI.Target.ID or (MovableMan:GetMOFromID(ID)).RootID == AI.Target.ID) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:423:	if not MovableMan:ValidMO(AI.UnseenTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:450:		local rayLength = SceneMan:CastObstacleRay(Owner.EyePos, Trace, Vector(), Vector(), rte.NoMOID, Owner.IgnoresWhichTeam, rte.grassID, 11);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/CrabBehaviors.lua:491:			if MovableMan:ValidMO(AI.UnseenTarget) and (AI.UnseenTarget.ClassName == "AHuman" or AI.UnseenTarget.ClassName == "ACrab") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:8:		AI.Ctrl:SetState(Controller.AIM_SHARP, true); -- reinforce sharp aim controller state to enable SharpLength in LookForMOs
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:12:	local FoundMO = Owner:LookForMOs(viewAngDeg, rte.grassID, false);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:41:			if MovableMan:ValidMO(Enemy) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:68:						local ID = SceneMan:CastMORay(Origin, Trace, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:70:							local MO = MovableMan:GetMOFromID(ID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:72:								MO = MovableMan:GetMOFromID(MO.RootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:85:						local ID = SceneMan:CastMORay(Origin, Trace, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:87:							local MO = MovableMan:GetMOFromID(ID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:89:								MO = MovableMan:GetMOFromID(MO.RootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:585:	for movableObject in MovableMan:GetMOsInRadius(Owner.Pos, maxSearchDistance, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:592:		if MovableMan:ValidMO(movableObject) and IsHeldDevice(movableObject) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:617:			if MovableMan:ValidMO(device) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:657:			if MovableMan:ValidMO(device) and device:IsDevice() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:666:			if Owner.MOMoveTarget and MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:719:	for movableObject in MovableMan:GetMOsInRadius(Owner.Pos, maxSearchDistance, -1, true) do
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:722:		if MovableMan:ValidMO(movableObject) and IsHeldDevice(movableObject) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:749:			if MovableMan:ValidMO(device) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:773:			if MovableMan:ValidMO(device) and device:IsDevice() then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:782:			if Owner.MOMoveTarget and MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:871:	if SceneMan:CastObstacleRay(PronePos, Dist, Vector(), Vector(), targetID, Owner.IgnoresWhichTeam, rte.grassID, 9) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:876:		if SceneMan:CastObstacleRay(PronePos, Dist, Vector(), Vector(), 0, Owner.IgnoresWhichTeam, rte.grassID, 1) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:895:	if not MovableMan:ValidMO(AI.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1057:								if not Owner.MOMoveTarget or not MovableMan:ValidMO(Owner.MOMoveTarget) or Owner.MOMoveTarget.RootID ~= AI.Target.RootID then	-- move towards the target
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1090:						if not Owner.MOMoveTarget or not MovableMan:ValidMO(Owner.MOMoveTarget) or Owner.MOMoveTarget.RootID ~= AI.Target.RootID then	-- move towards the target
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1188:							if SceneMan:CastObstacleRay(Weapon.MuzzlePos, Weapon:RotateOffset(Vector(50, 0)), Vector(), Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 2) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1330:		if not MovableMan:ValidMO(AI.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1363:					ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1369:							if not MovableMan:ValidMO(AI.Target) then	-- must verify that the target exist after a yield
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1374:							ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1380:							if not MovableMan:ValidMO(AI.Target) then	-- must verify that the target exist after a yield
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1388:								ID = SceneMan:CastMORay(Owner.EyePos, Dist, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1400:						MO = MovableMan:GetMOFromID(rootID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1401:						if MovableMan:ValidMO(MO) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1490:	if not AI.Target or not MovableMan:ValidMO(AI.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1509:	if Owner.MOMoveTarget and MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1535:		if not AI.Target or not MovableMan:ValidMO(AI.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1627:	if not MovableMan:ValidMO(AI.UnseenTarget) or not Owner.FirearmIsReady then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1665:		local rayLength = SceneMan:CastObstacleRay(Owner.EyePos, Trace, Vector(), Vector(), rte.NoMOID, Owner.IgnoresWhichTeam, rte.grassID, 11);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/HumanBehaviors.lua:1728:			if MovableMan:ValidMO(AI.UnseenTarget) and (AI.UnseenTarget.ClassName == "AHuman" or AI.UnseenTarget.ClassName == "ACrab") then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:69:	if self.Target and not MovableMan:ValidMO(self.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:73:	if self.UnseenTarget and not MovableMan:ValidMO(self.UnseenTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeTurretAI.lua:128:			if MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:66:					local ID = SceneMan:CastMORay(Owner.EyePos, AlarmVec, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, false, 11);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:68:						local FoundMO = MovableMan:GetMOFromID(ID);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:251:	SceneMan:CastObstacleRay(Owner.Pos, Vector(512, 0), Vector(), Free, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:277:	SceneMan:CastObstacleRay(Owner.Pos, Vector(-512, 0), Vector(), Free, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 4);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:612:					if Owner.MOMoveTarget and MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:630:										if Owner.MOMoveTarget and MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:753:							if SceneMan:CastObstacleRay(Owner.Pos, Trace, Vector(), Free, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:782:								if SceneMan:CastObstacleRay(Owner.Pos, CurrDist, Vector(), Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 9) < 0 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:873:												local jumpScore = SceneMan:CastObstacleRay((Owner.Head and Owner.Head.Pos or Owner.Pos), Trace, JumpPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:885:												SceneMan:CastObstacleRay((Owner.Head and Owner.Head.Pos or Owner.Pos), Trace, FallPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/SharedBehaviors.lua:945:											SceneMan:CastObstacleRay(Owner.Pos, Trace, FallPos, Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:146:	if self.Target and not MovableMan:ValidMO(self.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:150:	if self.UnseenTarget and not MovableMan:ValidMO(self.UnseenTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:277:		if self.Behavior ~= nil and self.Target and MovableMan:ValidMO(self.Target) and FoundMO.ID == self.Target.ID then	-- found the same target
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:351:		if MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:358:					local Leader = MovableMan:GetMOFromID(Owner:GetAIMOWaypointID());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeHumanAI.lua:668:	if self.Target and MovableMan:ValidMO(self.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:96:			if SceneMan:CastObstacleRay(self.Pos, Speed, Vector(), Vector(), self.ID, self.IgnoresWhichTeam, 0, 10) > -1 then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:106:			local obstID = SceneMan:CastMORay(self.Pos, Trace, self.ID, self.IgnoresWhichTeam, 0, false, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:108:				local MO = MovableMan:GetMOFromID(MovableMan:GetRootMOID(obstID));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:167:			local obstID = SceneMan:CastMORay(self.Pos, Trace, self.ID, self.IgnoresWhichTeam, 0, false, 5);
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/RocketAI.lua:169:				local MO = MovableMan:GetMOFromID(MovableMan:GetRootMOID(obstID));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:256:								local MO = MovableMan:GetMOFromID(MovableMan:GetRootMOID(obstID));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeDropShipAI.lua:316:					local MO = MovableMan:GetMOFromID(MovableMan:GetRootMOID(obstID));
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:93:	if self.Target and not MovableMan:ValidMO(self.Target) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:97:	if self.UnseenTarget and not MovableMan:ValidMO(self.UnseenTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:156:		if MovableMan:ValidMO(Owner.MOMoveTarget) then
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:163:					local Leader = MovableMan:GetMOFromID(Owner:GetAIMOWaypointID());
+/home/dae/Gaming/CortexCommand.linux/Data/Base.rte/AI/NativeCrabAI.lua:220:		if MovableMan:ValidMO(Owner.MOMoveTarget) then

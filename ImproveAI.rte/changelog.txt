@@ -1,0 +1,3 @@
+2026/08/18 - 15h32
+- Fr_Dae
+- initial commit. définition des but.
