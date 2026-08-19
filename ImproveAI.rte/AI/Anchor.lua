@@ -2,21 +2,26 @@
 -- ImproveAI.rte
 -- Anchor.lua
 --
-<<<<<<< HEAD
--- Places an explicit mining origin and direction for
--- MinerOptimized. The anchor is stored on the actor so the
--- optimized miner does not have to infer the wall/floor junction.
---
 -- Explicit mining anchor for MinerOptimized.
-=======
--- Explicit mining anchor: origin + left/right direction.
->>>>>>> origin/11-new-constructor-issue
+--
+-- The anchor stores one origin and one horizontal direction per
+-- actor. Placing either the left or right anchor replaces the
+-- previous anchor for that actor.
+--
+-- Two Pie Menu entries are used temporarily because a reliable
+-- user-configurable keyboard binding for rotating an anchor has
+-- not yet been established in CCCP. If a dedicated rotate key
+-- is later supported, these two entries can be replaced by one
+-- anchor + rotate action without changing MinerOptimized.
 -- ============================================================
 
 ImproveAI_Anchor = ImproveAI_Anchor or {};
 ImproveAI_MiningAnchors = ImproveAI_MiningAnchors or {};
 
 local Anchor = ImproveAI_Anchor;
+
+Anchor.DirectionLeft = -1;
+Anchor.DirectionRight = 1;
 
 local function GetAnchorID(Owner)
 	return Owner.UniqueID or Owner.ID;
@@ -27,11 +32,10 @@ function Anchor.Set(Owner, Position, Direction)
 		return false;
 	end
 
-	local ID = GetAnchorID(Owner);
-	ImproveAI_MiningAnchors[ID] = {
+	ImproveAI_MiningAnchors[GetAnchorID(Owner)] = {
 		X = Position.X,
 		Y = Position.Y,
-		Direction = Direction < 0 and -1 or 1
+		Direction = Direction < 0 and Anchor.DirectionLeft or Anchor.DirectionRight
 	};
 
 	return true;
@@ -41,21 +45,6 @@ function Anchor.Clear(Owner)
 	if Owner then
 		ImproveAI_MiningAnchors[GetAnchorID(Owner)] = nil;
 	end
-end
-
-function Anchor.Draw(AI, Owner, Screen)
-	local Position = AI.MinerAnchor;
-	if not Position then
-		return;
-	end
-
-	local Direction = AI.MinerDirection or Anchor.DirectionRight;
-	local Tip = Position + Vector(Direction * 18, 0);
-
-	PrimitiveMan:DrawBoxPrimitive(Screen, Position - Vector(6, 6), Position + Vector(6, 6), 12);
-	PrimitiveMan:DrawLinePrimitive(Screen, Position, Tip, 12);
-	PrimitiveMan:DrawLinePrimitive(Screen, Tip, Tip + Vector(-Direction * 5, -4), 12);
-	PrimitiveMan:DrawLinePrimitive(Screen, Tip, Tip + Vector(-Direction * 5, 4), 12);
 end
 
 function Anchor.Get(Owner)
@@ -69,6 +58,50 @@ function Anchor.Get(Owner)
 	end
 
 	return Vector(Data.X, Data.Y), Data.Direction;
+end
+
+function Anchor.Place(Owner, Direction)
+	if not Owner then
+		return false;
+	end
+
+	local Trace = Vector(200, 0):RadRotate(Owner:GetAimAngle(true));
+	local Hit = Vector();
+	local RayLength = SceneMan:CastObstacleRay(
+		Owner.EyePos,
+		Trace,
+		Vector(),
+		Hit,
+		Owner.ID,
+		Owner.IgnoresWhichTeam,
+		rte.grassID,
+		3
+	);
+
+	local Position;
+	if RayLength < 0 then
+		Position = Owner.EyePos + Trace;
+	else
+		Position = Hit;
+	end
+
+	return Anchor.Set(Owner, Position, Direction);
+end
+
+function Anchor.PlaceLeft(pieMenuOwner, pieMenu, pieSlice)
+	if not pieMenuOwner or not IsActor(pieMenuOwner) then
+		return;
+	end
+
+	Anchor.Place(ToActor(pieMenuOwner), Anchor.DirectionLeft);
+end
+
+function Anchor.PlaceRight(pieMenuOwner, pieMenu, pieSlice)
+	if not pieMenuOwner or not IsActor(pieMenuOwner) then
+		return;
+	end
+
+	Anchor.Place(ToActor(pieMenuOwner), Anchor.DirectionRight);
 end
 
 function Anchor.Draw(Owner, Screen)
@@ -100,31 +133,4 @@ function Anchor.Draw(Owner, Screen)
 		End - Vector(Direction * 5, -4),
 		Color
 	);
-end
-
-function ImproveAI_SetMiningAnchor(pieMenuOwner, pieMenu, pieSlice)
-	if not pieMenuOwner or not IsActor(pieMenuOwner) then
-		return;
-	end
-
-	local Owner = ToActor(pieMenuOwner);
-	local Trace = Vector(200, 0):RadRotate(Owner:GetAimAngle(true));
-	local Hit = Vector();
-	local Ray = SceneMan:CastObstacleRay(
-		Owner.EyePos,
-		Trace,
-		Vector(),
-		Hit,
-		Owner.ID,
-		Owner.IgnoresWhichTeam,
-		rte.grassID,
-		3
-	);
-
-	local Position = Ray < 0
-		and Owner.EyePos + Trace
-		or Hit;
-	local Direction = Trace.X < 0 and -1 or 1;
-
-	Anchor.Set(Owner, Position, Direction);
 end
