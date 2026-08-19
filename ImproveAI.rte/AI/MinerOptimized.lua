@@ -2,137 +2,67 @@
 -- ImproveAI.rte
 -- MinerOptimized.lua
 --
--- Structured tunnel mining. Heavy work is deliberately delegated
--- to native CCCP behaviours whenever possible.
---
--- Geometry:
---   surface = level 0
---   first gallery = level 1
---   tunnel height = 6 x 12 px
---   gallery floor is shared with the ceiling of the next level
+-- Structured tunnel mining using an explicit Anchor.
+-- Heavy work is delegated to native AI/navigation whenever
+-- possible. The optimized constructor unit is medium (12 px).
 -- ============================================================
 
 ImproveAI_MinerOptimized = ImproveAI_MinerOptimized or {};
-local Config = ImproveAI_MinerOptimized;
+local Miner = ImproveAI_MinerOptimized;
 
-Config.BlockSize = 12;
-Config.TunnelHeightBlocks = 6;
-Config.SectionLengthBlocks = 12;
-Config.BottomSafetyPixels = 60;
-Config.ConstructorBlockCost = 200;
-Config.ConstructorReserve = 200;
-Config.EquipmentCheckMS = 1000;
-Config.SectionCheckMS = 500;
-Config.ConstructorSearchRadius = 100;
-Config.Debug = false;
+Miner.BlockSize = 12;
+Miner.TunnelHeightBlocks = 6;
+Miner.SectionLengthBlocks = 12;
+Miner.BottomSafetyPixels = 60;
+Miner.ConstructorBlockCost = 200;
+Miner.ConstructorReserveMargin = 200;
+Miner.EquipmentCheckMS = 1000;
+Miner.SectionCheckMS = 500;
 
 local function ValidActor(Owner)
 	return Owner and MovableMan:ValidMO(Owner) and IsActor(Owner);
 end
 
 local function IsConstructor(Device)
-	return Device and (Device.PresetName == "Constructor" or Device:GetStringValue("ConstructorMode") ~= nil);
+	return Device
+		and (Device.PresetName == "Constructor"
+		or Device:GetStringValue("ConstructorMode") ~= nil);
 end
 
 local function GetConstructor(Owner)
-	if Owner.EquippedItem and IsConstructor(Owner.EquippedItem) then
-		return Owner.EquippedItem;
+	local Item = Owner.EquippedItem;
+	if IsConstructor(Item) then
+		return Item;
 	end
 
 	if Owner:HasObject("Constructor") then
 		Owner:EquipNamedDevice("Constructor", true);
-		if Owner.EquippedItem and IsConstructor(Owner.EquippedItem) then
-			return Owner.EquippedItem;
+		Item = Owner.EquippedItem;
+		if IsConstructor(Item) then
+			return Item;
 		end
 	end
 
 	if Owner:HasObjectInGroup("Tools - Constructors") then
 		Owner:EquipDeviceInGroup("Tools - Constructors", true);
-		if Owner.EquippedItem and IsConstructor(Owner.EquippedItem) then
-			return Owner.EquippedItem;
+		Item = Owner.EquippedItem;
+		if IsConstructor(Item) then
+			return Item;
 		end
 	end
 end
 
-local function SearchConstructor(AI, Owner)
-	if AI.PickupHD then
-		return true;
-	end
-
-	AI.NextBehavior = coroutine.create(HumanBehaviors.ToolSearch);
-	AI.NextBehaviorName = "ToolSearch";
-	return true;
-end
-
-local function EnsureConstructor(AI, Owner)
-	local Constructor = GetConstructor(Owner);
-	if Constructor then
-		return Constructor;
-	end
-	SearchConstructor(AI, Owner);
-end
-
-local function GetExplicitAnchor(Owner)
-	local anchors = ImproveAI_MiningAnchors;
-	if anchors then
-		local Anchor = anchors[Owner.UniqueID or Owner.ID];
-		if Anchor then
-			return Vector(Anchor.X, Anchor.Y), Anchor.Direction;
-		end
-	end
-end
-
-function Config.FindAnchor(Owner)
-	local Anchor, Direction = GetExplicitAnchor(Owner);
-	if Anchor then
-		return Anchor, Direction;
-	end
-
-	local Origin = Owner.Pos;
-	local left = SceneMan:CastObstacleRay(Origin, Vector(-48, 0), Vector(), Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
-	local right = SceneMan:CastObstacleRay(Origin, Vector(48, 0), Vector(), Vector(), Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3);
-	local wallX;
-
-	if left >= 0 then
-		wallX = Origin.X - left;
-		Direction = 1;
-	elseif right >= 0 then
-		wallX = Origin.X + right;
-		Direction = -1;
-	else
+local function GetAnchor(Owner)
+	if not ImproveAI_MiningAnchors then
 		return nil;
 	end
 
-	local floorHit = Vector();
-	if SceneMan:CastObstacleRay(Origin, Vector(0, math.max(Owner.Height * 0.75, 24)), Vector(), floorHit, Owner.ID, Owner.IgnoresWhichTeam, rte.grassID, 3) < 0 then
+	local Data = ImproveAI_MiningAnchors[Owner.UniqueID or Owner.ID];
+	if not Data then
 		return nil;
 	end
 
-	return Vector(wallX, floorHit.Y), Direction;
-end
-
-function Config.GetMaximumGalleryY()
-	return SceneMan.SceneHeight - Config.BottomSafetyPixels;
-end
-
-function Config.GetGalleryFloor(Anchor, Level)
-	return Vector(Anchor.X, Anchor.Y + Level * Config.TunnelHeightBlocks * Config.BlockSize);
-end
-
-local function ActivateConstructor(AI, Owner, Constructor)
-	if not Constructor then
-		return false;
-	end
-
-	-- Never invent material. Let the miner dig if the next medium
-	-- construction unit cannot be paid for.
-	if Constructor.resource ~= nil and Constructor.resource < Config.ConstructorBlockCost + Config.ConstructorReserve then
-		return false;
-	end
-
-	Owner.AIMode = Actor.AIMODE_GOLDDIG;
-	AI.Ctrl:SetState(Controller.WEAPON_FIRE, true);
-	return true;
+	return Vector(Data.X, Data.Y), Data.Direction;
 end
 
 local function MoveTo(AI, Owner, Position)
@@ -141,56 +71,83 @@ local function MoveTo(AI, Owner, Position)
 	AI:CreateGoToBehavior(Owner);
 end
 
-function MinerOptimized(AI, Owner, Abort)
+local function HasConstructorReserve(Constructor)
+	return Constructor
+		and Constructor.resource ~= nil
+		and Constructor.resource >= Miner.ConstructorBlockCost + Miner.ConstructorReserveMargin;
+end
+
+function Miner.GetGalleryFloor(Anchor, Level)
+	return Vector(
+		Anchor.X,
+		Anchor.Y + Level * Miner.TunnelHeightBlocks * Miner.BlockSize
+	);
+end
+
+function Miner.GetMaximumGalleryY()
+	return SceneMan.SceneHeight - Miner.BottomSafetyPixels;
+end
+
+function Miner.FindAnchor(Owner)
+	return GetAnchor(Owner);
+end
+
+function Miner(AI, Owner, Abort)
 	if not ValidActor(Owner) then
 		return true;
 	end
 
-	local Anchor, Direction = Config.FindAnchor(Owner);
+	local Anchor, Direction = Miner.FindAnchor(Owner);
 	if not Anchor then
 		return true;
 	end
 
 	AI.MinerAnchor = Anchor;
 	AI.MinerLevel = AI.MinerLevel or 1;
-	AI.MinerDirection = AI.MinerDirection or Direction or (Owner.HFlipped and -1 or 1);
+	AI.MinerDirection = AI.MinerDirection
+		or Direction
+		or (Owner.HFlipped and -1 or 1);
 
 	local EquipmentTimer = Timer();
 	local SectionTimer = Timer();
-	local Target;
+	local Constructor = nil;
 
 	while not Abort() do
 		if not ValidActor(Owner) then
 			break;
 		end
 
-		if EquipmentTimer:IsPastSimMS(Config.EquipmentCheckMS) then
+		if EquipmentTimer:IsPastSimMS(Miner.EquipmentCheckMS) then
 			EquipmentTimer:Reset();
-			local Constructor = EnsureConstructor(AI, Owner);
-			if Constructor then
-				AI.MinerConstructor = Constructor;
-			end
+			Constructor = GetConstructor(Owner) or Constructor;
+			AI.MinerConstructor = Constructor;
 		end
 
-		local Floor = Config.GetGalleryFloor(AI.MinerAnchor, AI.MinerLevel);
-		if Floor.Y >= Config.GetMaximumGalleryY() then
+		local Floor = Miner.GetGalleryFloor(
+			AI.MinerAnchor,
+			AI.MinerLevel
+		);
+
+		if Floor.Y >= Miner.GetMaximumGalleryY() then
 			break;
 		end
 
-		if SectionTimer:IsPastSimMS(Config.SectionCheckMS) then
+		if SectionTimer:IsPastSimMS(Miner.SectionCheckMS) then
 			SectionTimer:Reset();
 
-			local Constructor = AI.MinerConstructor;
-			if not Constructor or not MovableMan:ValidMO(Constructor) then
-				Constructor = EnsureConstructor(AI, Owner);
-				AI.MinerConstructor = Constructor;
+			Constructor = GetConstructor(Owner) or Constructor;
+			AI.MinerConstructor = Constructor;
+
+			if HasConstructorReserve(Constructor) then
+				Owner.AIMode = Actor.AIMODE_GOLDDIG;
+				AI.Ctrl:SetState(Controller.WEAPON_FIRE, true);
+			else
+				AI.Ctrl:SetState(Controller.WEAPON_FIRE, true);
 			end
 
-			ActivateConstructor(AI, Owner, Constructor);
-
-			Target = Vector(
-				Floor.X + AI.MinerDirection * Config.SectionLengthBlocks * Config.BlockSize,
-				Floor.Y - Config.BlockSize * 3
+			local Target = Vector(
+				Floor.X + AI.MinerDirection * Miner.SectionLengthBlocks * Miner.BlockSize,
+				Floor.Y - Miner.BlockSize * 3
 			);
 
 			MoveTo(AI, Owner, Target);
