@@ -2,136 +2,149 @@
 
 ## Project
 
-ImproveAI is a Lua-first mod for **Cortex Command Community Project (CCCP)**. The project adds higher-level AI behaviours while deliberately reusing native CCCP AI modes and engine systems whenever possible.
+ImproveAI is a Lua-first mod for **Cortex Command Community Project (CCCP)**. It adds specialised AI behaviours while deliberately reusing native CCCP AI, navigation, equipment and engine systems whenever possible.
 
-The project currently targets CCCP `7.0.0`.
+Target: CCCP `7.0.0`.
 
-## Languages
+## Architecture
 
-### Lua
+```text
+ImproveAI.rte/
+├── AI/
+│   ├── AI.ini
+│   ├── Sentry.lua
+│   ├── SentryPassive.lua
+│   ├── SentryActive.lua
+│   ├── SentryTargeting.lua
+│   ├── Miner.lua
+│   ├── MinerOptimized.lua
+│   └── Anchor.lua
+├── Base/Devices/Tools/Constructor/
+├── GUIs/
+├── Icons/
+├── Documentation/
+├── Index.ini
+└── changelog.txt
+```
 
-Lua is executed by the CCCP engine and interacts directly with C++ engine bindings. Keep per-frame work small and avoid unnecessary allocations or repeated engine calls.
+## Lua / C++ execution rules
+
+Lua runs through CCCP's C++ bindings. Treat engine calls as more expensive than ordinary Lua operations.
 
 Preferred practices:
 
-- cache module tables and frequently used constants locally;
-- use local functions for hot paths;
-- use `Timer` rather than frame counters for periodic work;
-- avoid rebuilding tables every update when state can be reused;
-- avoid repeated `SceneMan` raycasts in the same frame;
-- reuse native behaviours instead of duplicating their pathfinding or equipment logic;
-- yield from long-running AI behaviours;
-- validate `MovableMan` objects before using them after a yield;
-- keep debug drawing disabled by default;
-- do not create new AIModes unless a C++ engine change is genuinely required.
+- cache stable module tables and constants locally;
+- keep hot-loop allocations to a minimum;
+- avoid repeated `SceneMan` and `MovableMan` scans;
+- use `Timer` for periodic work rather than artificial frame counters;
+- yield from long-running behaviours;
+- validate `MovableMan` objects again after a yield;
+- reuse native navigation, equipment and AI behaviour where possible;
+- keep debug drawing disabled unless explicitly enabled;
+- avoid creating a new C++ AIMode when Lua state can solve the problem.
 
-See the CCCP Lua optimisation documentation:
+CCCP optimisation references:
 
 - https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki/Lua-Optimisation-Notes
 - https://github.com/cortex-command-community/Cortex-Command-Community-Project/wiki/Lua-Optimization-and-Organization-Tips-and-Tricks
 
-## C++ / engine knowledge
+## Native CCCP sources
 
-A contributor reviewing engine-facing changes should be familiar with:
-
-- `Actor`, `AHuman`, `ACrab` and `MovableMan`;
-- `Controller` states;
-- native `AIMode` values such as `AIMODE_SENTRY`, `AIMODE_GOLDDIG`, `AIMODE_PATROL` and `AIMODE_GOTO`;
-- `SceneMan` terrain queries and raycasts;
-- `Vector` and scene wrapping;
-- MO / RootMO relationships;
-- `PieMenu`, `PieSlice` and script callbacks;
-- inventories, equipment and native tool-search behaviour;
-- the distinction between terrain pixels, `TerrainObject`s and movable objects;
-- Lua-to-C++ bindings exposed by CCCP.
-
-## Native-source references
-
-The main reference repository is:
+Primary source repository:
 
 https://github.com/cortex-command-community/Cortex-Command-Community-Project
 
-Constructor reference:
+Important engine areas for this project:
+
+- `Source/Entities/Actor.*`
+- `Source/Entities/AHuman.*`
+- `Source/Entities/MovableObject.*`
+- `Source/Entities/PieMenu.*`
+- `Source/Lua/LuaBindingsEntities.cpp`
+- `Source/Managers/SettingsMan.*`
+
+Important data-side AI references:
+
+- `Data/Base.rte/AI/NativeHumanAI.lua`
+- `Data/Base.rte/AI/HumanBehaviors.lua`
+- `Data/Base.rte/AI/SharedBehaviors.lua`
+
+## Constructor reference
+
+Native Constructor source:
 
 `Data/Base.rte/Devices/Tools/Constructor/`
 
-Important files include:
+Important files:
 
 - `Constructor.ini`
 - `Constructor.lua`
 - `ConstructorPie.lua`
 - `ConstructorCollect.lua`
 
-The native Constructor uses `Constructor.lua` for digging, material collection, build queues and terrain-object creation. Its AI construction path is coupled to `Actor.AIMODE_GOLDDIG` and controller fire state.
+The native Constructor defines `buildCost = 10` per 3x3 px construction piece, a 24 px default build size, a 12 px minimum build size, and a finite `resource` reserve. Its standard 12 px medium block therefore costs 200 resource units; the 24 px block costs 640. Optimized mining uses 12 px as its reference unit and must never intentionally select the 24 px block.
 
-The native Constructor creates artificial structures as `TerrainObject`s using presets named `Constructor Tile 1` through `Constructor Tile 16` and `Constructor Border Tile 1` through `Constructor Border Tile 4`.
+The Constructor also belongs to `Tools - Constructors`, which is the native equipment group used by the improved miner when looking for a Constructor.
 
-## ImproveAI architecture
+Constructor-generated terrain uses presets named `Constructor Tile 1` through `Constructor Tile 16` and `Constructor Border Tile 1` through `Constructor Border Tile 4`.
 
-Keep these responsibilities separate:
-
-```text
-Native AIMode
-    |
-    +-- ImproveAI behaviour profile
-            |
-            +-- targeting
-            +-- movement
-            +-- equipment
-            +-- specialised task logic
-```
-
-Do not make a specialised behaviour depend on a fragile assumption about the current native AIMode when the profile itself can be stored separately.
+## ImproveAI behaviours
 
 ### Miner
 
-`Miner.lua` intentionally delegates to the native mining implementation.
+`Miner.lua` delegates directly to the native `HumanBehaviors.GoldDig` behaviour. It is deliberately not a second mining algorithm.
 
 ### MinerOptimized
 
-`MinerOptimized.lua` is the structured mining behaviour. It is responsible for planning and coordination; the Constructor remains responsible for actually creating and collecting construction material.
+`MinerOptimized.lua` plans structured tunnel sections from an explicit Anchor. The reference geometry is a 12 px medium block and six blocks of vertical tunnel height. It tracks finite map depth and Constructor resources, while delegating equipment selection and movement to native CCCP mechanisms where possible.
+
+### Anchor
+
+`Anchor.lua` stores one mining origin and one horizontal direction per actor. Selecting the left or right anchor replaces the previous anchor; there are never two active anchors for one actor.
+
+The two-direction system is intentionally a temporary workaround. It exists because a reliable user-configurable keyboard binding for a rotate-anchor action has not yet been established. If CCCP exposes a verified binding mechanism for this action, replace the two commands with one anchor plus rotation rather than maintaining duplicate anchors.
 
 ### Sentry
 
-`Sentry.lua` dispatches to passive/active profiles. Target acquisition is separated into `SentryTargeting.lua`.
+`Sentry.lua` dispatches to `SentryPassive.lua` and `SentryActive.lua`. `SentryTargeting.lua` is kept separate so weapon range, LOS, team filtering and target scoring can evolve independently.
 
-## Pull requests
+## Pie Menu rules
+
+PieSlice callbacks must be short immediate actions. Do not register a coroutine behaviour such as Miner or Sentry directly as a PieSlice callback.
+
+Anchor callbacks only store anchor state; the long-running MinerOptimized coroutine consumes that state.
+
+## Testing checklist
+
+Test in the actual targeted CCCP build:
+
+- Constructor already equipped;
+- Constructor in inventory but not equipped;
+- missing/destroyed Constructor;
+- low and empty Constructor resources;
+- 12 px versus 24 px Constructor selection;
+- existing Constructor terrain versus natural terrain;
+- anchor replacement left/right;
+- scene wrapping;
+- bottom-of-map safety;
+- multiple miners near the same anchor/network;
+- squad orders interrupting a specialised behaviour;
+- explosions, death and equipment destruction;
+- player-controlled Constructor behaviour after Constructor changes.
+
+Never claim an engine feature is supported merely because a Lua property or method name looks plausible. Verify it in the CCCP source or with an in-game test.
+
+## Git workflow
 
 Never commit directly to `Main`.
 
-Workflow:
-
 ```text
 Issue
-  -> branch named after the issue
+  -> issue-named branch
   -> commits on that branch
   -> Pull Request
   -> PR closes the issue
-  -> manual release by maintainer
+  -> maintainer performs the release manually
 ```
 
-PRs should contain:
-
-1. a concise summary;
-2. important implementation details;
-3. compatibility/risk notes;
-4. testing status;
-5. the issue reference, using `Closes #N` when appropriate.
-
-## Testing
-
-Before proposing a behavioural change, test in the actual CCCP version targeted by the mod. In particular, test:
-
-- actors without the expected equipment;
-- equipment in inventory versus currently equipped;
-- equipment dropped on terrain;
-- actors joining/leaving squads;
-- scene wrapping;
-- terrain at the bottom of the map;
-- multiple AI units executing the same behaviour;
-- interruption by explosions, death or destruction of equipment;
-- low and empty Constructor resources;
-- existing Constructor terrain objects;
-- player-controlled Constructor behaviour after any Constructor change.
-
-Do not claim a behaviour is engine-supported merely because a Lua field appears plausible. Verify it against the CCCP source or an in-game test.
+PRs should include a concise summary, implementation details, risks/compatibility notes, testing status, and `Closes #N` when applicable.
