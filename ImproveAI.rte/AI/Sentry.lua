@@ -13,10 +13,7 @@ local Sentry = ImproveAI_Sentry;
 function Sentry.Initialize(AI, Owner)
 
 	if not AI.SentryPos then
-		AI.SentryPos = Vector(
-			Owner.Pos.X,
-			Owner.Pos.Y
-		);
+		AI.SentryPos = Vector(Owner.Pos.X, Owner.Pos.Y);
 	end
 
 	if AI.SentryFacing == nil then
@@ -30,11 +27,7 @@ function Sentry.Passive(AI, Owner, Abort)
 
 	Sentry.Initialize(AI, Owner);
 
-	return SentryPassive(
-		AI,
-		Owner,
-		Abort
-	);
+	return SentryPassive(AI, Owner, Abort);
 
 end
 
@@ -43,10 +36,6 @@ function Sentry.Active(AI, Owner, Abort)
 
 	Sentry.Initialize(AI, Owner);
 
-	return SentryActive(
-		AI,
-		Owner,
-		Abort
-	);
+	return SentryActive(AI, Owner, Abort);
 
 end
