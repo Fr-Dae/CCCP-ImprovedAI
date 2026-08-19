@@ -40,21 +40,19 @@ local function GetConstructor(Owner)
 		return Item;
 	end
 
-	-- These are the native Actor equipment functions used by CCCP AI.
-	-- EquipNamedDevice searches the actor's available equipment, while
-	-- the group search also covers Constructor variants added by mods.
-	if Owner:EquipNamedDevice("Constructor", true) then
-		Item = Owner.EquippedItem;
-		if Item and Item.PresetName == "Constructor" then
-			return Item;
-		end
+	-- Use the same native Actor equipment functions as CCCP AI.
+	-- Do not rely on an assumed boolean return value: re-read
+	-- EquippedItem after each request.
+	Owner:EquipNamedDevice("Constructor", true);
+	Item = Owner.EquippedItem;
+	if Item and Item.PresetName == "Constructor" then
+		return Item;
 	end
 
-	if Owner:EquipDeviceInGroup("Tools - Constructors", true) then
-		Item = Owner.EquippedItem;
-		if Item and Item.PresetName == "Constructor" then
-			return Item;
-		end
+	Owner:EquipDeviceInGroup("Tools - Constructors", true);
+	Item = Owner.EquippedItem;
+	if Item and Item.PresetName == "Constructor" then
+		return Item;
 	end
 end
 
