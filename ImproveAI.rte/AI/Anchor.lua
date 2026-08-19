@@ -104,6 +104,15 @@ function Anchor.PlaceRight(pieMenuOwner, pieMenu, pieSlice)
 	Anchor.Place(ToActor(pieMenuOwner), Anchor.DirectionRight);
 end
 
+-- CCCP PieSlice callbacks are registered by global function name.
+function ImproveAI_AnchorPlaceLeft(pieMenuOwner, pieMenu, pieSlice)
+	Anchor.PlaceLeft(pieMenuOwner, pieMenu, pieSlice);
+end
+
+function ImproveAI_AnchorPlaceRight(pieMenuOwner, pieMenu, pieSlice)
+	Anchor.PlaceRight(pieMenuOwner, pieMenu, pieSlice);
+end
+
 function Anchor.Draw(Owner, Screen)
 	local Position, Direction = Anchor.Get(Owner);
 	if not Position or Screen == -1 then
