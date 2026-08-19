@@ -32,3 +32,12 @@
 - Corrected the optimized mining reference cost to 200 Constructor resource units for one medium 12x12 block, with a 200-unit reserve margin.
 - Corrected the previous typo in the MinerOptimized module initialization and retained the lightweight timer-driven architecture.
 - Added PieMenus.lua to the AI include list.
+
+2026/08/20 - 18hxx
+- Fr_Dae
+- completed ImproveAI Sentry Pie Menu integration for version 0.6.
+- Added a dedicated Sentry menu containing Sentry Passive and Sentry Active commands.
+- Added PieMenus.lua callbacks that select the Sentry profile through the actor's ImproveAI_SentryMode value and then enter the native AIMODE_SENTRY path.
+- Updated Sentry.lua so the native HumanBehaviors.Sentry coroutine dispatches to SentryPassive.lua or SentryActive.lua according to the selected profile.
+- Updated README.md so the Pie Menu documentation now covers both Mining and Sentry command groups.
+- The native CCCP Sentry AI remains the engine integration point; ImproveAI replaces the coroutine implementation rather than introducing a new AIMode.
