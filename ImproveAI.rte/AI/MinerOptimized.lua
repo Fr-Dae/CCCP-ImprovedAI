@@ -2,44 +2,18 @@
 -- ImproveAI.rte
 -- MinerOptimized.lua
 --
-<<<<<<< HEAD
--- Optimized tunnel-mining behaviour.
+-- Structured mining behaviour using an explicit Anchor.
 --
--- Design:
+-- Geometry reference:
+--   - surface = level 0
+--   - first gallery = level 1
+--   - medium Constructor block = 12 px
+--   - tunnel height = 6 blocks = 72 px
+--   - gallery floor is shared with the ceiling below
 --
---   Surface = level 0
---   First gallery = level -1
---   Each gallery is 6 Constructor blocks high.
---   Gallery floor / next gallery ceiling are shared.
---
--- Structured tunnel mining. Heavy work is deliberately delegated
--- to native CCCP behaviours whenever possible.
---
--- The Constructor is responsible for the actual construction
--- and material collection.
---
--- This behaviour only controls:
---
---   - equipment
---   - anchor detection
---   - safe depth
---   - horizontal excavation
---   - gallery progression
---   - Constructor activation
---
--- Native AI pathfinding and native mining are deliberately
--- reused whenever possible.
---
--- Geometry:
---   surface = level 0
---   first gallery = level 1
---   tunnel height = 6 x 12 px
---   gallery floor is shared with the ceiling of the next level
-=======
--- Structured tunnel mining using an explicit Anchor.
--- Heavy work is delegated to native AI/navigation whenever
--- possible. The optimized constructor unit is medium (12 px).
->>>>>>> origin/11-new-constructor-issue
+-- This file plans the mining sections and delegates movement and
+-- digging to native CCCP behaviour whenever possible. It does not
+-- assume Constructor resources refill automatically.
 -- ============================================================
 
 ImproveAI_MinerOptimized = ImproveAI_MinerOptimized or {};
@@ -52,47 +26,42 @@ Miner.BottomSafetyPixels = 60;
 Miner.ConstructorBlockCost = 200;
 Miner.ConstructorReserveMargin = 200;
 Miner.EquipmentCheckMS = 1000;
-Miner.SectionCheckMS = 500;
 
 local function ValidActor(Owner)
-	return Owner and MovableMan:ValidMO(Owner) and IsActor(Owner);
-end
-
-local function IsConstructor(Device)
-	return Device
-		and (Device.PresetName == "Constructor"
-		or Device:GetStringValue("ConstructorMode") ~= nil);
+	return Owner
+		and MovableMan:ValidMO(Owner)
+		and IsActor(Owner);
 end
 
 local function GetConstructor(Owner)
 	local Item = Owner.EquippedItem;
-	if IsConstructor(Item) then
+
+	if Item and Item.PresetName == "Constructor" then
 		return Item;
 	end
 
-	if Owner:HasObject("Constructor") then
-		Owner:EquipNamedDevice("Constructor", true);
+	-- These are the native Actor equipment functions used by CCCP AI.
+	-- EquipNamedDevice searches the actor's available equipment, while
+	-- the group search also covers Constructor variants added by mods.
+	if Owner:EquipNamedDevice("Constructor", true) then
 		Item = Owner.EquippedItem;
-		if IsConstructor(Item) then
+		if Item and Item.PresetName == "Constructor" then
 			return Item;
 		end
 	end
 
-	if Owner:HasObjectInGroup("Tools - Constructors") then
-		Owner:EquipDeviceInGroup("Tools - Constructors", true);
+	if Owner:EquipDeviceInGroup("Tools - Constructors", true) then
 		Item = Owner.EquippedItem;
-		if IsConstructor(Item) then
+		if Item and Item.PresetName == "Constructor" then
 			return Item;
 		end
 	end
 end
 
 local function GetAnchor(Owner)
-	if not ImproveAI_MiningAnchors then
-		return nil;
-	end
+	local Data = ImproveAI_MiningAnchors
+		and ImproveAI_MiningAnchors[Owner.UniqueID or Owner.ID];
 
-	local Data = ImproveAI_MiningAnchors[Owner.UniqueID or Owner.ID];
 	if not Data then
 		return nil;
 	end
@@ -100,16 +69,21 @@ local function GetAnchor(Owner)
 	return Vector(Data.X, Data.Y), Data.Direction;
 end
 
-local function MoveTo(AI, Owner, Position)
-	Owner:ClearAIWaypoints();
-	Owner:AddAISceneWaypoint(Position);
-	AI:CreateGoToBehavior(Owner);
+local function SetMiningControls(AI, Owner)
+	local Direction = AI.MinerDirection;
+
+	Owner.HFlipped = Direction < 0;
+	AI.Ctrl:SetState(Controller.AIM_UP, false);
+	AI.Ctrl:SetState(Controller.AIM_DOWN, false);
+	AI.Ctrl:SetState(Controller.AIM_SHARP, true);
+	AI.Ctrl:SetState(Controller.WEAPON_FIRE, true);
 end
 
-local function HasConstructorReserve(Constructor)
-	return Constructor
-		and Constructor.resource ~= nil
-		and Constructor.resource >= Miner.ConstructorBlockCost + Miner.ConstructorReserveMargin;
+local function ClearMiningControls(AI)
+	AI.Ctrl:SetState(Controller.WEAPON_FIRE, false);
+	AI.Ctrl:SetState(Controller.AIM_UP, false);
+	AI.Ctrl:SetState(Controller.AIM_DOWN, false);
+	AI.Ctrl:SetState(Controller.AIM_SHARP, false);
 end
 
 function Miner.GetGalleryFloor(Anchor, Level)
@@ -132,6 +106,8 @@ function Miner(AI, Owner, Abort)
 		return true;
 	end
 
+	AI.Ctrl = AI.Ctrl or Owner:GetController();
+
 	local Anchor, Direction = Miner.FindAnchor(Owner);
 	if not Anchor then
 		return true;
@@ -139,12 +115,10 @@ function Miner(AI, Owner, Abort)
 
 	AI.MinerAnchor = Anchor;
 	AI.MinerLevel = AI.MinerLevel or 1;
-	AI.MinerDirection = AI.MinerDirection
-		or Direction
-		or (Owner.HFlipped and -1 or 1);
+	AI.MinerDirection = AI.MinerDirection or Direction or (Owner.HFlipped and -1 or 1);
+	AI.MinerSection = AI.MinerSection or 0;
 
 	local EquipmentTimer = Timer();
-	local SectionTimer = Timer();
 	local Constructor = nil;
 
 	while not Abort() do
@@ -154,44 +128,67 @@ function Miner(AI, Owner, Abort)
 
 		if EquipmentTimer:IsPastSimMS(Miner.EquipmentCheckMS) then
 			EquipmentTimer:Reset();
-			Constructor = GetConstructor(Owner) or Constructor;
-			AI.MinerConstructor = Constructor;
-		end
-
-		local Floor = Miner.GetGalleryFloor(
-			AI.MinerAnchor,
-			AI.MinerLevel
-		);
-
-		if Floor.Y >= Miner.GetMaximumGalleryY() then
-			break;
-		end
-
-		if SectionTimer:IsPastSimMS(Miner.SectionCheckMS) then
-			SectionTimer:Reset();
-
-			Constructor = GetConstructor(Owner) or Constructor;
+			Constructor = GetConstructor(Owner);
 			AI.MinerConstructor = Constructor;
 
-			if HasConstructorReserve(Constructor) then
-				Owner.AIMode = Actor.AIMODE_GOLDDIG;
-				AI.Ctrl:SetState(Controller.WEAPON_FIRE, true);
+			if Constructor and Constructor.resource ~= nil then
+				AI.MinerNeedsMaterial = Constructor.resource <
+					(Miner.ConstructorBlockCost + Miner.ConstructorReserveMargin);
 			else
-				AI.Ctrl:SetState(Controller.WEAPON_FIRE, true);
+				AI.MinerNeedsMaterial = true;
+			end
+		end
+
+		if not Constructor or not MovableMan:ValidMO(Constructor) then
+			Constructor = GetConstructor(Owner);
+			AI.MinerConstructor = Constructor;
+		end
+
+		if not Constructor then
+			ClearMiningControls(AI);
+			coroutine.yield();
+		else
+			local Floor = Miner.GetGalleryFloor(
+				AI.MinerAnchor,
+				AI.MinerLevel
+			);
+
+			if Floor.Y >= Miner.GetMaximumGalleryY() then
+				break;
 			end
 
 			local Target = Vector(
-				Floor.X + AI.MinerDirection * Miner.SectionLengthBlocks * Miner.BlockSize,
+				Floor.X + AI.MinerDirection * (
+					AI.MinerSection + 1
+				) * Miner.SectionLengthBlocks * Miner.BlockSize,
 				Floor.Y - Miner.BlockSize * 3
 			);
 
-			MoveTo(AI, Owner, Target);
+			AI.MinerSectionTarget = Target;
+
+			local Distance = SceneMan:ShortestDistance(
+				Owner.Pos,
+				Target,
+				SceneMan.SceneWrapsX
+			);
+
+			if Distance:MagnitudeIsLessThan(Miner.BlockSize * 2) then
+				AI.MinerSection = AI.MinerSection + 1;
+				AI.MinerSectionTarget = nil;
+			else
+				SetMiningControls(AI, Owner);
+				Owner:ClearAIWaypoints();
+				Owner:AddAISceneWaypoint(Target);
+				AI:CreateGoToBehavior(Owner);
+				return true;
+			end
 		end
 
 		coroutine.yield();
 	end
 
-	AI.Ctrl:SetState(Controller.WEAPON_FIRE, false);
+	ClearMiningControls(AI);
 	AI.MinerConstructor = nil;
+	AI.MinerSectionTarget = nil;
 	return true;
 end
