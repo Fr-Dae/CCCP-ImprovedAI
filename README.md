@@ -282,7 +282,7 @@ Certaines fonctionnalités décrites peuvent ne pas encore être implémentées.
 
 ### ImproveAI
 
-**Dae** — conception et développement.
+**Fr_Dae** — conception et développement.
 
 ### Cortex Command Community Project
 
