@@ -41,3 +41,12 @@
 - Updated Sentry.lua so the native HumanBehaviors.Sentry coroutine dispatches to SentryPassive.lua or SentryActive.lua according to the selected profile.
 - Updated README.md so the Pie Menu documentation now covers both Mining and Sentry command groups.
 - The native CCCP Sentry AI remains the engine integration point; ImproveAI replaces the coroutine implementation rather than introducing a new AIMode.
+
+2026/08/20 - 15h53
+- Fr_Dae
+- version 0.7 development work.
+- Added dedicated Pie Menu icons for MinerOptimized, Anchor, SentryPassive and SentryActive.
+- Moved the new PNG assets into ImproveAI.rte/Icons/Pie/ to match the project's Pie icon organization.
+- Updated PieMenus.ini so the four commands use their dedicated icons while preserving the existing Mining and Sentry submenu structure.
+- Removed the temporary duplicate icon files from ImproveAI.rte/Icons/.
+- MinerClassic, SentryHold and the other existing Pie icon placeholders remain unchanged.
